@@ -1,0 +1,235 @@
+$mainColor: rgb(241, 241, 241);
+$mainBlue: rgb(50, 40, 199);
+$mainBlack: rgba(0, 0, 0, 0.651);
+
+.flexOne {
+    flex: 1;
+}
+.flexTwo {
+    flex: 2;
+}
+.flex {
+    display: flex;
+}
+
+.header{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    height: 65px;
+    width: 100%;
+    position: fixed;
+    border-bottom: 0.2px solid #00000025;
+    box-shadow: 0 0 1px 0;
+    background-color: white;
+    z-index: 1;
+    .logo{
+        margin-left: 150px;
+        a{
+            img{
+                height: 65px;
+            }
+        }
+        i{
+            display: none;
+        }
+    }
+    .options{
+        justify-content: start;
+        align-items: center;
+        ul{
+            display: block;
+            list-style: none;
+            margin: 0 0 0 30px;
+            padding: 0;
+            li{                
+                ::-webkit-scrollbar{
+                    width: 6px;
+                    background-color: white;
+                    border-radius: 8px;
+                }
+                ::-webkit-scrollbar-thumb{
+                    border-radius: 10px;
+                    background-color: #a6a6a6;
+                }
+                font-size: 16px;
+                margin-right: 15px;
+                display: inline;
+                padding: 30px 0;
+                a{
+                    transition: all 0.2s linear;
+                    text-decoration: none;
+                    color: $mainBlack;
+                    &:hover {
+                        color: black;
+                    }
+                }
+                i {
+                    margin-left: 5px;
+                }
+                ul{
+                    position: absolute;
+                    display: none;
+                    background-color: white;
+                    margin: 12px 0 0 50px;
+                    height: 400px;
+                    width: 200px;
+                    border-radius: 8px;
+                    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.2);
+                    overflow: scroll;
+                    overflow-x:hidden;
+                    li{
+                        margin: 0;
+                        padding: 3px 0 3px 15px;
+                        display: block;
+                        a{
+                            font-size: 15px;
+                            font-weight: 400;
+                        }
+                        hr{
+                            margin: 10px 0 5px -5px;
+                            width: 120px;
+                        }
+                    }
+                    li.main{
+                        padding: 5px 0 5px 0;
+                        text-align: center;
+                        font-size: 14px;
+                    }
+                }                
+                &:nth-of-type(2){
+                    &:hover{
+                        ul {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .search{
+        form{
+            display: block;
+            margin: auto 0 auto auto;
+            input[type=text] {
+                transition: all 0.2s ease-in;
+                background-color: $mainColor;
+                border: 0;
+                width: 260px;
+                border-radius: 8px 0 0 8px;
+                height: 35px;
+                padding: 15px;
+                border: 1.5px solid transparent;
+                &:focus {
+                    outline: none;
+                }
+                &:focus{
+                    background-color: white;
+                    border-color: $mainBlue;
+                }
+            }
+            button {
+                transition: all 0.2s ease-in;
+                background-color: rgb(214, 212, 212);
+                border-radius: 0 8px 8px 0;
+                border: 0;
+                width: 40px;
+                height: 35px;
+                margin-left: -2px;
+                &:focus{
+                    outline: none;
+                }
+                i{
+                    color: $mainBlue;
+                }
+                &:hover{
+                    background-color: rgb(184, 184, 184);
+                }
+            }
+        }
+    }
+    .log{
+        margin-right: 150px;
+        align-items: center;
+        justify-content: end;
+        button {
+            border: 0;
+            height: 30px;
+            width: 65px;
+            background-color: red;
+            border-radius: 10px;
+            transition: all 0.2s ease-in;
+            &:nth-of-type(1){
+                margin: 0 5px 0 15px;
+                background-color: transparent;
+                // border: 1px solid $mainBlack;
+                color: $mainBlack;
+                &:focus{
+                    outline: none;
+                }
+                &:hover{
+                    color: black;
+                }
+            }
+            &:nth-of-type(2){
+                width: 80px;
+                font-weight: 600;
+                height: 40px;
+                background-color: $mainColor;
+                border: 1px solid $mainBlue;                
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $mainBlue;
+                &:focus{
+                    outline: none;
+                }
+                &:hover{
+                    background-color: $mainBlue;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+.body {
+    position: relative;
+    top: 65px;
+    width: 100%;
+    height: 2000px;
+    background-color: black;
+    z-index: 0;
+}
+
+@media (max-width: 1250px){
+    .body{
+        background-color: pink;
+    }
+    .header{
+        .logo{
+            flex: 1;
+            margin: 0 0 0 50px;
+            a{
+                display: none;
+            }
+            i{
+                display: block;
+                
+            }
+        }
+        .options{
+            display: none;
+            flex: 0;
+        }
+        .search{
+            flex: 6;
+        }
+        .log{
+            flex: 1;
+            margin: 0 50px 0 0;
+            button{
+                display: none;
+            }
+        }
+    }
+}

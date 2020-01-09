@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>MoonMedia</title>
+    <title>EnglishMoon</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
@@ -10,45 +10,50 @@
 </head>
 <body>
     <!-- navbar -->
+    <div class="shadow"></div>
     <div class="header flex">
-        <div class="logo flexOne">
-            <a href="/"><img src="images/Teste.jpg" alt="Logo"></a>
-            <i class="fas fa-bars"></i>
+        <div class="logo flex flexOne">
+            <div class="container flex hamb-bars">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="container flex">
+                <a href="/"><img src="images/logo2.jpg" alt="Logo"></a> 
+            </div>
         </div>
         <div class="options flexTwo flex">
             <ul>
-                <li><a href="/articles">Articles</a></li>
-                <li><a href="/courses">Courses</a><i class="fas fa-sort-down"></i>
-                    <ul>
-                        <li class="main">Frontend</li>
-                        <li class="li-color"><a href="">HTML5</a></li>
-                        <li class="li-color"><a href="">CSS3</a></li>
-                        <li class="li-color"><a href="">JavaScript</a></li>
-                        <li class="li-color"><a href="">React</a></li>
-                        <li class="li-color"><a href="">Angular</a></li>
-                        <li class="li-color"><a href="">Vue.js</a></li>
-                        <li class="main">Backend</li>
-                        <li class="li-color"><a href="">PHP</a></li>
-                        <li class="li-color"><a href="">Node.js</a></li>
-                        <li class="li-color"><a href="">Spring</a></li>
-                        <li class="li-color"><a href="">MongoDB</a></li>
-                        <li class="li-color"><a href="">MySQL</a></li>
-                        <li class="li-color"><a href="">Deploy</a></li>
-                        <li class="li-color"><a href="">Git</a></li>
-                    </ul>
-                </li>
-                <li><a href="/contact">Contact  Us</a></li>
+                <li><a href="/articles">Artigos</a></li>
+                <li><a href="/courses">Livros</a></li>
+                <li><a href="/courses">Cursos</a></li>
+                <li><a href="/contact">Contato</a></li>
             </ul>
         </div>
         <div class="search flexTwo flex">
             <form action="">
-                <input type="text" name="search" placeholder="Search">
+                <input type="text" name="search" placeholder="O que está procurando?">
                 <button><i class="fas fa-search"></i></button>
             </form>
+            <div class="searchSup">
+                <i class="fas fa-search"></i>                
+            </div>
         </div>
         <div class="log flexOne flex">
-            <button>Sing in</button>
-            <button>Sign up</button>
+            <button>Entrar</button>
+            <button>Registrar</button>
+        </div>
+        <div class="dropdown-aut">
+            <form action="">
+                <p>e-mail</p>
+                <input type="text" name="login">
+                <p>senha</p>
+                <input type="text" name="password">
+                <p> <a href=""> esqueceu a sua senha? </a> </p>
+                <button>Entrar</button>
+                <p> <a href=""> Cadastre-se </a></p>
+            </form>
+        </div>
+        <div class="log2 flexOne flex">
+            <i class="far fa-user"></i>
         </div>
     </div>
 

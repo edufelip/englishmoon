@@ -13,25 +13,104 @@ $mainBlack: rgba(0, 0, 0, 0.651);
     display: flex;
 }
 
+i{
+    color: $mainBlack;
+}
+
 .shadow{
-    display: none;
     position: absolute;
-    width: 100%;
+    width: 0vh;
     height: 2000px;
-    background-color: rgba(0, 0, 0, 0.336);
+    background-color: transparent;
+    transition: background-color 0.3s ease-out;
     z-index: 2;
 }
+.drop-translate{
+    transform: translate3d(250px, 0, 0);
+}
+// .activate-shadow{
+//     width: 100vw;
+//     background-color: #00000030;
+// }
 
 .header{
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
-    height: 80px;
+    height: 65px;
     width: 100%;
     position: fixed;
     border-bottom: 0.2px solid #00000025;
     box-shadow: 0 0 1px 0;
     background-color: white;
     z-index: 1;
+    .drop-menu{
+        position: absolute;
+        left: -250px;
+        width: 250px;
+        height: 100vh;
+        transition: all 0.2s ease-out;
+        background-color: white;
+        z-index: 3;
+        .drop-menu-header{
+            height: 65px;
+            width: 100%;
+            i{
+                position: relative;
+                display: block;
+                left: 30px;
+                top: 20px;
+                font-size: 25px;
+                width: 25px;
+                margin: 0;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+            a{
+                position: relative;
+                left: 85px;
+                top: -25px;
+                img{
+                    width: 125px;
+                    height: 65px;
+                    
+                }
+            }
+        }
+        .drop-menu-line{
+            height: 1px;
+            width: 90%;
+            background-color: rgba(0, 0, 0, 0.157);
+            margin: 0 auto 10px auto;
+        }
+        .drop-menu-options{
+            width: 100%;
+            height: 100%;
+            .drop-menu-options-sub{
+                height: 40px;
+                padding: 30px;
+                justify-content: space-around;
+                align-items: center;
+            }
+            i {
+                font-size: 18px;
+                color: $mainBlack;
+            }
+            a{
+                display: block;
+                width: 100px;
+                margin: 0 0 0 10px;
+                font-size: 15px;
+                color: $mainBlack;
+                text-decoration: none;
+                margin-right: 20px;
+                text-align: start;
+                &:hover{
+                    color: black;
+                }
+            }
+        }
+    }
     .logo{
         margin-left: 80px;
         .container{
@@ -54,6 +133,13 @@ $mainBlack: rgba(0, 0, 0, 0.651);
                     cursor: pointer;
                 }
             }
+        }
+        .bar{
+            display: block;
+            width: 1px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.144);
+            margin: auto 20px auto 0;
         }
     }
     .options{
@@ -129,7 +215,10 @@ $mainBlack: rgba(0, 0, 0, 0.651);
             display: block;
             margin: auto 0 auto 10px;
             input[type=text] {
-                transition: all 0.2s ease-in;
+                // transition: all 0.2s ease-in;
+                transition-property: background-color, border-color;
+                transition-duration: 0.2s;
+                transition-timing-function: ease-in;
                 background-color: $mainColor;
                 border: 0;
                 width: 250px;
@@ -209,8 +298,8 @@ $mainBlack: rgba(0, 0, 0, 0.651);
         }
     }
     .dropdown-aut{
-        // display: none;
-        box-shadow: 20px 6px 7px 2px rgba(0,0,0,0.75);
+        display: none;
+        box-shadow: 1px 2px 7px 2px rgba(0,0,0,0.1);
         position: absolute;
         top: 70px;
         right: 100px;
@@ -261,7 +350,7 @@ $mainBlack: rgba(0, 0, 0, 0.651);
     }
 }
 
-.body {
+.main {
     // display: none;
     position: relative;
     top: 65px;
@@ -272,7 +361,7 @@ $mainBlack: rgba(0, 0, 0, 0.651);
 }
 
 @media (max-width: 1130px){
-    .body{
+    .main{
         background-color: pink;
     }
     .header{
@@ -297,22 +386,22 @@ $mainBlack: rgba(0, 0, 0, 0.651);
 }
 
 @media (max-width: 830px){
-    .body{
-        background-color: green;
+    .main{
+        background-color: black;
     }
     .header{
         .log{
             display: none;
         }
         .log2{
-            margin-right: 10px;
             display: flex;
+            margin-right: 10px;
             justify-content: center;
             align-items: center;
             i{
                 margin: 0 10px 0 0;
                 font-size: 25px;
-                color: black;
+                color: $mainBlack;
                 &:hover{
                     cursor: pointer;
                 }
@@ -345,7 +434,7 @@ $mainBlack: rgba(0, 0, 0, 0.651);
 
 
 @media (max-width: 600px){
-    .body{
+    .main{
         background-color: white;
     }
     .header{
@@ -359,8 +448,8 @@ $mainBlack: rgba(0, 0, 0, 0.651);
     }
 }
 
-@media (max-width: 485px){
-    .body{
+@media (max-width: 505px){
+    .main{
         background-color: yellow;
     }
     .header{
@@ -370,13 +459,6 @@ $mainBlack: rgba(0, 0, 0, 0.651);
                 input[type=text]{
                     display: none;
                 }
-                button {
-                    background-color: transparent;
-                    i{
-                        color: black;
-                        font-size: 20px;
-                    }
-                }
             }
             .searchSup{
                 display: flex;
@@ -385,6 +467,9 @@ $mainBlack: rgba(0, 0, 0, 0.651);
                 i{
                     font-size: 20px;
                     margin-right: 10px;
+                    &:hover{
+                        cursor: pointer;
+                    }
                 }
             }
         }

@@ -1,107 +1,161 @@
 .flexOne {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
 }
 
 .flexTwo {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
+  flex: 2;
 }
 
 .flex {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
+i {
+  color: rgba(0, 0, 0, 0.651);
+}
+
 .shadow {
-  display: none;
   position: absolute;
-  width: 100%;
+  width: 0vh;
   height: 2000px;
-  background-color: rgba(0, 0, 0, 0.336);
+  background-color: transparent;
+  transition: background-color 0.3s ease-out;
   z-index: 2;
 }
 
+.drop-translate {
+  transform: translate3d(250px, 0, 0);
+}
+
 .header {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 600;
-  height: 80px;
+  height: 65px;
   width: 100%;
   position: fixed;
   border-bottom: 0.2px solid #00000025;
-  -webkit-box-shadow: 0 0 1px 0;
-          box-shadow: 0 0 1px 0;
+  box-shadow: 0 0 1px 0;
   background-color: white;
   z-index: 1;
 }
-
+.header .drop-menu {
+  position: absolute;
+  left: -250px;
+  width: 250px;
+  height: 100vh;
+  transition: all 0.2s ease-out;
+  background-color: white;
+  z-index: 3;
+}
+.header .drop-menu .drop-menu-header {
+  height: 65px;
+  width: 100%;
+}
+.header .drop-menu .drop-menu-header i {
+  position: relative;
+  display: block;
+  left: 30px;
+  top: 20px;
+  font-size: 25px;
+  width: 25px;
+  margin: 0;
+}
+.header .drop-menu .drop-menu-header i:hover {
+  cursor: pointer;
+}
+.header .drop-menu .drop-menu-header a {
+  position: relative;
+  left: 85px;
+  top: -25px;
+}
+.header .drop-menu .drop-menu-header a img {
+  width: 125px;
+  height: 65px;
+}
+.header .drop-menu .drop-menu-line {
+  height: 1px;
+  width: 90%;
+  background-color: rgba(0, 0, 0, 0.157);
+  margin: 0 auto 10px auto;
+}
+.header .drop-menu .drop-menu-options {
+  width: 100%;
+  height: 100%;
+}
+.header .drop-menu .drop-menu-options .drop-menu-options-sub {
+  height: 40px;
+  padding: 30px;
+  justify-content: space-around;
+  align-items: center;
+}
+.header .drop-menu .drop-menu-options i {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.651);
+}
+.header .drop-menu .drop-menu-options a {
+  display: block;
+  width: 100px;
+  margin: 0 0 0 10px;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.651);
+  text-decoration: none;
+  margin-right: 20px;
+  text-align: start;
+}
+.header .drop-menu .drop-menu-options a:hover {
+  color: black;
+}
 .header .logo {
   margin-left: 80px;
 }
-
 .header .logo .container {
   padding: 0;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: start;
+  align-items: center;
 }
-
 .header .logo .container a img {
   height: 65px;
 }
-
 .header .logo .hamb-bars {
   display: none;
   width: auto;
   margin: 0 10px 0 10px;
 }
-
 .header .logo .hamb-bars i {
   font-size: 25px;
 }
-
 .header .logo .hamb-bars i:hover {
   cursor: pointer;
 }
-
-.header .options {
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.header .logo .bar {
+  display: block;
+  width: 1px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.144);
+  margin: auto 20px auto 0;
 }
-
+.header .options {
+  justify-content: flex-start;
+  align-items: center;
+}
 .header .options ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-
 .header .options ul li {
   font-size: 15px;
   margin-left: 22px;
   display: inline;
 }
-
 .header .options ul li a {
-  -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
   text-decoration: none;
   color: rgba(0, 0, 0, 0.651);
 }
-
 .header .options ul li a:hover {
   color: black;
 }
-
 .header .options ul li ul {
   position: absolute;
   display: none;
@@ -110,46 +164,39 @@
   height: 400px;
   width: 200px;
   border-radius: 8px;
-  -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
   overflow: scroll;
   overflow-x: hidden;
 }
-
 .header .options ul li ul li {
   margin: 0;
   padding: 3px 0 3px 15px;
   display: block;
 }
-
 .header .options ul li ul li a {
   font-size: 15px;
   font-weight: 400;
 }
-
 .header .options ul li ul li hr {
   margin: 10px 0 5px -5px;
   width: 120px;
 }
-
 .header .options ul li ul li.main {
   padding: 5px 0 5px 0;
   text-align: center;
   font-size: 14px;
 }
-
 .header .options ul li:nth-of-type(2):hover ul {
   display: block;
 }
-
 .header .search form {
   display: block;
   margin: auto 0 auto 10px;
 }
-
 .header .search form input[type=text] {
-  -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
+  transition-property: background-color, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
   background-color: #f1f1f1;
   border: 0;
   width: 250px;
@@ -158,18 +205,14 @@
   padding: 15px;
   border: 1.5px solid transparent;
 }
-
 .header .search form input[type=text]:focus {
   outline: none;
 }
-
 .header .search form input[type=text]:focus {
   background-color: white;
   border-color: #3228c7;
 }
-
 .header .search form button {
-  -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
   background-color: #d6d4d4;
   border-radius: 0 8px 8px 0;
@@ -178,83 +221,61 @@
   height: 35px;
   margin-left: -2px;
 }
-
 .header .search form button:focus {
   outline: none;
 }
-
 .header .search form button i {
   color: #3228c7;
 }
-
 .header .search form button:hover {
   background-color: #b8b8b8;
 }
-
 .header .search .searchSup {
   display: none;
 }
-
 .header .log {
   margin-right: 80px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: end;
+  align-items: center;
+  justify-content: end;
 }
-
 .header .log button {
   border: 0;
   height: 30px;
   width: 65px;
   border-radius: 12px;
-  -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
 }
-
 .header .log button:nth-of-type(1) {
   margin: 0 5px 0 15px;
   background-color: transparent;
   color: rgba(0, 0, 0, 0.651);
 }
-
 .header .log button:nth-of-type(1):focus {
   outline: none;
 }
-
 .header .log button:nth-of-type(1):hover {
   color: black;
 }
-
 .header .log button:nth-of-type(2) {
   width: 100px;
   font-weight: 600;
   height: 35px;
   background-color: #3228c7;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   color: white;
 }
-
 .header .log button:nth-of-type(2):focus {
   outline: none;
 }
-
 .header .log button:nth-of-type(2):hover {
   background-color: #110f8a;
   color: white;
 }
-
 .header .dropdown-aut {
+  display: none;
+  box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.1);
   position: absolute;
   top: 70px;
   right: 100px;
@@ -263,7 +284,6 @@
   background-color: white;
   border-radius: 4px;
 }
-
 .header .dropdown-aut form input {
   display: block;
   height: 30px;
@@ -274,27 +294,22 @@
   padding: 0 8px;
   font-size: 14px;
 }
-
 .header .dropdown-aut form p {
   font-weight: 400;
   font-size: 15px;
   color: rgba(0, 0, 0, 0.712);
   margin: 10px 0 0 15px;
 }
-
 .header .dropdown-aut form p:nth-of-type(3) {
   font-size: 13px;
   margin: 0 0 0 40px;
 }
-
 .header .dropdown-aut form p:nth-of-type(3) a {
   text-decoration: none;
 }
-
 .header .dropdown-aut form p:nth-of-type(4) {
   display: none;
 }
-
 .header .dropdown-aut form button {
   display: block;
   width: 150px;
@@ -304,76 +319,60 @@
   background-color: #3228c7;
   color: white;
 }
-
 .header .log2 {
   display: none;
 }
 
-.body {
+.main {
   position: relative;
   top: 65px;
   width: 100%;
   height: 2000px;
-  background-color: black;
+  background-color: white;
   z-index: 0;
 }
 
 @media (max-width: 1130px) {
-  .body {
+  .main {
     background-color: pink;
   }
+
   .header .logo {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
+    flex: 1;
     margin: 0 0 0 15px;
   }
   .header .logo .hamb-bars {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     margin: 0 15px 0 15px;
   }
   .header .options {
     display: none;
-    -webkit-box-flex: 0;
-        -ms-flex: 0;
-            flex: 0;
+    flex: 0;
   }
   .header .search {
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    justify-content: flex-end;
     margin-right: 20px;
-    -webkit-box-flex: 8;
-        -ms-flex: 8;
-            flex: 8;
+    flex: 8;
   }
 }
-
 @media (max-width: 830px) {
-  .body {
-    background-color: green;
+  .main {
+    background-color: black;
   }
+
   .header .log {
     display: none;
   }
   .header .log2 {
-    margin-right: 10px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    margin-right: 10px;
+    justify-content: center;
+    align-items: center;
   }
   .header .log2 i {
     margin: 0 10px 0 0;
     font-size: 25px;
-    color: black;
+    color: rgba(0, 0, 0, 0.651);
   }
   .header .log2 i:hover {
     cursor: pointer;
@@ -396,50 +395,41 @@
     color: rgba(0, 0, 0, 0.651);
   }
   .header .dropdown-aut form p:nth-of-type(4) a:hover {
-    color: blue;
+    color: .header .dropdown-aut form p:nth-of-type(4) a:hover #3228c7;
   }
 }
-
 @media (max-width: 600px) {
-  .body {
+  .main {
     background-color: white;
   }
+
   .header .search form input[type=text] {
     width: 165px;
   }
 }
-
-@media (max-width: 485px) {
-  .body {
+@media (max-width: 505px) {
+  .main {
     background-color: yellow;
   }
+
   .header .search form {
     display: none;
   }
   .header .search form input[type=text] {
     display: none;
   }
-  .header .search form button {
-    background-color: transparent;
-  }
-  .header .search form button i {
-    color: black;
-    font-size: 20px;
-  }
   .header .search .searchSup {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    justify-content: center;
+    align-items: center;
   }
   .header .search .searchSup i {
     font-size: 20px;
     margin-right: 10px;
   }
+  .header .search .searchSup i:hover {
+    cursor: pointer;
+  }
 }
+
 /*# sourceMappingURL=style.css.map */

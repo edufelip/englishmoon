@@ -3,6 +3,10 @@ $mainBlue: rgb(50, 40, 199);
 $hoverBlue: #110f8a;
 $mainBlack: rgba(0, 0, 0, 0.651);
 
+*{
+    margin: 0;
+    font-family: 'Open Sans';
+}
 .flexOne {
     flex: 1;
 }
@@ -12,26 +16,22 @@ $mainBlack: rgba(0, 0, 0, 0.651);
 .flex {
     display: flex;
 }
-
 i{
     color: $mainBlack;
 }
-
 .shadow{
     position: absolute;
-    width: 0vh;
+    width: 100%;
     height: 2000px;
-    background-color: transparent;
-    transition: background-color 0.3s ease-out;
+    background-color: #00000030;
+    transition: opacity 0.3s linear;
+    visibility: hidden;
+    opacity: 0;
     z-index: 2;
 }
 .drop-translate{
     transform: translate3d(250px, 0, 0);
 }
-// .activate-shadow{
-//     width: 100vw;
-//     background-color: #00000030;
-// }
 
 .header{
     font-family: 'Open Sans', sans-serif;
@@ -52,26 +52,24 @@ i{
         background-color: white;
         z-index: 3;
         .drop-menu-header{
+            display: flex;
+            align-items: center;
             height: 65px;
             width: 100%;
             i{
                 position: relative;
                 display: block;
+                float: left;
+                font-size: 20px;
                 left: 30px;
-                top: 20px;
-                font-size: 25px;
-                width: 25px;
-                margin: 0;
                 &:hover{
                     cursor: pointer;
                 }
             }
             a{
                 position: relative;
-                left: 85px;
-                top: -25px;
+                left: 50px;
                 img{
-                    width: 125px;
                     height: 65px;
                     
                 }
@@ -87,20 +85,20 @@ i{
             width: 100%;
             height: 100%;
             .drop-menu-options-sub{
-                height: 40px;
-                padding: 30px;
-                justify-content: space-around;
+                height: 0px;
+                padding: 22px 30px;
                 align-items: center;
             }
             i {
-                font-size: 18px;
+                font-size: 20px;
                 color: $mainBlack;
             }
             a{
                 display: block;
                 width: 100px;
-                margin: 0 0 0 10px;
-                font-size: 15px;
+                margin: 0 0 0 40px;
+                font-size: 16px;
+                // font-weight: 400;
                 color: $mainBlack;
                 text-decoration: none;
                 margin-right: 20px;
@@ -112,14 +110,19 @@ i{
         }
     }
     .logo{
-        margin-left: 80px;
+        width: 150px;
+        margin-left: 60px;
+        height: 100%;
+        float: left;
         .container{
             padding: 0;
-            justify-content: start;
+            justify-content: center;
             align-items: center;
             a{
                 img{
                     height: 65px;
+                    display: block;
+                    margin: auto;
                 }
             }
         }
@@ -128,7 +131,7 @@ i{
             width: auto;
             margin: 0 10px 0 10px;
             i{
-                font-size: 25px;
+                font-size: 20px;
                 &:hover{
                     cursor: pointer;
                 }
@@ -136,13 +139,17 @@ i{
         }
         .bar{
             display: block;
-            width: 1px;
-            height: 40px;
+            width: 1.5px;
+            height: 80%;
             background-color: rgba(0, 0, 0, 0.144);
             margin: auto 20px auto 0;
         }
     }
     .options{
+        width: 320px;
+        height: 100%;
+        margin: 0;
+        float: left;
         justify-content: flex-start;
         align-items: center;
         ul{
@@ -210,55 +217,11 @@ i{
             }
         }
     }
-    .search{
-        form{
-            display: block;
-            margin: auto 0 auto 10px;
-            input[type=text] {
-                // transition: all 0.2s ease-in;
-                transition-property: background-color, border-color;
-                transition-duration: 0.2s;
-                transition-timing-function: ease-in;
-                background-color: $mainColor;
-                border: 0;
-                width: 250px;
-                border-radius: 8px 0 0 8px;
-                height: 35px;
-                padding: 15px;
-                border: 1.5px solid transparent;
-                &:focus {
-                    outline: none;
-                }
-                &:focus{
-                    background-color: white;
-                    border-color: $mainBlue;
-                }
-            }
-            button {
-                transition: all 0.2s ease-in;
-                background-color: rgb(214, 212, 212);
-                border-radius: 0 8px 8px 0;
-                border: 0;
-                width: 40px;
-                height: 35px;
-                margin-left: -2px;
-                &:focus{
-                    outline: none;
-                }
-                i{
-                    color: $mainBlue;
-                }
-                &:hover{
-                    background-color: rgb(184, 184, 184);
-                }
-            }
-        }
-        .searchSup{
-            display: none;
-        }
-    }
     .log{
-        margin-right: 80px;
+        width: 250px;
+        height: 100%;
+        margin: 0;
+        float: right;
         align-items: center;
         justify-content: end;
         button {
@@ -267,6 +230,9 @@ i{
             width: 65px;
             border-radius: 12px;
             transition: all 0.2s ease-in;
+            &:hover{
+                cursor: pointer;
+            }
             &:nth-of-type(1){
                 margin: 0 5px 0 15px;
                 background-color: transparent;
@@ -297,21 +263,82 @@ i{
             }
         }
     }
-    .dropdown-aut{
+    .log2{
         display: none;
+        cursor: pointer;
+    }
+    .search{
+        // display: none;
+        width: 335px;
+        height: 100%;
+        margin: 0;
+        float: right;
+        justify-content: flex-end;
+        margin-right: 20px;
+        form{
+            display: block;
+            margin: auto 0 auto 10px;
+            input[type=text] {
+                transition-property: background-color, border-color;
+                transition-duration: 0.2s;
+                transition-timing-function: ease-in;
+                background-color: $mainColor;
+                border: 0;
+                width: 230px;
+                border-radius: 8px 0 0 8px;
+                height: 16px;
+                padding: 8px;
+                border: 1.5px solid transparent;
+                &:focus {
+                    outline: none;
+                }
+                &:focus{
+                    background-color: white;
+                    border-color: $mainBlue;
+                }
+            }
+            button {
+                box-sizing: border-box;
+                transition: all 0.2s ease-in;
+                background-color: rgb(214, 212, 212);
+                border-radius: 0 8px 8px 0;
+                border: 0;
+                width: 40px;
+                height: 35px;
+                margin-left: -2px;
+                &:focus{
+                    outline: none;
+                }
+                i{
+                    color: $mainBlue;
+                }
+                &:hover{
+                    cursor: pointer;
+                    background-color: rgb(184, 184, 184);
+                }
+            }
+        }
+        .searchSup{
+            display: none;
+        }
+    }
+    .dropdown-aut{
+        visibility: hidden;
+        opacity: 0;
         box-shadow: 1px 2px 7px 2px rgba(0,0,0,0.1);
         position: absolute;
-        top: 70px;
+        top: 60px;
         right: 100px;
         width: 200px;
         height: 200px;
         background-color: white;
         border-radius: 4px;
+        transition: opacity 0.2s linear;
         form{
             input{
                 display: block;
                 height: 30px;
-                width: 90%;
+                width: 80%;
                 margin: auto;
                 border: 1px solid rgba(0, 0, 0, 0.198);
                 border-radius: 4px;
@@ -320,7 +347,7 @@ i{
             }
             p{
                 font-weight: 400;
-                font-size: 15px;
+                font-size: 13px;
                 color: rgba(0, 0, 0, 0.712);
                 margin: 10px 0 0 15px;
             }
@@ -329,25 +356,32 @@ i{
                 margin: 0 0 0 40px;
                 a{
                     text-decoration: none;
+                    transition: all 0.15s linear;
+                    &:hover{
+                        color: black;
+                    }
                 }
             }
             p:nth-of-type(4){
                 display: none;
             }
             button{
+                transition: all 0.2s linear;
                 display: block;
-                width: 150px;
+                width: 120px;
                 border: 0;
                 border-radius: 8px;
-                margin: 10px auto 0 auto;
+                padding: 5px;
+                margin: 10px auto 0 auto;   
                 background-color: $mainBlue;
                 color: white;
+                &:hover{
+                    cursor: pointer;
+                    background-color: $hoverBlue;
+                }
             }
         }
-    }
-    .log2{
-        display: none;
-    }
+    }    
 }
 
 .main {
@@ -360,7 +394,7 @@ i{
     z-index: 0;
 }
 
-@media (max-width: 1130px){
+@media (max-width: 1160px){
     .main{
         background-color: pink;
     }
@@ -394,8 +428,10 @@ i{
             display: none;
         }
         .log2{
+            height: 100%;
+            width: 50px;
             display: flex;
-            margin-right: 10px;
+            float: right;
             justify-content: center;
             align-items: center;
             i{
@@ -414,16 +450,17 @@ i{
                 p:nth-of-type(4){
                     display: block;
                     width: 100px;
+                    padding-top: 5px;
                     margin: auto;
-                    color: black;
                     text-align: center;
                     margin: 0 auto;
                     a{
                         font-size: 13px;
+                        transition: all 0.15s linear;
                         text-decoration: none;
-                        color: $mainBlack;
+                        color:$mainBlack;
                         &:hover{
-                            color: &$mainBlue;
+                            color: black;
                         }
                     }
                 }
@@ -439,6 +476,7 @@ i{
     }
     .header{
         .search{
+            width: 250px;
             form{
                 input[type=text]{
                     width: 165px;
@@ -454,6 +492,7 @@ i{
     }
     .header{
         .search{
+            width: 50px;
             form{
                 display: none;
                 input[type=text]{
@@ -472,6 +511,9 @@ i{
                     }
                 }
             }
+        }
+        .drop-menu{
+            // width: 100%;
         }
     }
 }

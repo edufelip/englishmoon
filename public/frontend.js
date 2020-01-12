@@ -1,24 +1,5 @@
-// var lis = document.querySelectorAll("li");
-
-// for (var i = 0; i < lis.length; i++) {
-//     lis[i].addEventListener("mouseover", function (){
-//         this.style.background = "pink";
-//     });
-// }
-// for (var i = 0; i < lis.length; i++) {
-//     lis[i].addEventListener("mouseout", function (){
-//         this.style.background = "white";
-//     });
-// }
-
-// let body = document.querySelector(".main");
-// body.addEventListener("mouseover", () => {
-//     body.style.background = "black";
-// })
-
+let actHamb = document.querySelectorAll(".act-hamb-bars");
 let hamb = document.querySelector(".hamb-bars");
-let actHamb = document.querySelector(".act-hamb-bars");
-let dropMenu = document.querySelector(".drop-menu");
 let shadow = document.querySelector(".shadow");
 let tinyLog = document.querySelector(".log2");
 let regularLog = document.querySelector(".regular-log");
@@ -27,18 +8,25 @@ let body = document.querySelector(".main");
 let logo = document.querySelector(".logo");
 let options = document.querySelector(".options");
 let search = document.querySelector(".search");
+let dropMenuDesk = document.querySelector("#dropmenu_desk");
+let dropMenuMob = document.querySelector("#dropmenu_mobile");
+let searchButton = document.querySelector(".search-sup");
+let searchTiny = document.querySelector(".search-tiny");
+let cancel = document.querySelector(".fa-times");
 
 let dropFadeOut = () => {
-    dropMenu.classList.toggle("drop-translate");
+    dropMenuDesk.classList.toggle("drop-translate");
     shadow.style.opacity = "0";
     setTimeout( () => {
         shadow.style.visibility = "hidden";
     }, 300);
+    dropMenuMob.style.visibility = "hidden";
 }
 let dropFadeIn = () => {
-    dropMenu.classList.toggle("drop-translate");
+    dropMenuDesk.classList.toggle("drop-translate");
     shadow.style.opacity = "1";
     shadow.style.visibility = "visible";
+    dropMenuMob.style.visibility = "visible";
 }
 
 let changeAut = () => {
@@ -62,12 +50,14 @@ let neutralizeAut = () => {
 }
 
 hamb.addEventListener("click", () => {
-    // let rect = dropMenu.getBoundingClientRect().left;
+    // let rect = dropMenuDesk.getBoundingClientRect().left;
     dropFadeIn();
 })
-actHamb.addEventListener("click", () => {
-    dropFadeOut();
-})
+for(let i = 0; i < actHamb.length; i++){
+    actHamb[i].addEventListener("click", () => {
+        dropFadeOut();
+    })
+}
 shadow.addEventListener("click", () => {
     dropFadeOut();
 })
@@ -89,6 +79,27 @@ options.addEventListener("click", () => {
 })
 search.addEventListener("click", () => {
     neutralizeAut();
+})
+
+searchButton.addEventListener("click", () =>{
+    searchButton.classList.toggle("search-translate");
+    tinyLog.style.opacity = "0";
+    setTimeout( () => {
+        tinyLog.style.visibility = "hidden";
+    }, 200);
+    searchTiny.style.visibility = "visible";
+    searchTiny.style.opacity = "1";
+    logo.style.visibility = "hidden";
+    logo.style.opacity = "0";
+})
+cancel.addEventListener("click", () => {
+    searchTiny.style.opacity = "0";
+    searchTiny.style.visibility = "hidden";
+    logo.style.visibility = "visible";
+    logo.style.opacity = "1";
+    searchButton.classList.toggle("search-translate");
+    tinyLog.style.opacity = "1";
+    tinyLog.style.visibility = "visible";
 })
 
 

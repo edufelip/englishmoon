@@ -6,12 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link href="fontawesome-free-5.12.0-web/css/all.css" rel="stylesheet">
 </head>
 <body>
     <!-- navbar -->
     <div class="header">        
         <div class="shadow"></div>
-        <div class="drop-menu">
+        <div id="dropmenu_desk" class="drop-menu">
+            <div class="drop-menu-header">
+                <i class="fas fa-bars act-hamb-bars"></i>
+                <a href="/"><img src="images/logo2.jpg" alt="Logo"></a> 
+            </div>
+            <div class="drop-menu-line"></div>
+            <div class="drop-menu-options">
+                <div class="flex drop-menu-options-sub">
+                    <i class="far fa-bookmark"></i>
+                    <a href="">Artigos</a>
+                </div>
+                <div class="flex drop-menu-options-sub">
+                    <i class="fas fa-book"></i>
+                    <a href="">Livros</a>
+                </div>
+                <div class="flex drop-menu-options-sub">
+                    <i class="fas fa-pencil-alt"></i>
+                    <a href="">Cursos</a>
+                </div>
+                <div class="flex drop-menu-options-sub">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="">Contato</a>
+                </div>
+            </div>
+        </div>
+        <div id="dropmenu_mobile" class="drop-menu">
             <div class="drop-menu-header">
                 <i class="fas fa-bars act-hamb-bars"></i>
                 <a href="/"><img src="images/logo2.jpg" alt="Logo"></a> 
@@ -64,12 +90,20 @@
         <div class="search flex">
             <form action="">
                 <input type="text" name="search" placeholder="O que está procurando?">
-                <button><i class="fas fa-search"></i></button>
+                <button id="search-icon"><i class="fas fa-search"></i></button>
             </form>
-            <div class="searchSup">
-                <i class="fas fa-search"></i>                
+            <div class="search-sup">
+                <i class="fas fa-search"></i>
             </div>
         </div>
+        <div class="search-tiny">
+            <form action="">
+                <i class="fas fa-times"></i>
+                <input type="text" name="search" placeholder="O que está procurando?">
+                <button><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <!--  -->
         <div class="dropdown-aut">
             <form action="">
                 <p>e-mail</p>
@@ -89,6 +123,7 @@
     </div>
     
     <script src="https://kit.fontawesome.com/e532698c47.js" crossorigin="anonymous"></script>
+    <!-- <script defer src="/public/fontawesome-free-5.12.0-web/js/all.js"></script> -->
     <script type="text/javascript" src="frontend.js"></script>
 </body>
 </html>

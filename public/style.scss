@@ -32,6 +32,9 @@ i{
 .drop-translate{
     transform: translate3d(250px, 0, 0);
 }
+.search-translate{
+    transform: translate3d(60px, 0, 0);
+}
 
 .header{
     font-family: 'Open Sans', sans-serif;
@@ -67,11 +70,12 @@ i{
                 }
             }
             a{
+                display: flex;
+                align-items: center;
                 position: relative;
-                left: 50px;
+                left: 45px;
                 img{
                     height: 65px;
-                    
                 }
             }
         }
@@ -109,11 +113,17 @@ i{
             }
         }
     }
+    #dropmenu_mobile{
+        visibility: hidden;
+        display: none;
+        left: 0;
+    }
     .logo{
         width: 150px;
         margin-left: 60px;
         height: 100%;
         float: left;
+        transition: opacity 0.3s linear;
         .container{
             padding: 0;
             justify-content: center;
@@ -141,7 +151,7 @@ i{
             display: block;
             width: 1.5px;
             height: 80%;
-            background-color: rgba(0, 0, 0, 0.144);
+            background-color: rgba(0, 0, 0, 0.075);
             margin: auto 20px auto 0;
         }
     }
@@ -265,10 +275,10 @@ i{
     }
     .log2{
         display: none;
-        cursor: pointer;
+        visibility: visible;
+        opacity: 1;
     }
     .search{
-        // display: none;
         width: 335px;
         height: 100%;
         margin: 0;
@@ -318,9 +328,78 @@ i{
                 }
             }
         }
-        .searchSup{
+        .search-sup{
             display: none;
         }
+    }
+    .search-tiny{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+        opacity: 0;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        transition: opacity 0.3s linear;
+        form {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            i {
+                display: flex;
+                width: 30px;
+                font-size: 20px;
+                justify-content: center;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            input[type=text] {
+                transition-property: background-color, border-color;
+                transition-duration: 0.2s;
+                transition-timing-function: ease-in;
+                background-color: $mainColor;
+                border: 0;
+                width: 65vw;
+                border-radius: 8px;
+                height: 16px;
+                padding: 8px;
+                margin: 0 15px 0 10px;
+                border: 1.5px solid transparent;
+                &:focus {
+                    outline: none;
+                }
+                &:focus{
+                    background-color: white;
+                    border-color: $mainBlue;
+                }
+            }
+            button {
+                border: 0;
+                padding: 0;
+                width: 20;
+                height: 20;
+                margin-top: 10px;
+                background-color: transparent;
+                transition-delay: 0.2s;
+                opacity: 0;
+                // width: 40px;
+                // height: 35px;
+                i {
+                    display: block;
+                    width: 35px;
+                    font-size: 30px;
+                }
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+
     }
     .dropdown-aut{
         visibility: hidden;
@@ -347,7 +426,7 @@ i{
             }
             p{
                 font-weight: 400;
-                font-size: 13px;
+                font-size: 15px;
                 color: rgba(0, 0, 0, 0.712);
                 margin: 10px 0 0 15px;
             }
@@ -434,6 +513,7 @@ i{
             float: right;
             justify-content: center;
             align-items: center;
+            transition: opacity 0.2s ease-in;
             i{
                 margin: 0 10px 0 0;
                 font-size: 25px;
@@ -491,6 +571,9 @@ i{
         background-color: yellow;
     }
     .header{
+        .shadow {
+            display: none;
+        }
         .search{
             width: 50px;
             form{
@@ -499,10 +582,11 @@ i{
                     display: none;
                 }
             }
-            .searchSup{
+            .search-sup{
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                transition: all 0.2s ease-in;
                 i{
                     font-size: 20px;
                     margin-right: 10px;
@@ -512,8 +596,49 @@ i{
                 }
             }
         }
-        .drop-menu{
-            // width: 100%;
+        #dropmenu_mobile{
+            display: block;
+            width: 100%;
+            transition: visibility 0.15s linear;
+            .drop-menu-line{
+                margin: 0;
+            }
+            .drop-menu-options{
+                background-color: rgb(33, 40, 46);
+                div {
+                    padding: 22px 0;
+                    justify-content: center;
+                    width: 100%;
+                    height: 25px;
+                    justify-content: center;
+                    border-width: 0px 0px 1px 0px;
+                    border-color: $mainBlack;
+                    border-style: solid;
+                    a {
+                        font-size: 16px;
+                        font-weight: 400;
+                        color: white;
+                    }
+                    i{
+                        color: #3f4750;
+                        font-size: 25px;
+                    }
+                }
+                div:nth-of-type(1){
+                    border-width: 1px 0 1px 0;
+                }
+            }
+        }
+        #dropmenu_desk{
+            visibility: hidden;
+        }
+    }
+}
+
+@media (max-width: 305px){
+    .header{
+        .search{
+            display: none;
         }
     }
 }

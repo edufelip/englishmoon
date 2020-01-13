@@ -2,9 +2,9 @@
   "name": "moonmedia",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass": "sass --watch public/style.scss:public/style.css"
   },

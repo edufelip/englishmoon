@@ -38,7 +38,12 @@ i {
   transform: translate3d(60px, 0, 0);
 }
 
+:root {
+  --position-y: 0px;
+}
+
 .header {
+  top: var(--position-y);
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
   height: 65px;

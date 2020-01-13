@@ -36,7 +36,11 @@ i{
     transform: translate3d(60px, 0, 0);
 }
 
+:root {
+    --position-y: 0px;
+}
 .header{
+    top: var(--position-y);
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     height: 65px;
@@ -46,6 +50,7 @@ i{
     box-shadow: 0 0 1px 0;
     background-color: white;
     z-index: 1;
+    // transition: all 0.2s ease-in;
     .drop-menu{
         position: absolute;
         left: -250px;

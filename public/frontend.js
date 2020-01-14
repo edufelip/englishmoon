@@ -1,11 +1,12 @@
+const body = document.querySelector("body");
 const header = document.querySelector(".header");
+const main = document.querySelector(".main");
 const actHamb = document.querySelectorAll(".act-hamb-bars");
 const hamb = document.querySelector(".hamb-bars");
 const shadow = document.querySelector(".shadow");
 const tinyLog = document.querySelector(".log2");
 const regularLog = document.querySelector(".regular-log");
 const dropAut = document.querySelector(".dropdown-aut");
-const body = document.querySelector(".main");
 const logo = document.querySelector(".logo");
 const options = document.querySelector(".options");
 const search = document.querySelector(".search");
@@ -15,17 +16,22 @@ const searchButton = document.querySelector(".search-sup");
 const searchTiny = document.querySelector(".search-tiny");
 const cancel = document.querySelector(".fa-times");
 
+let faded = 0;
 const dropFadeOut = () => {
-    dropMenuDesk.classList.toggle("drop-translate");
+    faded = 0;
+    body.style.overflow = "scroll";
     shadow.style.opacity = "0";
+    dropMenuDesk.classList.toggle("drop-translate");
     setTimeout( () => {
         shadow.style.visibility = "hidden";
     }, 300);
     dropMenuMob.style.visibility = "hidden";
 }
 const dropFadeIn = () => {
-    dropMenuDesk.classList.toggle("drop-translate");
+    faded = 1;
+    body.style.overflow = "hidden";
     shadow.style.opacity = "1";
+    dropMenuDesk.classList.toggle("drop-translate");
     shadow.style.visibility = "visible";
     dropMenuMob.style.visibility = "visible";
 }
@@ -61,6 +67,9 @@ for(let i = 0; i < actHamb.length; i++){
 shadow.addEventListener("click", () => {
     dropFadeOut();
 })
+document.onkeydown = function(evt) {
+    if ((evt.key === "Escape") && faded) dropFadeOut();
+};
 
 tinyLog.addEventListener("click", () => {
     changeAut();
@@ -68,7 +77,7 @@ tinyLog.addEventListener("click", () => {
 regularLog.addEventListener("click", () => {
     changeAut();
 })
-body.addEventListener("click", () => {
+main.addEventListener("click", () => {
     neutralizeAut();
 })
 logo.addEventListener("click", () => {

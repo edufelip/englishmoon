@@ -453,8 +453,15 @@ i {
   top: 65px;
   width: 100%;
   height: 2000px;
-  background-color: white;
-  z-index: 0;
+}
+.main .slider .sliderimg {
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+}
+.main .slider .sliderimg img {
+  display: block;
+  max-width: 100vw;
 }
 
 @media (max-width: 1160px) {

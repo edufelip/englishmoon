@@ -469,13 +469,21 @@ i{
 }
 
 .main {
-    // display: none;
     position: relative;
     top: 65px;
     width: 100%;
     height: 2000px;
-    background-color: white;
-    z-index: 0;
+    .slider {
+        .sliderimg {
+            width: 100%;
+            height: 90vh;
+            overflow: hidden;
+            img {
+                display: block;
+                max-width: 100vw;
+            }
+        }
+    }
 }
 
 @media (max-width: 1160px){

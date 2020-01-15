@@ -457,13 +457,10 @@ i {
 .main .slider .sliderimg {
   width: 100%;
   height: 90vh;
-  overflow: hidden;
 }
 .main .slider .sliderimg img {
-  display: block;
-  max-width: 100vw;
+  min-width: 100%;
 }
-
 @media (max-width: 1160px) {
   .main {
     background-color: pink;

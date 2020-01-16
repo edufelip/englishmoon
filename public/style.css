@@ -454,13 +454,103 @@ i {
   width: 100%;
   height: 2000px;
 }
-.main .slider .sliderimg {
+.main .img-container {
   width: 100%;
-  height: 90vh;
+  height: 100vh;
+  background-image: url(/images/frame7.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: blue;
 }
-.main .slider .sliderimg img {
-  min-width: 100%;
+.main .img-container .msg {
+  position: absolute;
+  width: 60vw;
+  height: 20vh;
+  margin: 120px 0 0 100px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
 }
+.main .img-container .msg h1, .main .img-container .msg h2, .main .img-container .msg p, .main .img-container .msg a {
+  color: #f1f1f1;
+  font-family: "Nunito", sans-serif;
+  margin: -15px 0 0 0;
+  font-weight: 700;
+  font-size: 50px;
+}
+.main .img-container .msg p, .main .img-container .msg a {
+  margin-top: 20px;
+  font-weight: 300;
+  font-size: 20px;
+  width: 550px;
+}
+.main .img-container .msg a {
+  position: absolute;
+  color: black;
+  padding: 10px;
+  width: 150px;
+  margin: 130px 0 0 0;
+  text-decoration: none;
+  border-radius: 20px;
+  background-color: white;
+  transition: all 0.1s linear;
+}
+.main .img-container .msg a:hover {
+  padding: 12px;
+}
+.main .img-container .ebook {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 300px 100px 0 0;
+  float: right;
+  width: 350px;
+  height: 250px;
+  border-radius: 20px;
+  background-color: rgba(17, 17, 116, 0.685);
+}
+.main .img-container .ebook h2 {
+  font-size: 25px;
+  font-family: "Nunito", sans-serif;
+  color: #f1f1f1;
+  text-align: center;
+}
+.main .img-container .ebook form {
+  margin-top: 15px;
+  text-align: center;
+}
+.main .img-container .ebook form input {
+  background-color: #f1f1f1;
+  border: 0;
+  width: 60%;
+  border-radius: 8px;
+  height: 16px;
+  padding: 8px;
+  width: 250px;
+  margin: 0 15px 15px 10px;
+  color: #585858;
+}
+.main .img-container .ebook form input:focus {
+  outline: none;
+}
+.main .img-container .ebook form button {
+  padding: 5px 20px;
+  border: 0;
+  background-color: #990000;
+  color: #f1f1f1;
+  font-family: "Nunito";
+  font-weight: 700;
+  font-size: 24px;
+  border-radius: 50px;
+}
+.main .img-container .ebook form button:hover {
+  cursor: pointer;
+}
+
 @media (max-width: 1160px) {
   .main {
     background-color: pink;
@@ -485,10 +575,6 @@ i {
   }
 }
 @media (max-width: 830px) {
-  .main {
-    background-color: black;
-  }
-
   .header .log {
     display: none;
   }
@@ -530,6 +616,16 @@ i {
   .header .dropdown-aut form p:nth-of-type(4) a:hover {
     color: black;
   }
+
+  .main .img-container .msg h1, .main .img-container .msg h2 {
+    font-size: 35px;
+  }
+  .main .img-container .msg p {
+    font-size: 16px;
+  }
+  .main .img-container .msg a {
+    margin-top: 100px;
+  }
 }
 @media (max-width: 600px) {
   .main {
@@ -541,6 +637,11 @@ i {
   }
   .header .search form input[type=text] {
     width: 165px;
+  }
+
+  .main .img-container {
+    background-image: url(/images/tinyframe.jpg);
+    height: 80vh;
   }
 }
 @media (max-width: 505px) {
@@ -583,6 +684,7 @@ i {
   }
   .header #dropmenu_mobile .drop-menu-options {
     background-color: #21282e;
+    width: 100vw;
   }
   .header #dropmenu_mobile .drop-menu-options div {
     padding: 22px 0;

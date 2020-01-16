@@ -68,7 +68,7 @@ shadow.addEventListener("click", () => {
     dropFadeOut();
 })
 document.onkeydown = function(evt) {
-    if ((evt.key === "Escape") && faded) dropFadeOut();
+    if ((evt.key === "Escape") && faded) dropFadeOut(); neutralizeAut();
 };
 
 tinyLog.addEventListener("click", () => {

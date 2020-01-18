@@ -1,9 +1,16 @@
 module.exports = {
-    dialect: 'postgres',
-    host: 'postgres://shqgqrnp:daJk0oTm2AbCEIrPEIs1QwImp7IKVsGu@tuffi.db.elephantsql.com:5432/shqgqrnp',
-    username: 'shqgqrnp',
-    password: 'daJk0oTm2AbCEIrPEIs1QwImp7IKVsGu',
-    database: 'sqlnode',
+    dialect: 'mariadb',
+    host: 'localhost',
+    username: 'root',
+    password: '',
+    database: 'nodesql',
+    
+    // dialect: 'postgres',
+    // host: 'motty.db.elephantsql.com',
+    // username: 'epytbhxz',
+    // password: 'EnWzW59MDdWWI6Fembv6z8r_Rzdt_faK',
+    // database: 'epytbhxz',
+    
     define: {
         timestamps: true,       // createdat e updatedat automaticos
         underscored: true,      // usa formato snake case

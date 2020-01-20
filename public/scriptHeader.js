@@ -14,7 +14,25 @@ const dropMenuDesk = document.querySelector("#dropmenu_desk");
 const dropMenuMob = document.querySelector("#dropmenu_mobile");
 const searchButton = document.querySelector(".search-sup");
 const searchTiny = document.querySelector(".search-tiny");
-const cancel = document.querySelector(".fa-times");
+const cancelSearch = document.querySelector(".cancel-search-tiny");
+const cancelAut = document.querySelector(".cancel-dropdown-aut");
+const line = document.querySelectorAll(".line");
+const lis = document.querySelectorAll("li");
+
+for (let i = 0; i < lis.length; i++){
+    let anchor = lis[i].querySelector("a");
+    anchor.addEventListener("mouseenter", () => {
+        line[i].classList.add("lineOn");
+        anchor.classList.add("a-black");
+    });
+}
+for (let i = 0; i < lis.length; i++){
+    let anchor = lis[i].querySelector("a");
+    anchor.addEventListener("mouseout", () => {
+        line[i].classList.remove("lineOn");
+        anchor.classList.remove("a-black");
+    });
+}
 
 let faded = 0;
 const dropFadeOut = () => {
@@ -45,16 +63,18 @@ const changeAut = () => {
     } else {
         dropAut.style.visibility = "visible";
         dropAut.style.opacity = "1";
+        shadow.style.opacity = "1";
+        shadow.style.visibility = "visible";
     }
 }
-const neutralizeAut = () => {
-    if(dropAut.style.visibility == "visible") {
-        dropAut.style.opacity = "0";
-        setTimeout( () => {
-            dropAut.style.visibility = "hidden";
-        }, 200);
-    }
-}
+// const neutralizeAut = () => {
+//     if(dropAut.style.visibility == "visible") {
+//         dropAut.style.opacity = "0";
+//         setTimeout( () => {
+//             dropAut.style.visibility = "hidden";
+//         }, 200);
+//     }
+// }
 
 hamb.addEventListener("click", () => {
     dropFadeIn();
@@ -68,7 +88,10 @@ shadow.addEventListener("click", () => {
     dropFadeOut();
 })
 document.onkeydown = function(evt) {
-    if ((evt.key === "Escape") && faded) dropFadeOut(); neutralizeAut();
+    if ((evt.key === "Escape")){
+        if(faded) dropFadeOut();
+        neutralizeAut();
+    }
 };
 
 tinyLog.addEventListener("click", () => {
@@ -76,18 +99,6 @@ tinyLog.addEventListener("click", () => {
 })
 regularLog.addEventListener("click", () => {
     changeAut();
-})
-main.addEventListener("click", () => {
-    neutralizeAut();
-})
-logo.addEventListener("click", () => {
-    neutralizeAut();
-})
-options.addEventListener("click", () => {
-    neutralizeAut();
-})
-search.addEventListener("click", () => {
-    neutralizeAut();
 })
 
 searchButton.addEventListener("click", () =>{
@@ -101,7 +112,7 @@ searchButton.addEventListener("click", () =>{
     logo.style.visibility = "hidden";
     logo.style.opacity = "0";
 })
-cancel.addEventListener("click", () => {
+cancelSearch.addEventListener("click", () => {
     searchTiny.style.opacity = "0";
     searchTiny.style.visibility = "hidden";
     logo.style.visibility = "visible";
@@ -109,6 +120,10 @@ cancel.addEventListener("click", () => {
     searchButton.classList.toggle("search-translate");
     tinyLog.style.opacity = "1";
     tinyLog.style.visibility = "visible";
+})
+
+cancelAut.addEventListener("click", () => {
+
 })
 
 // Header hide and show

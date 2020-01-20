@@ -8,6 +8,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link href="fontawesome-free-5.12.0-web/css/all.css" rel="stylesheet">
+
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
     <!-- navbar -->
@@ -75,10 +79,10 @@
         </div>
         <div class="options flex">
             <ul>
-                <li><a href="/articles">Artigos</a></li>
-                <li><a href="/courses">Livros</a></li>
-                <li><a href="/courses">Cursos</a></li>
-                <li><a href="/contact">Contato</a></li>
+                <li><a href="/articles">Artigos</a><div class="line lineone"></div></li>
+                <li><a href="/courses">Livros</a><div class="line linetwo"></div></li>
+                <li><a href="/courses">Cursos</a><div class="line linethree"></div></li>
+                <li><a href="/contact">Contato</a><div class="line linefour"></div></li>
             </ul>
         </div>
         <div class="log flex">
@@ -99,22 +103,32 @@
         </div>
         <div class="search-tiny">
             <form action="">
-                <i class="fas fa-times"></i>
+                <i class="fas fa-times cancel-search-tiny"></i>
                 <input type="text" name="search" placeholder="O que está procurando?">
                 <button><i class="fas fa-search"></i></button>
             </form>
         </div>
         <!--  -->
         <div class="dropdown-aut">
-            <form action="">
-                <p>e-mail</p>
-                <input type="text" name="login">
-                <p>senha</p>
-                <input type="text" name="password">
-                <p> <a href=""> esqueceu a sua senha? </a> </p>
-                <button>Entrar</button>
-                <p> <a href=""> Cadastre-se </a></p>
-            </form>
+            <i class="fas fa-times cancel-dropdown-aut"></i>
+            <h2>Bem-vindo!</h2>
+            <p>Pronto pra começar a estudar? Faça login e comece agora mesmo</p>
+            <div class="form-container">
+                <form action="">
+                    <p>e-mail</p>
+                    <input type="text" name="login">
+                    <p>senha</p>
+                    <input type="text" name="password">
+                    <p> <a href=""> Esqueceu a sua senha? </a> </p>
+                    <button>Entrar</button>
+                    <div class="signup">
+                        <a href=""> Cadastre-se </a>
+                    </div>
+                    <p> ou </p>
+                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="light"></div>
+                    <!-- <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div> -->
+                </form>
+            </div>
         </div>
         
     </div>

@@ -224,7 +224,7 @@ i {
   border: 0;
   height: 30px;
   width: 65px;
-  border-radius: 12px;
+  border-radius: 5px;
   transition: all 0.2s ease-in;
 }
 .header .log button:hover {
@@ -242,7 +242,7 @@ i {
   color: black;
 }
 .header .log button:nth-of-type(2) {
-  width: 100px;
+  width: 85px;
   font-weight: 600;
   height: 35px;
   background-color: #3228c7;
@@ -397,6 +397,7 @@ i {
   width: 60vw;
   height: 80vh;
   border-radius: 2px;
+  z-index: 3;
   transition: opacity 0.2s linear;
 }
 .header .dropdown-aut i {
@@ -459,7 +460,7 @@ i {
   margin-bottom: 10px;
 }
 .header .dropdown-aut .form-container form .signup {
-  margin: 20px 0 0 0;
+  margin: 10px 0 0 0;
 }
 .header .dropdown-aut .form-container form .signup a {
   display: none;
@@ -502,7 +503,7 @@ i {
 }
 .main .img-container {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   background-image: url(/images/frame7.jpg);
   background-position: center center;
   background-repeat: no-repeat;
@@ -510,7 +511,7 @@ i {
   background-color: blue;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1.2fr 1fr;
+  grid-template-rows: 2fr 1fr;
 }
 .main .img-container main {
   grid-area: 1/1/2/3;
@@ -519,32 +520,41 @@ i {
   align-items: center;
 }
 .main .img-container main .container {
+  margin-top: 30px;
   width: 80%;
   height: 70%;
 }
 .main .img-container main .container h1, .main .img-container main .container h2, .main .img-container main .container p, .main .img-container main .container a {
+  text-align: center;
   position: relative;
   font-family: "Nunito";
   color: white;
-  font-size: 50px;
+  font-size: 52px;
   font-weight: 700px;
 }
 .main .img-container main .container h2 {
   top: -20px;
 }
 .main .img-container main .container p {
+  display: block;
+  margin: 0 auto;
   top: -5px;
-  width: 640px;
-  font-size: 20px;
+  width: 650px;
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: 1px;
 }
 .main .img-container main .container a {
+  display: block;
+  margin: 0 auto;
+  width: 150px;
   top: 30px;
   box-sizing: border-box;
   border: 1px solid white;
   color: white;
-  padding: 6px 12px;
+  padding: 8px 12px;
   position: relative;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 300;
   font-family: "Open Sans";
   text-decoration: none;
@@ -559,6 +569,34 @@ i {
 }
 .main .img-container section {
   grid-area: 2/1/3/3;
+}
+.main .img-container section .social-container {
+  position: relative;
+  display: flex;
+  width: 200px;
+  height: 50px;
+  margin: 0 auto 0 auto;
+  justify-content: space-around;
+}
+.main .img-container section .social-container a {
+  margin: 0 0 0 10px;
+  color: transparent;
+}
+.main .img-container section .social-container a i {
+  display: block;
+  padding: 10px 20px;
+  font-size: 35px;
+  color: rgba(0, 0, 0, 0.794);
+  transition: color 0.3s ease;
+}
+.main .img-container section .social-container a:nth-of-type(1) i:hover {
+  color: #2424bb;
+}
+.main .img-container section .social-container a:nth-of-type(2) i:hover {
+  color: #8a0958;
+}
+.main .img-container section .social-container a:nth-of-type(3) i:hover {
+  color: #9c0000;
 }
 .main .articles .title {
   height: 80px;
@@ -681,19 +719,19 @@ i {
     display: block;
   }
 
-  .main .img-container {
-    height: 80vh;
-  }
   .main .img-container main .container p {
-    width: 85%;
+    width: 90%;
   }
 }
 @media (max-width: 640px) {
   .main .img-container main .container h1, .main .img-container main .container h2 {
-    font-size: 38px;
+    font-size: 40px;
   }
   .main .img-container main .container h1 {
     top: -10px;
+  }
+  .main .img-container main .container p {
+    font-size: 20px;
   }
 }
 @media (max-width: 600px) {
@@ -712,21 +750,23 @@ i {
   .main {
     background-color: yellow;
   }
+  .main .img-container {
+    height: 80vh;
+    grid-template-rows: 3fr 1fr;
+  }
   .main .img-container main {
     grid-area: 1/1/3/3;
   }
   .main .img-container main .container h1, .main .img-container main .container h2 {
-    top: -7vh;
+    top: -10vh;
     font-size: 8vw;
   }
-  .main .img-container main .container h2 {
-    top: -8vh;
-  }
   .main .img-container main .container p {
-    top: -5vh;
+    top: -8vh;
     width: 100%;
   }
   .main .img-container main .container a {
+    top: -4vh;
     text-align: center;
     font-size: 20px;
     display: block;
@@ -737,6 +777,18 @@ i {
     border-radius: 6px;
     background-color: #880000;
     color: white;
+  }
+  .main .img-container section .medias .social-container a:nth-of-type(1) i {
+    color: #3333ad;
+    background-color: whitesmoke;
+  }
+  .main .img-container section .medias .social-container a:nth-of-type(2) i {
+    color: #8a0958;
+    background-color: whitesmoke;
+  }
+  .main .img-container section .medias .social-container a:nth-of-type(3) i {
+    color: #b60000;
+    background-color: whitesmoke;
   }
 
   .header .shadow {

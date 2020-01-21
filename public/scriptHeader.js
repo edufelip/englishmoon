@@ -35,6 +35,14 @@ for (let i = 0; i < lis.length; i++){
 }
 
 let faded = 0;
+const dropFadeIn = () => {
+    faded = 1;
+    body.style.overflow = "hidden";
+    shadow.style.opacity = "1";
+    dropMenuDesk.classList.toggle("drop-translate");
+    shadow.style.visibility = "visible";
+    dropMenuMob.style.visibility = "visible";
+}
 const dropFadeOut = () => {
     faded = 0;
     body.style.overflow = "scroll";
@@ -45,36 +53,45 @@ const dropFadeOut = () => {
     }, 300);
     dropMenuMob.style.visibility = "hidden";
 }
-const dropFadeIn = () => {
-    faded = 1;
-    body.style.overflow = "hidden";
-    shadow.style.opacity = "1";
-    dropMenuDesk.classList.toggle("drop-translate");
-    shadow.style.visibility = "visible";
-    dropMenuMob.style.visibility = "visible";
-}
 
 const changeAut = () => {
     if(dropAut.style.visibility == "visible") {
         dropAut.style.opacity = "0";
+        shadow.style.opacity = "0";
+        body.style.overflowY = "scroll";
         setTimeout( () => {
             dropAut.style.visibility = "hidden";
+            shadow.style.visibility = "hidden";
         }, 200);
     } else {
         dropAut.style.visibility = "visible";
+        shadow.style.visibility = "visible";
         dropAut.style.opacity = "1";
         shadow.style.opacity = "1";
-        shadow.style.visibility = "visible";
+        body.style.overflowY = "hidden";
     }
 }
-// const neutralizeAut = () => {
-//     if(dropAut.style.visibility == "visible") {
-//         dropAut.style.opacity = "0";
-//         setTimeout( () => {
-//             dropAut.style.visibility = "hidden";
-//         }, 200);
-//     }
-// }
+const searchOn = () => {
+    searchButton.classList.toggle("search-translate");
+    tinyLog.style.opacity = "0";
+    setTimeout( () => {
+        tinyLog.style.visibility = "hidden";
+    }, 200);
+    searchTiny.style.visibility = "visible";
+    searchTiny.style.opacity = "1";
+    logo.style.visibility = "hidden";
+    logo.style.opacity = "0";
+}
+const searchOff = () => {
+    searchTiny.style.opacity = "0";
+    searchTiny.style.visibility = "hidden";
+    logo.style.visibility = "visible";
+    logo.style.opacity = "1";
+    searchButton.classList.toggle("search-translate");
+    tinyLog.style.opacity = "1";
+    tinyLog.style.visibility = "visible";
+}
+
 
 hamb.addEventListener("click", () => {
     dropFadeIn();
@@ -85,12 +102,16 @@ for(let i = 0; i < actHamb.length; i++){
     })
 }
 shadow.addEventListener("click", () => {
-    dropFadeOut();
+    if(faded){
+        dropFadeOut();
+    } else {
+        changeAut();
+    } 
 })
 document.onkeydown = function(evt) {
-    if ((evt.key === "Escape")){
+    if (evt.key === "Escape"){
         if(faded) dropFadeOut();
-        neutralizeAut();
+        if(dropAut.style.visibility == "visible") changeAut();
     }
 };
 
@@ -100,33 +121,19 @@ tinyLog.addEventListener("click", () => {
 regularLog.addEventListener("click", () => {
     changeAut();
 })
+cancelAut.addEventListener("click", () => {
+    changeAut();
+})
 
 searchButton.addEventListener("click", () =>{
-    searchButton.classList.toggle("search-translate");
-    tinyLog.style.opacity = "0";
-    setTimeout( () => {
-        tinyLog.style.visibility = "hidden";
-    }, 200);
-    searchTiny.style.visibility = "visible";
-    searchTiny.style.opacity = "1";
-    logo.style.visibility = "hidden";
-    logo.style.opacity = "0";
+    searchOn();
 })
 cancelSearch.addEventListener("click", () => {
-    searchTiny.style.opacity = "0";
-    searchTiny.style.visibility = "hidden";
-    logo.style.visibility = "visible";
-    logo.style.opacity = "1";
-    searchButton.classList.toggle("search-translate");
-    tinyLog.style.opacity = "1";
-    tinyLog.style.visibility = "visible";
+    searchOff();
 })
 
-cancelAut.addEventListener("click", () => {
 
-})
-
-// Header hide and show
+// Header hide and show (scroll)
 let root = document.documentElement;
 let lastScrollTop = 0;
 window.addEventListener("scroll", () => {

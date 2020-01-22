@@ -40,6 +40,7 @@ i {
 
 :root {
   --position-y: 0px;
+  --slider-x: 0px;
 }
 
 .header {
@@ -508,7 +509,7 @@ i {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: blue;
+  background-color: #5f0000;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 2fr 1fr;
@@ -602,18 +603,21 @@ i {
   height: 80px;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin: 10px 0;
   color: #313131;
   transition: all 0.3s ease-in;
 }
 .main .articles .title .line {
-  width: 70px;
+  width: 280px;
   height: 1px;
   background-color: rgba(0, 0, 0, 0.651);
   opacity: 0.4;
 }
 .main .articles .title h2 {
   padding: 0 10px;
+  letter-spacing: 2px;
+  color: rgba(0, 0, 0, 0.651);
 }
 .main .articles .slider {
   height: 270px;
@@ -622,24 +626,26 @@ i {
 }
 .main .articles .slider i {
   font-size: 30px;
-  transition: all 0.2s linear;
+  transition: all 0.3s linear;
 }
 .main .articles .slider i:hover {
   cursor: pointer;
 }
 .main .articles .slider .slider-move {
-  width: 1000px;
+  width: 1100px;
   height: 270px;
   overflow: hidden;
   display: flex;
   margin-right: 20px;
 }
 .main .articles .slider .slider-move .img {
-  width: 300px;
+  width: 330px;
   height: 100%;
   margin: 0 20px;
-  background-color: gray;
+  background-color: #c5c5c5;
   flex-shrink: 0;
+  transform: translateX(var(--slider-x));
+  transition: all 0.5s ease;
 }
 .main .articles .slider .slider-move .img .img-info {
   position: relative;
@@ -757,6 +763,9 @@ i {
   .main .img-container main {
     grid-area: 1/1/3/3;
   }
+  .main .img-container main .container {
+    margin-top: 60px;
+  }
   .main .img-container main .container h1, .main .img-container main .container h2 {
     top: -10vh;
     font-size: 8vw;
@@ -764,11 +773,12 @@ i {
   .main .img-container main .container p {
     top: -8vh;
     width: 100%;
+    font-size: 18px;
   }
   .main .img-container main .container a {
     top: -4vh;
     text-align: center;
-    font-size: 20px;
+    font-size: 16px;
     display: block;
     width: 65%;
     margin: 0 auto;
@@ -777,18 +787,6 @@ i {
     border-radius: 6px;
     background-color: #880000;
     color: white;
-  }
-  .main .img-container section .medias .social-container a:nth-of-type(1) i {
-    color: #3333ad;
-    background-color: whitesmoke;
-  }
-  .main .img-container section .medias .social-container a:nth-of-type(2) i {
-    color: #8a0958;
-    background-color: whitesmoke;
-  }
-  .main .img-container section .medias .social-container a:nth-of-type(3) i {
-    color: #b60000;
-    background-color: whitesmoke;
   }
 
   .header .shadow {

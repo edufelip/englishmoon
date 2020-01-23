@@ -28,12 +28,12 @@
             <div class="slider flex">
                 <i class="fas fa-chevron-left slider-btn-left"></i>
                 <div class="slider-move">
-                    <div class="img">
+                    <div style="background-image: url(<%=list[0].image%>);"  class="img">
                         <div class="img-info">
-                            <p>Titulo</p>
+                            <p><%=list[0].title%></p>
                             <div class="line"></div>
-                            <p>Autor</p>
-                            <p>Data</p>
+                            <p><%=authors[0].name%></p>
+                            <p><%=dates[0]%></p>
                         </div>
                     </div>
                     <div class="img" style="background-color: blue;">

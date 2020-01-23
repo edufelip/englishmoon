@@ -1,37 +1,49 @@
 const sliderRightBtn = document.querySelector(".slider-btn-right");
 const sliderLeftBtn = document.querySelector(".slider-btn-left");
 const slider = document.querySelector(".slider-move");
+const img = document.querySelectorAll(".img");
 
 let slideState = 0;
 
 const toggleBtn = () => {
-    // if(slideState === 3){
-    //     sliderRightBtn.style.opacity = "0";
-    //     setTimeout(() => {
-    //         sliderRightBtn.style.visibility = "hidden";
-    //     }, 300);
-    // }
-    sliderRightBtn.style.visibility = (slideState === 3) ? "hidden" : "visible"; 
-    sliderLeftBtn.style.visibility = (slideState === 0) ? "hidden" : "visible"; 
+    if(slideState === 3){
+        sliderRightBtn.style.opacity = "1";
+        sliderRightBtn.style.visibility = "visible";
+    } 
+    if(slideState === 2) {
+        sliderRightBtn.style.opacity = "0";
+        setTimeout(() => {
+            sliderRightBtn.style.visibility = "hidden";
+        }, 300);
+    }
+    if(slideState === 1){
+        sliderLeftBtn.style.opacity = "0";
+        setTimeout(() => {
+            sliderLeftBtn.style.visibility = "hidden";
+        }, 300);
+    }
+    if(slideState === 0){
+        sliderLeftBtn.style.opacity = "1";
+        sliderLeftBtn.style.visibility = "visible";
+    }
 }
+
 const slide = () => {
-    let amount = slideState * 370 * -1;
+    let amount = slideState * 360 * -1;
     root.style.setProperty('--slider-x', amount + "px");
 }
 
 sliderRightBtn.addEventListener("click", () => {
     if (slideState < 3){
+        if((slideState === 2) || (slideState === 0)) toggleBtn();
         slideState++;
         slide();
-        toggleBtn();
     }
 });
 sliderLeftBtn.addEventListener("click", () => {
     if(slideState > 0){
+        if((slideState === 1) || (slideState === 3)) toggleBtn();
         slideState--;
         slide();
-        toggleBtn();
     }
 });
-
-toggleBtn();

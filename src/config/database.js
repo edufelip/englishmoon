@@ -3,7 +3,7 @@ module.exports = {
     host: 'localhost',
     username: 'root',
     password: '',
-    database: 'nodesql',
+    database: 'englishmoon',
     
     // dialect: 'postgres',
     // host: 'motty.db.elephantsql.com',

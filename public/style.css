@@ -631,18 +631,24 @@ i {
 .main .articles .slider i:hover {
   cursor: pointer;
 }
+.main .articles .slider i:nth-of-type(1) {
+  visibility: hidden;
+}
 .main .articles .slider .slider-move {
-  width: 1100px;
+  width: 1070px;
   height: 270px;
   overflow: hidden;
   display: flex;
   margin-right: 20px;
 }
 .main .articles .slider .slider-move .img {
-  width: 330px;
+  width: 340px;
   height: 100%;
-  margin: 0 20px;
+  margin: 0 10px;
   background-color: #c5c5c5;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   flex-shrink: 0;
   transform: translateX(var(--slider-x));
   transition: all 0.5s ease;

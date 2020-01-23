@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 
-class Address extends Model {
+class Post extends Model {
   static init(sequelize) {
     super.init({
-      zipcode: DataTypes.STRING,
-      street: DataTypes.STRING,
-      number: DataTypes.INTEGER,
+      title: DataTypes.STRING,
+      body: DataTypes.TEXT,
+      image: DataTypes.INTEGER,
     }, {
       sequelize
     })
@@ -16,4 +16,4 @@ class Address extends Model {
   }
 }
 
-module.exports = Address;
+module.exports = Post;

@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('addresses', {
+    return queryInterface.createTable('posts', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -16,16 +16,16 @@ module.exports = {
         onUpdate: 'CASCADE',  // sempre q alterar o id la na outra tabela, altera aqui
         onDelete: 'CASCADE', // CASCADE , SET NULL, RESTRICT, 
       },
-      zipcode: {
+      title: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      street: {
-        type: Sequelize.STRING,
+      body: {
+        type: Sequelize.TEXT,
         allowNull: false,
       },
-      number: {
-        type: Sequelize.INTEGER,
+      image: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       created_at: {
@@ -40,6 +40,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('addresses');
+    return queryInterface.dropTable('posts');
   }
 };

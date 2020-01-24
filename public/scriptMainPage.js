@@ -8,23 +8,15 @@ let slideState = 0;
 const toggleBtn = () => {
     if(slideState === 3){
         sliderRightBtn.style.opacity = "1";
-        sliderRightBtn.style.visibility = "visible";
     } 
     if(slideState === 2) {
-        sliderRightBtn.style.opacity = "0";
-        setTimeout(() => {
-            sliderRightBtn.style.visibility = "hidden";
-        }, 300);
+        sliderRightBtn.style.opacity = "0.4";
     }
     if(slideState === 1){
-        sliderLeftBtn.style.opacity = "0";
-        setTimeout(() => {
-            sliderLeftBtn.style.visibility = "hidden";
-        }, 300);
+        sliderLeftBtn.style.opacity = "0.4";
     }
     if(slideState === 0){
         sliderLeftBtn.style.opacity = "1";
-        sliderLeftBtn.style.visibility = "visible";
     }
 }
 

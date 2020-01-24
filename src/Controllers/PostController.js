@@ -46,11 +46,15 @@ module.exports = {
         let date = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
         authors = [...authors, author];
         dates.push(date);
-        console.log(date);
       } else {
         authors = [... authors, undefined];
       }
     }
     return res.render("home",{list:list, authors:authors, dates:dates});
-  }
+  },
+
+  // async update(req,res) {
+
+  //   const post = await Post.findByPk
+  // }
 };

@@ -855,6 +855,12 @@ i {
     background-color: #880000;
     color: white;
   }
+  .main .articles .slider .slider-move {
+    width: 280px;
+  }
+  .main .articles .slider .slider-move .slider-out {
+    width: 280px;
+  }
 
   .header .shadow {
     display: none;

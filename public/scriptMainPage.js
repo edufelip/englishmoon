@@ -1,7 +1,9 @@
 const sliderRightBtn = document.querySelector(".slider-btn-right");
 const sliderLeftBtn = document.querySelector(".slider-btn-left");
 const slider = document.querySelector(".slider-move");
+const sliderOut = document.querySelector(".slider-out");
 const img = document.querySelectorAll(".img");
+const articles = document.querySelector(".articles");
 
 let slideState = 0;
 
@@ -21,9 +23,41 @@ const toggleBtn = () => {
 }
 
 const slide = () => {
-    let amount = slideState * 360 * -1;
-    root.style.setProperty('--slider-x', amount + "px");
+    const sliderWidth = sliderOut.getBoundingClientRect().width;
+    if(sliderWidth === 340){
+        let amount = slideState * 360 * -1;
+        root.style.setProperty('--slider-x', amount + "px");
+    } else {
+        let amount = slideState * (sliderWidth+20) * -1;
+        root.style.setProperty('--slider-x', amount + "px");
+    }
 }
+
+function throttle (func, limit) {
+    let lastFunc;
+    let lastRan;
+    return function () {
+        const context = this;
+        const args = arguments;
+        if(!lastRan) {
+            func.apply(context, args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(lastFunc)
+            lastFunc = setTimeout(function() {
+                if ((Date.now() - lastRan) >= limit) {
+                    func.apply(context, args);
+                    lastRan = Date.now();
+                }
+            }, limit - (Date.now() - lastRan))
+        }
+    }
+}
+
+let maxLimit = throttle(function() {
+    articles.style.visibility = "visible";
+    articles.style.opacity = "1";
+}, 500);
 
 sliderRightBtn.addEventListener("click", () => {
     if (slideState < 3){
@@ -39,3 +73,5 @@ sliderLeftBtn.addEventListener("click", () => {
         slide();
     }
 });
+
+document.addEventListener("scroll", maxLimit);

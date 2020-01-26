@@ -500,7 +500,7 @@ i {
   position: relative;
   top: 65px;
   width: 100%;
-  height: 2000px;
+  height: 1800px;
 }
 .main .img-container {
   width: 100%;
@@ -599,6 +599,11 @@ i {
 .main .img-container section .social-container a:nth-of-type(3) i:hover {
   color: #9c0000;
 }
+.main .articles {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 1s ease;
+}
 .main .articles .title {
   height: 80px;
   justify-content: center;
@@ -606,13 +611,12 @@ i {
   flex-direction: column;
   margin: 10px 0;
   color: #313131;
-  transition: all 0.3s ease-in;
 }
 .main .articles .title .line {
-  width: 280px;
+  width: 260px;
   height: 1px;
   background-color: rgba(0, 0, 0, 0.651);
-  opacity: 0.4;
+  opacity: 0.6;
 }
 .main .articles .title h2 {
   padding: 0 10px;
@@ -708,28 +712,69 @@ i {
 }
 .main .articles .slider-more {
   width: 100%;
-  height: 100px;
+  height: 120px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .main .articles .slider-more a {
   height: 25px;
   font-family: "Open Sans";
   color: #3228c7;
   font-weight: 600;
-  padding: 4px 10px;
+  padding: 8px 10px 4px 10px;
   border: 1px solid #3228c7;
   border-radius: 4px;
   text-decoration: none;
   position: relative;
   float: right;
   transition: all 0.2s linear;
-  margin-top: 20px;
   margin-left: 970px;
 }
 .main .articles .slider-more a:hover {
   background-color: #3228c7;
   color: white;
+}
+.main .info {
+  height: 400px;
+  width: 100%;
+  background-color: #f0f0f0;
+  justify-content: center;
+  align-items: center;
+}
+.main .info .info-inside {
+  height: 100%;
+  width: 80%;
+  justify-content: space-around;
+}
+.main .info .info-inside .info-one {
+  height: 100%;
+  width: 30%;
+  flex-direction: column;
+}
+.main .info .info-inside .info-one i {
+  margin: 100px auto 10px auto;
+  font-size: 50px;
+  color: #151569;
+}
+.main .info .info-inside .info-one p {
+  margin: 0 auto;
+  font-family: "Nunito";
+  color: #4d4d4d;
+}
+.main .info .info-inside .info-one p:nth-of-type(1) {
+  font-weight: 700;
+  font-size: 20px;
+}
+.main .info .info-inside .info-one p:nth-of-type(2) {
+  margin-top: 10px;
+  display: block;
+  width: 80%;
+  text-align: center;
+}
+.main .footer {
+  height: 45vh;
+  background-color: black;
 }
 
 @media (max-width: 1160px) {
@@ -751,14 +796,47 @@ i {
     flex: 8;
   }
 
-  .main {
-    background-color: pink;
-  }
   .main .articles .slider .slider-move {
     width: 700px;
   }
   .main .articles .slider-more a {
     margin-left: 615px;
+  }
+}
+@media (max-width: 1030px) {
+  .main .info {
+    height: 600px;
+  }
+  .main .info .info-inside {
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 30px;
+  }
+  .main .info .info-inside .info-one {
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+  }
+  .main .info .info-inside .info-one i {
+    margin: 0px auto 10px auto;
+    font-size: 50px;
+    color: #151569;
+  }
+  .main .info .info-inside .info-one p {
+    margin: 0 auto;
+    font-family: "Nunito";
+    color: #4d4d4d;
+  }
+  .main .info .info-inside .info-one p:nth-of-type(1) {
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .main .info .info-inside .info-one p:nth-of-type(2) {
+    margin-top: 10px;
+    display: block;
+    max-width: 280px;
+    text-align: center;
   }
 }
 @media (max-width: 830px) {
@@ -808,10 +886,6 @@ i {
   }
 }
 @media (max-width: 600px) {
-  .main {
-    background-color: white;
-  }
-
   .header .search {
     width: 250px;
   }
@@ -820,9 +894,6 @@ i {
   }
 }
 @media (max-width: 505px) {
-  .main {
-    background-color: yellow;
-  }
   .main .img-container {
     height: 80vh;
     grid-template-rows: 3fr 1fr;
@@ -856,10 +927,17 @@ i {
     color: white;
   }
   .main .articles .slider .slider-move {
-    width: 280px;
+    max-width: 100%;
   }
   .main .articles .slider .slider-move .slider-out {
-    width: 280px;
+    max-width: 100%;
+  }
+  .main .articles .slider .slider-move .slider-out .img-info p {
+    margin: 0 auto;
+    width: 90%;
+  }
+  .main .articles .slider-more a {
+    margin: 0;
   }
 
   .header .shadow {

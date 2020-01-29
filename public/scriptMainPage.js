@@ -4,6 +4,7 @@ const slider = document.querySelector(".slider-move");
 const sliderOut = document.querySelector(".slider-out");
 const img = document.querySelectorAll(".img");
 const articles = document.querySelector(".articles");
+const infoInside = document.querySelector(".info-inside");
 
 let slideState = 0;
 
@@ -55,9 +56,13 @@ function throttle (func, limit) {
 }
 
 let maxLimit = throttle(function() {
-    articles.style.visibility = "visible";
-    articles.style.opacity = "1";
-}, 500);
+    if (window.pageYOffset > 150){
+        articles.style.opacity = "1";
+    }
+    if (window.pageYOffset > 670){
+        infoInside.style.opacity = "1";
+    }
+}, 200);
 
 sliderRightBtn.addEventListener("click", () => {
     if (slideState < 3){

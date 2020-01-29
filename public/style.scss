@@ -610,9 +610,8 @@ i{
         }
     }
     .articles {
-        visibility: hidden;
         opacity: 0;
-        transition: all 1s ease;
+        transition: all 1.5s ease;
         .title {
             height: 80px;
             justify-content: center;
@@ -759,6 +758,8 @@ i{
             height: 100%;
             width: 80%;
             justify-content: space-around;
+            opacity: 0;
+            transition: all 1.5s ease;
             .info-one{
                 height: 100%;
                 width: 30%;
@@ -787,10 +788,108 @@ i{
         }
     }
     .footer{
-        height: 35vh;
-        // background-color: rgb(29, 30, 78);
-        background-color: #192965
-        ;
+        height: 200px;
+        background-color: rgb(29, 30, 78);
+        .container{
+            display: flex;
+            width: 75vw;
+            height: 100%;
+            margin: auto;
+            overflow: hidden;
+            .footerlogo{
+                width: 200px;
+                height: 80%;
+                margin: 20px 0 0 20px;
+                a {
+                    img {
+                        width: 150px;
+                        display: block;
+                        margin: 0 auto;
+                    }
+                }
+                .icons {
+                    width: 100px;
+                    height: 50px;
+                    margin: 10px auto 0 auto;
+                    justify-content: space-around;
+                    i {
+                        color: rgb(221, 221, 221);
+                        font-size: 20px;
+                    }
+                }
+            }
+            .footerlist{
+                width: 50vw;
+                height: 100%;
+                font-weight: 300;
+                ul {
+                    margin: 40px 0 0 20px;
+                    li {
+                        display: inline-block;
+                        a{
+                            text-decoration: none;
+                            color: rgba(231, 231, 231, 0.836);
+                            margin-right: 2vw;
+                            font-size: 14px;
+                            transition: all 0.2s ease;
+                            &:hover{
+                                color:white;
+                            }
+                        }
+                    }
+                }
+                p{
+                    position: relative;
+                    left: 40px;
+                    color: rgba(231, 231, 231, 0.836);
+                    font-size: 14px;
+                    margin: 5px 0 0 20px;
+                }
+                p:nth-of-type(1){
+                    margin-top: 20px;
+                }
+            }
+            .footerform {
+                form{
+                    width: 300px;
+                    height: 80%;
+                    margin: 20px 0 0 20px;
+                    h2 {
+                        font-size: 16px;
+                        color: rgba(255, 255, 255, 0.89);
+                        letter-spacing: 2px;
+                        text-align: center;
+                        margin-top: 30px;
+                    }
+                    input {
+                        margin-top: 20px;
+                        width: 300px;
+                        background-color: transparent;
+                        border: 0;
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+                        text-align: start;
+                        color: rgba(255, 255, 255, 0.89);
+                        letter-spacing: 1.5px;
+                        &:focus{
+                            outline: none;
+                        }
+                    }
+                    button {
+                        display: block;
+                        border: 0;
+                        background-color: #355EAE;
+                        width: 125px;
+                        height: 40px;
+                        margin: 15px auto 0 auto;
+                        color: white;
+                        font-weight: 700;
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -840,7 +939,8 @@ i{
                 align-items: center;
                 flex-direction: column;
                 width: 100%;
-                margin-top: 20px;
+                height: 90%;
+                margin: auto;
                 .info-one{
                     height: 25%;
                     width: 100%;
@@ -936,6 +1036,44 @@ i{
                 }
             }
         }
+        .footer{
+            .container{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                .footerlogo{
+                    height: 60%;
+                    width: 100%;
+                    margin: 0;
+                    a {
+                        img {
+                            margin-top: 10px;
+                        }
+                    }
+                }
+                .footerlist{
+                    width: 100%;
+                    height: 40%;
+                    ul{
+                        width: 100%;
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        justify-content: center;
+                        display: none;
+                    }
+                    p{
+                        left: 0;
+                        margin: 5px 0 0 0;
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+                .footerform{
+                    display: none;
+                }
+            }
+        }
     }
 }
 @media (max-width: 640px){
@@ -959,9 +1097,6 @@ i{
 }
 
 @media (max-width: 600px){
-    .main{
-        // background-color: white;
-    }
     .header{
         .search{
             width: 250px;
@@ -972,16 +1107,10 @@ i{
             }
         }
     }
-    .main {
-        .img-container {
-            
-        }
-    }
 }
 
 @media (max-width: 505px){
     .main{
-        // background-color: yellow;
         .img-container{
             height: 80vh;
             grid-template-rows: 3fr 1fr;

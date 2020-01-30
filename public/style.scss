@@ -891,7 +891,79 @@ i{
             }
         }
     }
-    
+    #articles{
+        height: 100%;
+        display: flex;
+        .articles_container{
+            width: 75%;
+            height: 100%;
+            margin: auto;
+            display: flex;
+            flex-flow: wrap;
+            justify-content: space-around;
+            .article_block{
+                margin: 50px 0 0 0;
+                width: 450px;
+                height: 500px;
+                background-color: white;
+                box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.3);
+                h2{
+                    display: block;
+                    width: 80%;
+                    height: 40px;
+                    margin: 30px auto 0 auto;
+                    letter-spacing: 1.5px;
+                    font-family: 'Nunito';
+                    font-weight: 700;
+                }
+                a{
+                    position: relative;
+                    left: 45px;
+                    top: 10px;
+                    font-family: 'Nunito';
+                    padding: 6px 20px;
+                    text-decoration: none;
+                    background-color: #AB1616;
+                    color: white;
+                }
+                .article_block_sub{
+                    width: 80%;
+                    height: 30px;
+                    margin: 25px auto 0 auto;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    p {
+                        font-size: 13px;
+                        opacity: 0.9;
+                    }
+                    p:nth-of-type(2) {
+                        font-size: 14px;
+                    }
+                }
+                .article_block_image{
+                    width: 80%;
+                    height: 40%;
+                    margin: 5px auto 0 auto;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+                section {
+                    display: block;
+                    width: 80%;
+                    height: 80px;
+                    margin: 10px auto 0 auto;
+                    font-size: 14px;
+                    white-space: wrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    font-family: 'Open Sans';  
+                }
+            }
+        }
+    }
+    background-color: rgb(246, 246, 246);
 }
 
 @media (max-width: 1160px){

@@ -1,7 +1,30 @@
 <% include partials/header %>
 
 <div class="main">
+    <div id="articles">
+        <div class="articles_container">
+            <div class="article_block">
+                <h2><%=list[0].title%></h2>
+                <div class="article_block_sub">
+                    <p><%=authors[0].name.toUpperCase()%></p>
+                    <p><%=dates[0]%></p>
+                </div>
+                <div class="article_block_image" style="background-image: url(<%=list[0].image%>);">
+                </div>
+                <section>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique luctus tempor. Sed maximus non tellus nec sollicitudin. Duis id erat orci. Suspendisse potenti. Curabitur eu pulvinar mauris. Nam risus erat, lacinia sed porta eget, posuere ac lectus. Proin vitae feugiat purus, non accumsan massa. Ut in volutpat ex. Aliquam in nulla ac eros convallis vestibulum.</section>
+                <a href="">Leia Mais...</a>
+            </div>
+            <div class="article_block">
     
+            </div>
+            <div class="article_block">
+
+            </div>            
+            <div class="article_block">
+
+            </div>
+        </div>
+    </div>
     <% include partials/footer %>
 </div>
 

@@ -52,11 +52,24 @@ module.exports = {
     }
     return res.render("home",{list:list, authors:authors, dates:dates});
   },
-
+  
   async listAll(req,res) {
-    const posts = await Post.findAll({
+    const list = await Post.findAll({
       attributes: {exclude: ['body']}
     });
-    return res.render("articles", {posts:posts});
+    let authors = [];
+    let dates = [];
+    for(let i = 0; i < list.length; i++){
+      if(list[i]){  // tirar esse if dps pq o numbero de posts sempre sera maior que 6
+        let author = await User.findByPk(list[i].user_id);
+        let created = JSON.stringify(list[i].createdAt);
+        let date = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
+        authors = [...authors, author];
+        dates.push(date);
+      } else {
+        authors = [... authors, undefined];
+      }
+    }
+    return res.render("articles",{list:list, authors:authors, dates:dates});
   }
 };

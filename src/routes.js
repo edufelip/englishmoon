@@ -9,9 +9,7 @@ const PostController = require('./controllers/PostController');
 // });
 routes.get("/", PostController.list);
 
-routes.get("/articles", (req, res) => {
-    res.render("home");
-});
+routes.get("/articles", PostController.listAll);
 routes.get("/courses", (req, res) => {
     res.render("home");
 });

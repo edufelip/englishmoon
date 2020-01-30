@@ -53,8 +53,10 @@ module.exports = {
     return res.render("home",{list:list, authors:authors, dates:dates});
   },
 
-  // async update(req,res) {
-
-  //   const post = await Post.findByPk
-  // }
+  async listAll(req,res) {
+    const posts = await Post.findAll({
+      attributes: {exclude: ['body']}
+    });
+    return res.render("articles", {posts:posts});
+  }
 };

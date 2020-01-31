@@ -880,10 +880,49 @@ i {
 .main #articles {
   height: 100%;
   display: flex;
+  flex-wrap: wrap;
+}
+.main #articles .articles_search {
+  background-color: white;
+  height: 50px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.main #articles .articles_search form input {
+  min-width: 200px;
+  border: 0;
+  border-radius: 6px;
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.main #articles .articles_search form input:focus {
+  outline: none;
+}
+.main #articles .articles_search form button {
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.main #articles .articles_search form button:hover {
+  cursor: pointer;
+}
+.main #articles .articles_search .articles_index {
+  display: flex;
+  justify-content: center;
+}
+.main #articles .articles_search .articles_index a {
+  text-decoration: none;
+  padding: 4px 10px;
+  background-color: #3228c7;
+  color: white;
 }
 .main #articles .articles_container {
   width: 75%;
-  height: 100%;
   margin: auto;
   display: flex;
   flex-flow: wrap;
@@ -943,11 +982,17 @@ i {
   width: 80%;
   height: 80px;
   margin: 10px auto 0 auto;
-  font-size: 14px;
-  white-space: wrap;
+}
+.main #articles .articles_container .article_block section h4 {
   overflow: hidden;
+  display: block;
+  white-space: wrap;
   text-overflow: ellipsis;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
   font-family: "Open Sans";
+  font-weight: 600;
 }
 
 @media (max-width: 1160px) {

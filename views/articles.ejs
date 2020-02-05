@@ -1,39 +1,59 @@
 <% include partials/header %>
-
 <div class="main">
     <div id="articles">
         <div class="articles_search">
-            <form action="">
-                <input type="text" placeholder="Procure um Artigo">
+            <form action="/articles/1" method="GET">
+                <input type="text" name="name" placeholder="Procure um Artigo">
                 <button><i class="fas fa-search"></i></button>
             </form>
             <div class="articles_index">
-                
-                <% list.forEach(element => { %>
-                    <a href=""><%= list.indexOf(element) %></a>
-                <% }) %>
-                <!-- <% for (let i = 0; i < 31; i++) { %>
-                    <% if ((i-1)%6 === 0) { %>
-                        <% if (list[i]) { %>
-                            <a href=""><%=((i-1)/6)+1%></a>
-                        <% } %>
+                <% if(index > 3) { %>
+                    <a href="1" style="background-color: gainsboro;">1</a>
+                    <p>...</p>
+                    <a href="<%=index-1%>" style="background-color: gainsboro;"><%= index-1 %></a>
+                    <a href="<%=index%>"><%= index %></a>
+                    <% if(list.length > index*6){ %>
+                        <a href="<%index+1%>" style="background-color: gainsboro;"><%= index+1 %></a>
                     <% } %>
-                    <% if ((i-1)%6 === 0) { %>
-                        <a href=""><%=((i-1)/6)+1%></a>
+                    <% if(list.length > (index*6)+6 ){ %>
+                        <p>...</p>
                     <% } %>
-                <% } %> -->
-                        
+                <% } else { %>
+                    <% if (index == 1){ %>
+                        <a href="1">1</a>
+                    <% } else { %>
+                        <a href="1" style="background-color: gainsboro;">1</a>
+                    <% } %>
+                    <% if (index == 2){ %>
+                        <a href="2">2</a>
+                    <% } else { %>
+                        <a href="2" style="background-color: gainsboro;">2</a>
+                    <% } %>
+                    <% if (index == 3){ %>
+                        <a href="3">3</a>
+                    <% } else { %>
+                        <a href="3" style="background-color: gainsboro;">3</a>
+                    <% } %>
+                    <% if (index == 4){ %>
+                        <a href="4">4</a>
+                    <% } else { %>
+                        <a href="4" style="background-color: gainsboro;">4</a>
+                    <% } %>
+                    <% if (list.length > 24) { %>
+                        <p>...</p>
+                    <% } %>
+                <% } %>
             </div>
         </div>
         <div class="articles_container">
-            <% list.forEach( element => { %>
+            <% posts.forEach( element => { %>
                 <div class="article_block">
                     <h2><%=element.title%></h2>
                     <div class="article_block_sub">
-                        <p><%=authors[list.indexOf(element)].name.toUpperCase()%></p>
-                        <p><%=dates[list.indexOf(element)]%></p>
+                        <p><%=authors[posts.indexOf(element)].name.toUpperCase()%></p>
+                        <p><%=dates[posts.indexOf(element)]%></p>
                     </div>
-                    <div class="article_block_image" style="background-image: url(<%=list[0].image%>);">
+                    <div class="article_block_image" style="background-image: url(../<%=posts[0].image%>);">
                     </div>
                     <section>
                         <h4>
@@ -43,22 +63,12 @@
                     <a href="">Leia Mais...</a>
                 </div>
             <% }) %>
-            <!-- <div class="article_block">
-    
-            </div>
-            <div class="article_block">
-
-            </div>            
-            <div class="article_block">
-
-            </div> -->
         </div>
     </div>
     <% include partials/footer %>
 </div>
 
-    
-<script type="text/javascript" src="scriptHeader.js"></script>
-<script type="text/javascript" src="scriptArticles.js"></script>
+<script type="text/javascript" src="../scriptHeader.js"></script>
+<script type="text/javascript" src="../scriptArticles.js"></script>
 </body>
 </html>

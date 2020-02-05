@@ -4,14 +4,9 @@ const routes = express.Router();
 const UserController = require('./controllers/UserController');
 const PostController = require('./controllers/PostController');
 
-// routes.get("/", (req, res) => {
-//     res.render("home");
-// });
 routes.get("/", PostController.list);
 
-routes.get("/articles/:index", PostController.listAll);
-
-routes.get("/articles/:post_id", PostController.listAll);
+routes.get("/articles/:index_num", PostController.listAll);
 
 routes.get("/courses", (req, res) => {
     res.render("home");

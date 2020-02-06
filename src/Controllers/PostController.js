@@ -53,13 +53,13 @@ module.exports = {
   async listAll(req,res) {
     const name = req.query.name;
     const posts = [];
-    const index = req.params.index_num;
+    const index = req.query.page;
     const list = await Post.findAll({
       attributes: {exclude: ['body']}
     });
     
     if(name){
-      let filteredList = list.filter( (element) => {
+      let filtered = list.filter( (element) => {
         let bool = 0;
         const titleWords = element.title.split(' ');
         const queryWords = name.split(' ');
@@ -69,11 +69,11 @@ module.exports = {
         return true;
       });
     }
-    console.log(filteredList);
+    // console.log(filtered);
 
     if(name){
       for(let i = 0; i < 6; i++){
-        if(filteredList[6*(index-1)+i]) posts[i] = filteredList[6*(index-1)+i];
+        if(filtered[6*(index-1)+i]) posts[i] = filtered[6*(index-1)+i];
       }
     } else {
       for(let i = 0; i < 6; i++){

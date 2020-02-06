@@ -149,4 +149,3 @@ window.addEventListener("scroll", () => {
     if (header.getBoundingClientRect().top > 0) root.style.setProperty('--position-y', 0 + "px")
     lastScrollTop = scrollTop;
 });
-

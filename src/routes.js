@@ -6,7 +6,7 @@ const PostController = require('./controllers/PostController');
 
 routes.get("/", PostController.list);
 
-routes.get("/articles/:index_num", PostController.listAll);
+routes.get("/articles", PostController.listAll);
 
 routes.get("/courses", (req, res) => {
     res.render("home");

@@ -1,4 +1,9 @@
 <% include partials/header %>
+<style>
+    .main {
+        background-color: rgb(241, 241, 241);
+    }
+</style>
 <div class="main">
     <div id="articles">
         <div class="articles_search">
@@ -8,36 +13,36 @@
             </form>
             <div class="articles_index">
                 <% if(index > 3) { %>
-                    <a href="1" style="background-color: gainsboro;">1</a>
+                    <a href="../articles/?page=2" style="background-color: gainsboro;">1</a>
                     <p>...</p>
-                    <a href="<%=index-1%>" style="background-color: gainsboro;"><%= index-1 %></a>
-                    <a href="<%=index%>"><%= index %></a>
+                    <a href="../articles/?page=<%=index-1%>" style="background-color: gainsboro;"><%= index-1 %></a>
+                    <a href="../articles/?page=<%=index%>"><%= index %></a>
                     <% if(list.length > index*6){ %>
-                        <a href="<%index+1%>" style="background-color: gainsboro;"><%= index+1 %></a>
+                        <a href="../articles/?page=<%index+1%>" style="background-color: gainsboro;"><%= index+1 %></a>
                     <% } %>
                     <% if(list.length > (index*6)+6 ){ %>
                         <p>...</p>
                     <% } %>
                 <% } else { %>
                     <% if (index == 1){ %>
-                        <a href="1">1</a>
+                        <a href="/articles">1</a>
                     <% } else { %>
-                        <a href="1" style="background-color: gainsboro;">1</a>
+                        <a href="../articles/?page=1" style="background-color: gainsboro;">1</a>
                     <% } %>
                     <% if (index == 2){ %>
-                        <a href="2">2</a>
+                        <a href="../articles/?page=2">2</a>
                     <% } else { %>
-                        <a href="2" style="background-color: gainsboro;">2</a>
+                        <a href="../articles/?page=2" style="background-color: gainsboro;">2</a>
                     <% } %>
                     <% if (index == 3){ %>
-                        <a href="3">3</a>
+                        <a href="../articles/?page=3">3</a>
                     <% } else { %>
-                        <a href="3" style="background-color: gainsboro;">3</a>
+                        <a href="../articles/?page=3" style="background-color: gainsboro;">3</a>
                     <% } %>
                     <% if (index == 4){ %>
-                        <a href="4">4</a>
+                        <a href="../articles/?page=4">4</a>
                     <% } else { %>
-                        <a href="4" style="background-color: gainsboro;">4</a>
+                        <a href="../articles/?page=4" style="background-color: gainsboro;">4</a>
                     <% } %>
                     <% if (list.length > 24) { %>
                         <p>...</p>

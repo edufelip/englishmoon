@@ -921,7 +921,9 @@ i{
                 button{
                     padding: 3px 8px;
                     border-radius: 5px;
-                    border: 1px solid rgba(0, 0, 0, 0.3);
+                    border: 0px solid rgba(0, 0, 0, 0.3);
+                    background-color: transparent;
+                    margin-left: -5px;
                     &:hover {
                         cursor: pointer;
                     }
@@ -940,29 +942,31 @@ i{
         }
         .articles_container{
             width: 75%;
-            // height: 100%;
             margin: auto;
+            margin-bottom: 50px;
             display: flex;
             flex-flow: wrap;
             justify-content: space-around;
             .article_block{
                 margin: 50px 0 0 0;
                 width: 450px;
-                height: 500px;
+                height: 510px;
                 background-color: white;
                 box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.3);
                 h2{
                     display: block;
                     width: 80%;
-                    height: 40px;
+                    height: 60px;
                     margin: 30px auto 0 auto;
                     letter-spacing: 1.5px;
                     font-family: 'Nunito';
                     font-weight: 700;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
                 }
                 a{
                     position: relative;
-                    left: 45px;
+                    left: 10%;
                     top: 10px;
                     font-family: 'Nunito';
                     padding: 6px 20px;
@@ -973,11 +977,12 @@ i{
                 .article_block_sub{
                     width: 80%;
                     height: 30px;
-                    margin: 25px auto 0 auto;
+                    margin: 10px auto 0 auto;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     p {
+                        max-width: 120px;
                         font-size: 13px;
                         opacity: 0.9;
                     }
@@ -1275,6 +1280,32 @@ i{
             .slider-more {
                 a {
                     margin: 0; 
+                }
+            }
+        }
+        #articles{
+            .articles_search{
+                background: linear-gradient(to bottom, white 50%, rgb(248, 248, 248) 50%);
+                display: flex;
+                height: 100px;
+                flex-direction: column;
+            }
+            .articles_container{
+                .article_block {
+                    margin-top: 0;                    
+                    h2 {
+                        font-size: 18px;
+                        text-align: center;
+                        height: 45px;
+                    }
+                    .article_block_sub{
+                        margin-top: 15px;
+                        margin-bottom: 15px;
+                        height: 30px;
+                        flex-direction: column;
+                        justify-content: space-around;
+                        align-items: center;
+                    }
                 }
             }
         }

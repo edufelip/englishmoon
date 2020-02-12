@@ -53,31 +53,31 @@ module.exports = {
   async listAll(req,res) {
     const name = req.query.name;
     const posts = [];
+    const fitered = [];
     const index = req.query.page;
     const list = await Post.findAll({
       attributes: {exclude: ['body']}
     });
     
     if(name){
-      let filtered = list.filter( (element) => {
+      filtered = list.filter( (element) => {
         let bool = 0;
-        const titleWords = element.title.split(' ');
-        const queryWords = name.split(' ');
+        let titleWords = element.title.split(' ');
+        let queryWords = name.split(' ');
         queryWords.forEach( (word) => {
           if (titleWords.indexOf(word) !== -1) bool++;
         });
-        return true;
+        return bool;
       });
     }
-    // console.log(filtered);
-
+    
     if(name){
       for(let i = 0; i < 6; i++){
         if(filtered[6*(index-1)+i]) posts[i] = filtered[6*(index-1)+i];
       }
     } else {
       for(let i = 0; i < 6; i++){
-        if(list[6*(index-1)+i]) posts[i] = list[6*(index-1)+i];
+          if(list[6*(index-1)+i]) posts[i] = list[6*(index-1)+i];
       }
     }
 
@@ -95,9 +95,10 @@ module.exports = {
       }
     }
     if(posts[0]) {
-      return res.render("articles",{list:list, posts:posts, authors:authors, dates:dates, index:index});
+      return res.render("articles",{list:list, posts:posts, authors:authors, dates:dates, index:index, name:name});
     } else {
-      return res.redirect("/");
+      return res.render("articles",{list:list, posts:posts, authors:authors, dates:dates, index:index, name:name});
+      // return res.redirect("/");
     }
   }
 };

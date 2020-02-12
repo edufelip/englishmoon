@@ -7,42 +7,50 @@
 <div class="main">
     <div id="articles">
         <div class="articles_search">
-            <form action="/articles/1" method="GET">
-                <input type="text" name="name" placeholder="Procure um Artigo">
+            <form action="/articles" method="GET">
+                <input type="text" name="page" value="<%=index%>" style="display: none;">
+                <% if (name) { %>
+                    <input type="text" name="name" value="<%=name%>">
+                <% } else { %>        
+                    <input type="text" name="name" placeholder="Procure um Artigo">
+                <% } %>
                 <button><i class="fas fa-search"></i></button>
             </form>
             <div class="articles_index">
                 <% if(index > 3) { %>
-                    <a href="../articles/?page=2" style="background-color: gainsboro;">1</a>
-                    <p>...</p>
-                    <a href="../articles/?page=<%=index-1%>" style="background-color: gainsboro;"><%= index-1 %></a>
-                    <a href="../articles/?page=<%=index%>"><%= index %></a>
-                    <% if(list.length > index*6){ %>
-                        <a href="../articles/?page=<%index+1%>" style="background-color: gainsboro;"><%= index+1 %></a>
+                    <% if (name) { %>
+                        <a href="http://localhost:3000/articles?page=<%= index %>&name=<%= name %>" style="background-color: gainsboro;">1</a>
+                        <p>...</p>
+                        <a href="http://localhost:3000/articles?page=<%= index-1 %>&name=<%= name %>" style="background-color: gainsboro;"><%= index-1 %></a>
+                        <a href="http://localhost:3000/articles?page=<%= index %>&name=<%= name %>"><%= index %></a>
+                        <% if(list.length > index*6){ %>
+                            <a href="http://localhost:3000/articles?page=<%= index+1 %>&name=<%= name %>" style="background-color: gainsboro;"><%= index+1 %></a>
+                        <% } %>
+                    <% } else { %>
+                        <a href="http://localhost:3000/articles?page=<%= index %>" style="background-color: gainsboro;">1</a>
+                        <p>...</p>
+                        <a href="http://localhost:3000/articles?page=<%= index-1 %>" style="background-color: gainsboro;"><%= index-1 %></a>
+                        <a href="http://localhost:3000/articles?page=<%= index %>"><%= index %></a>
+                        <% if(list.length > index*6){ %>
+                            <a href="http://localhost:3000/articles?page=<%= index+1 %>" style="background-color: gainsboro;"><%= index+1 %></a>
+                        <% } %>
                     <% } %>
                     <% if(list.length > (index*6)+6 ){ %>
                         <p>...</p>
                     <% } %>
                 <% } else { %>
-                    <% if (index == 1){ %>
-                        <a href="/articles">1</a>
-                    <% } else { %>
-                        <a href="../articles/?page=1" style="background-color: gainsboro;">1</a>
-                    <% } %>
-                    <% if (index == 2){ %>
-                        <a href="../articles/?page=2">2</a>
-                    <% } else { %>
-                        <a href="../articles/?page=2" style="background-color: gainsboro;">2</a>
-                    <% } %>
-                    <% if (index == 3){ %>
-                        <a href="../articles/?page=3">3</a>
-                    <% } else { %>
-                        <a href="../articles/?page=3" style="background-color: gainsboro;">3</a>
-                    <% } %>
-                    <% if (index == 4){ %>
-                        <a href="../articles/?page=4">4</a>
-                    <% } else { %>
-                        <a href="../articles/?page=4" style="background-color: gainsboro;">4</a>
+                    <% let link %>
+                    <% for(let i = 1; i < 5; i++){ %>
+                        <% if (name) { %>
+                            <% link="http://localhost:3000/articles?page=" + i + "&name=" + name %>
+                        <% } else { %>
+                            <% link="http://localhost:3000/articles?page=" + i %>
+                        <% } %>
+                        <% if(index == i) { %>
+                            <a href="<%=link%>"><%= i %></a>
+                        <% } else { %>
+                            <a href="<%=link%>" style="background-color: gainsboro;"><%= i %></a>
+                        <% } %>
                     <% } %>
                     <% if (list.length > 24) { %>
                         <p>...</p>

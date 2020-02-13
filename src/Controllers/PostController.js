@@ -83,22 +83,40 @@ module.exports = {
 
     let authors = [];
     let dates = [];
+    let modifiedTitles = [];
     for(let i = 0; i < posts.length; i++){
       if(posts[i]){
         let author = await User.findByPk(posts[i].user_id);
         let created = JSON.stringify(posts[i].createdAt);
         let date = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
+        let modified = posts[i].title.replace(/ /g, '-');
         authors = [... authors, author];
         dates.push(date);
+        modifiedTitles.push(modified);
       } else {
         authors = [... authors, undefined];
       }
     }
     if(posts[0]) {
-      return res.render("articles",{list:list, posts:posts, authors:authors, dates:dates, index:index, name:name});
+      return res.render("articles",{list:list, posts:posts, authors:authors, dates:dates, index:index, name:name, modifiedTitles:modifiedTitles});
     } else {
-      return res.render("articles",{list:list, posts:posts, authors:authors, dates:dates, index:index, name:name});
-      // return res.redirect("/");
+      return res.json("erro: pagina indisponivel");
     }
+  },
+
+  async listPost(req, res){
+    const params = req.params.post_name;
+    const name = params.replace(/-/g, ' ');
+    const post = await Post.findByPk(req.params.post_id);
+
+    if(post.title == name){
+      const author = await User.findByPk(post.user_id);
+      const created = JSON.stringify(post.createdAt);
+      const date = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
+      return res.render("oneArticle", {post:post, author:author, date:date})
+    } else {
+      return res.json("erro: Página não encontrada");
+    }
+    
   }
 };

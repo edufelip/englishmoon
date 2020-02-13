@@ -1,0 +1,28 @@
+<% include partials/header %>
+
+<div class="main">
+    <div class="oneArticle">
+        <div class="oneApart">
+            <p>Siga a <b>EnglishMoon</b> nas redes sociais para estar por dentro de todo nosso conteúdo didático</p>
+            <a href=""><i class="fab fa-facebook"></i></a>
+            <a href=""><i class="fab fa-twitter"></i></a>
+            <a href=""><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="oneHeader">
+            <h1><%=post.title%></h1>
+            <p><%=author.name%> - <%=date%></p>
+            <div class="oneHeader_image" style="background-image: url(/<%=post.image%>);">
+            </div>
+        </div>
+        <div class="oneBody">
+            <p><%=post.body%></p>
+        </div>
+    </div>
+    <% include partials/footer %>
+</div>
+
+<script type="text/javascript" src="/scriptHeader.js"></script>
+<script type="text/javascript" src="/scriptOneArticle.js"></script>
+
+</body>
+</html>

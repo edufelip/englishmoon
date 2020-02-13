@@ -1000,6 +1000,53 @@ i {
   font-family: "Open Sans";
   font-weight: 600;
 }
+.main .oneArticle {
+  width: 50%;
+  height: 100%;
+  margin: auto;
+}
+.main .oneArticle .oneHeader {
+  margin-top: 40px;
+}
+.main .oneArticle .oneHeader h1 {
+  font-size: 35px;
+  font-weight: 400;
+}
+.main .oneArticle .oneHeader h1, .main .oneArticle .oneHeader p {
+  font-family: "Nunito";
+}
+.main .oneArticle .oneHeader p {
+  color: rgba(0, 0, 0, 0.822);
+  margin: 10px 0 5px 0;
+}
+.main .oneArticle .oneHeader .oneHeader_image {
+  height: 300px;
+  width: 100%;
+  margin: 0 auto 20px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.main .oneArticle .oneBody {
+  margin-bottom: 50px;
+}
+.main .oneArticle .oneApart {
+  position: fixed;
+  top: 120px;
+  left: 60px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.main .oneArticle .oneApart p {
+  width: 140px;
+  opacity: 0.8;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+.main .oneArticle .oneApart a i {
+  font-size: 26px;
+  margin-right: 15px;
+}
 
 @media (max-width: 1160px) {
   .header .logo {
@@ -1065,6 +1112,9 @@ i {
     max-width: 280px;
     text-align: center;
   }
+  .main .oneArticle .oneApart {
+    display: none;
+  }
 }
 @media (max-width: 830px) {
   .header .log {
@@ -1091,6 +1141,9 @@ i {
     display: block;
   }
 
+  .main {
+    top: 40px;
+  }
   .main .img-container main .container p {
     width: 90%;
   }
@@ -1133,6 +1186,9 @@ i {
   }
   .main .footer .container .footerform {
     display: none;
+  }
+  .main .oneArticle {
+    width: 80%;
   }
 }
 @media (max-width: 640px) {
@@ -1201,7 +1257,7 @@ i {
     margin: 0;
   }
   .main #articles .articles_search {
-    background: linear-gradient(to bottom, white 50%, #f8f8f8 50%);
+    background: linear-gradient(to bottom, white 50%, #f3f3f3 50%);
     display: flex;
     height: 100px;
     flex-direction: column;

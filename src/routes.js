@@ -8,6 +8,12 @@ routes.get("/", PostController.list);
 
 routes.get("/articles", PostController.listAll);
 
+routes.get("/articles/:post_name/:post_id", PostController.listPost);
+
+routes.get("/books", (req, res) => {
+    return res.json("opa")
+})
+
 routes.get("/courses", (req, res) => {
     res.render("home");
 });

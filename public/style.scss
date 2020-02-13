@@ -1049,7 +1049,7 @@ i{
         }
         .oneApart{
             position: fixed;
-            top: 120px;
+            top: 90px;
             left: 60px;
             opacity: 0;
             transition: all 0.3s ease;
@@ -1065,6 +1065,21 @@ i{
                     margin-right: 15px;
                 }
             }
+        }
+    }
+    .constructionBody{
+        background-color: rgba(243, 243, 243, 0.5);
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        i {
+            font-size: 60px;
+        }
+        h1 {
+            font-family: 'Open Sans';
+            font-weight: 400;
         }
     }
 }

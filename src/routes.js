@@ -11,14 +11,15 @@ routes.get("/articles", PostController.listAll);
 routes.get("/articles/:post_name/:post_id", PostController.listPost);
 
 routes.get("/books", (req, res) => {
-    return res.json("opa")
-})
+    res.render("underConstruction");
+});
 
 routes.get("/courses", (req, res) => {
-    res.render("home");
+    res.render("underConstruction");
 });
+
 routes.get("/contact", (req, res) => {
-    res.render("home");
+    res.render("contact");
 });
 
 routes.get('/users', UserController.index);

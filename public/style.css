@@ -1062,6 +1062,137 @@ i {
   font-family: "Open Sans";
   font-weight: 400;
 }
+.main .contactMain {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+}
+.main .contactMain .contactOne {
+  flex: 4;
+  height: 100%;
+  background-color: black;
+  background-image: url(/images/contact-background.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.main .contactMain .contactOne .address {
+  display: flex;
+  position: relative;
+  width: 350px;
+  left: 20%;
+  flex-wrap: wrap;
+}
+.main .contactMain .contactOne .address i {
+  font-size: 24px;
+  margin-right: 15px;
+}
+.main .contactMain .contactOne .address h2 {
+  font-size: 20px;
+  clear: right;
+  margin-bottom: 10px;
+}
+.main .contactMain .contactOne .address i, .main .contactMain .contactOne .address p, .main .contactMain .contactOne .address h2 {
+  color: rgba(243, 243, 243, 0.932);
+}
+.main .contactMain .contactOne .address p, .main .contactMain .contactOne .address h2 {
+  font-family: "Nunito";
+  font-weight: 400;
+}
+.main .contactMain .contactOne .address p {
+  color: rgba(255, 255, 255, 0.6);
+  margin-left: 35px;
+  font-size: 15px;
+}
+.main .contactMain .contactOne .contact-address {
+  top: 100px;
+}
+.main .contactMain .contactOne .contact-telephone {
+  width: 250px;
+  top: 150px;
+}
+.main .contactMain .contactOne .contact-telephone p {
+  margin-left: 38px;
+}
+.main .contactMain .contactOne .contact-mail {
+  width: 250px;
+  top: 200px;
+}
+.main .contactMain .contactOne .contact-mail i {
+  margin-top: 4px;
+}
+.main .contactMain .contactOne .contact-mail p {
+  margin-left: 40px;
+}
+.main .contactMain .contactTwo {
+  flex: 5;
+  height: 100%;
+  background-color: white;
+}
+.main .contactMain .contactTwo h1 {
+  font-family: "Nunito";
+  font-weight: 400;
+  opacity: 0.8;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 40px 0 20px 0;
+}
+.main .contactMain .contactTwo .contact-block {
+  width: 55%;
+  height: 80px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  flex-direction: column;
+}
+.main .contactMain .contactTwo .contact-block .contact-block-word {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.main .contactMain .contactTwo .contact-block .contact-block-word p {
+  font-size: 12px;
+  margin-left: 10px;
+  font-family: "Nunito";
+  font-weight: 700;
+  opacity: 0.8;
+}
+.main .contactMain .contactTwo .contact-block input, .main .contactMain .contactTwo .contact-block textarea {
+  height: 50%;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  padding-left: 10px;
+}
+.main .contactMain .contactTwo .contact-block:nth-of-type(3) {
+  height: 160px;
+}
+.main .contactMain .contactTwo .contact-block:nth-of-type(3) .contact-block-word {
+  height: 25%;
+}
+.main .contactMain .contactTwo .contact-block:nth-of-type(3) textarea {
+  height: 65%;
+  padding: 10px;
+  resize: none;
+}
+.main .contactMain .contactTwo .button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.main .contactMain .contactTwo .button-container button {
+  color: #AB1616;
+  border: 1px solid #AB1616;
+  background-color: linear-gradient(to right, white 50%, #AB1616 50%);
+  width: 100px;
+  height: 30px;
+}
+.main .contactMain .contactTwo .button-container button:hover {
+  cursor: pointer;
+  background-position: left bottom;
+}
 
 @media (max-width: 1160px) {
   .header .logo {

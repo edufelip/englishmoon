@@ -1,0 +1,57 @@
+<% include partials/header %>
+
+<div class="main">
+    <div class="contactMain">
+        <div class="contactOne">
+            <div class="contact-address address">
+                <i class="fas fa-map-marker-alt"></i>
+                <h2>Endereço</h2>
+                <p>Rua Tchurubango Tudusbagos, 273</p>
+                <p>São Paulo - SP</p>
+            </div>
+            <div class="contact-telephone address">
+                <i class="fas fa-phone-alt"></i>
+                <h2>Telefone</h2>
+                <p>(21) 98567-0564</p>
+            </div>
+            <div class="contact-mail address">
+                <i class="far fa-envelope"></i>
+                <h2>E-mail</h2>
+                <p>english@moon.com</p>
+            </div>
+        </div>
+        <div class="contactTwo">
+            <h1>Nos mande sua mensagem</h1>
+            <form action="">
+                <div class="contact-block">
+                    <div class="contact-block-word">
+                        <p>SEU NOME</p>
+                    </div>
+                    <input type="text" maxlength="35" name="name" placeholder="INFORME SEU NOME">
+                </div>
+                <div class="contact-block">
+                    <div class="contact-block-word">
+                        <p>SEU E-MAIL</p>
+                    </div>
+                    <input type="text" maxlength="35" name="email" placeholder="INFORME SEU E-MAIL">
+                </div>
+                <div class="contact-block">
+                    <div class="contact-block-word">
+                        <p>SUA MENSAGEM</p>
+                    </div>
+                    <textarea maxlength="200" name="msg" id="" cols="30" rows="10" placeholder="INFORME SUA MENSAGEM"></textarea>
+                </div>
+                <div class="button-container">
+                    <button>ENVIAR</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <%include partials/footer %>
+</div>
+
+<script type="text/javascript" src="/scriptHeader.js"></script>
+
+</body>
+</html>

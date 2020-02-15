@@ -1201,20 +1201,29 @@ i{
                 display: flex;
                 justify-content: center;
                 button {
-                    // background-color: $mainBlue;
-                    // color: white;
                     color: $mainRed;
                     border: 1px solid $mainRed;
-                    background-color: linear-gradient(to right, white 50%, $mainRed 50%);
+                    background: linear-gradient(to right, $mainRed 50%, white 50%);
+                    background-size: 200% 100%;
+                    background-position: right bottom;
                     width: 100px;
-                    height: 30px;
-                    // border: 0;
+                    height: 30px;   
+                    transition: all 0.3s ease;
                     &:hover {
                         cursor: pointer;
                         background-position: left bottom;
+                        color: white;
                     }
                 }
             }
+        }
+    }
+}
+
+@media (min-width: 1160px){
+    .main{
+        .footer {
+            height: 170px;
         }
     }
 }
@@ -1401,6 +1410,34 @@ i{
             width: 80%;
         }
         top: 40px;
+        .contactMain {
+            flex-direction: column-reverse;
+            height: 1120px;
+            display: flex;
+            .contactOne {
+                flex: 1;
+                height: 60%;
+                .address{
+                    left: 0;
+                    margin: 0 auto;
+                    width: 220px;
+                }
+            }
+            .contactTwo{
+                flex: 1;
+                height: 70%;
+                .button-container{
+                    button{
+                        color: white;
+                        background-position: left bottom;
+                    }
+                }
+                
+                h1 {
+                    margin-top: 50px;
+                }
+            }
+        }
     }
 }
 @media (max-width: 640px){
@@ -1514,6 +1551,13 @@ i{
                         justify-content: space-around;
                         align-items: center;
                     }
+                }
+            }
+        }
+        .contactMain{
+            .contactTwo{
+                h1 {
+                    font-size: 25px
                 }
             }
         }

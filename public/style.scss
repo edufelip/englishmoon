@@ -1125,6 +1125,7 @@ i{
             }
             .contact-address {
                 top: 100px;
+                width: 250px;
             }
             .contact-telephone{
                 width: 250px;
@@ -1470,6 +1471,22 @@ i{
                 }
             }
         }
+        .dropdown-aut{
+            width: 90vw;
+            height: 90vh;
+            top: 5vh;
+            left: 5%;
+            .form-container{
+                form {
+                    p {
+                        text-align: center;
+                    }
+                    input{
+                        width: 50vw;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -1563,9 +1580,6 @@ i{
         }
     }
     .header{
-        .shadow {
-            display: none;
-        }
         .search{
             width: 50px;
             form{

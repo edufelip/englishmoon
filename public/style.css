@@ -1106,6 +1106,7 @@ i {
 }
 .main .contactMain .contactOne .contact-address {
   top: 100px;
+  width: 250px;
 }
 .main .contactMain .contactOne .contact-telephone {
   width: 250px;
@@ -1389,6 +1390,18 @@ i {
   .header .search form input[type=text] {
     width: 165px;
   }
+  .header .dropdown-aut {
+    width: 90vw;
+    height: 90vh;
+    top: 5vh;
+    left: 5%;
+  }
+  .header .dropdown-aut .form-container form p {
+    text-align: center;
+  }
+  .header .dropdown-aut .form-container form input {
+    width: 50vw;
+  }
 }
 @media (max-width: 505px) {
   .main .img-container {
@@ -1462,9 +1475,6 @@ i {
     font-size: 25px;
   }
 
-  .header .shadow {
-    display: none;
-  }
   .header .search {
     width: 50px;
   }

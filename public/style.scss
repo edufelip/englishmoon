@@ -1,6 +1,7 @@
 $mainColor: rgb(241, 241, 241);
 $mainBlue: rgb(50, 40, 199);
 $hoverBlue: #110f8a;
+$footerBlue: rgb(29, 30, 78);
 $mainBlack: rgba(0, 0, 0, 0.651);
 $mainRed: #AB1616;
 
@@ -220,7 +221,7 @@ i{
         float: right;
         align-items: center;
         justify-content: end;
-        button {
+        button, a {
             border: 0;
             height: 30px;
             width: 65px;
@@ -229,33 +230,37 @@ i{
             &:hover{
                 cursor: pointer;
             }
-            &:nth-of-type(1){
-                margin: 0 5px 0 15px;
-                background-color: transparent;
-                color: $mainBlack;
-                &:focus{
-                    outline: none;
-                }
-                &:hover{
-                    color: black;
-                }
+        }
+        button {
+            margin: 0 5px 0 15px;
+            background-color: transparent;
+            color: $mainBlack;
+            &:focus{
+                outline: none;
             }
-            &:nth-of-type(2){
-                width: 85px;
-                font-weight: 600;
-                height: 35px;
-                background-color: $mainBlue;              
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            &:hover{
+                color: black;
+            }
+        }
+        a {
+            width: 85px;
+            font-weight: 600;
+            height: 35px;
+            background-color: $hoverBlue;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            &:focus{
+                outline: none;
+            }
+            &:hover{
+                background-color: $hoverBlue;
+                opacity: 1;
                 color: white;
-                &:focus{
-                    outline: none;
-                }
-                &:hover{
-                    background-color: $hoverBlue;
-                    color: white;
-                }
             }
         }
     }
@@ -1219,6 +1224,112 @@ i{
             }
         }
     }
+    .register-main{
+        width: 100%;
+        height: 90vh;
+        background-color: rgba(229, 231, 243, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .register-main-container{
+            width: 70%;
+            height: 80%;
+            display: flex;
+            border-radius: 20px;
+            box-shadow: 1px 2px 7px 2px rgba(0,0,0,0.4);
+            .register-main-sectionOne{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                flex: 2;
+                // background-color: $footerBlue;
+                background-color: #0b6d83;
+                border-radius: 20px 0 0 20px;
+                font-family: 'Nunito';
+                i, h2, p {
+                    color: rgba(255, 255, 255, 0.9);
+                }
+                p {
+                    text-align: center;
+                    display: block;
+                    max-width: 260px;
+                    margin-top: 20px;
+                    margin-bottom: 30px;
+                    font-size: 15px;
+                }
+                i {
+                    font-size: 30px;
+                    margin-bottom: 20px;
+                }
+            }
+            .register-main-sectionTwo{
+                flex: 3;
+                background-color: white;
+                border-radius: 0 20px 20px 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                form{
+                    .form-block{
+                        display: flex;
+                        height: 30px;
+                        width: 100%;
+                        margin: 40px auto 0 auto;
+                        align-items: center;
+                        justify-content: space-around;
+                        input, p {
+                            font-family: 'Nunito';
+                            opacity: 0.85;
+                        }
+                        input[type=text]{
+                            margin: 0 0 0 20px;
+                            width: 70%;
+                            height: 22px;
+                            font-size: 12px;
+                            padding: 0 5px;
+                        }
+                        input[type=radio]{
+                            &:hover{
+                                cursor: pointer;
+                            }
+                        }
+                        p {
+                            display: block;
+                            width: 90px;
+                            font-size: 12px;
+                        }
+                        .sub-form-block {
+                            width: 70%;
+                            margin: 0 0 0 20px;
+                            display: flex;
+                            justify-content: space-around;
+                        }
+                        &:nth-of-type(1){
+                            margin-top: 0;
+                        }
+                    }
+                    input[type=submit]{
+                        display: block;
+                        height: 30px;
+                        width: 120px;
+                        margin: 30px auto 0 auto;
+                        background: linear-gradient(to right, #0b6d83 50%, transparent 50%);
+                        background-size: 200% 100%;
+                        background-position: right bottom;
+                        border: 1px solid #0c7b93;
+                        color: #0c7b93;
+                        transition: all 0.4s ease;
+                        &:hover {
+                            background-position: left bottom;
+                            color: white;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media (min-width: 1160px){
@@ -1308,6 +1419,32 @@ i{
         .oneArticle{
             .oneApart {
                 display: none;
+            }
+        }
+    }
+}
+
+@media (max-width: 960px){
+    .main {
+        .register-main{
+            height: 120vh;
+            .register-main-container{
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+                flex-direction: column;
+                .register-main-sectionOne{
+                    border-radius: 0;
+                    flex: 1;
+                    p{
+                        margin: 0;
+                    }
+                }
+                .register-main-sectionTwo{
+                    flex: 2;
+                    border-radius: 0;
+
+                }
             }
         }
     }
@@ -1436,6 +1573,13 @@ i{
                 
                 h1 {
                     margin-top: 50px;
+                }
+            }
+        }
+        .register-main{
+            .register-main-container{
+                .register-main-sectionOne{
+                    margin-top: 25px;
                 }
             }
         }
@@ -1638,6 +1782,22 @@ i{
         }
         #dropmenu_desk{
             visibility: hidden;
+        }
+    }
+}
+
+@media (max-width: 360px){
+    .main {
+        .register-main{
+            .register-main-container{
+                .register-main-sectionTwo{
+                    form {
+                        .form-block{
+                            width: 85%;
+                        }
+                    }
+                }
+            }
         }
     }
 }

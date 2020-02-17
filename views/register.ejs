@@ -1,0 +1,48 @@
+<% include partials/header %>
+<div class="main">
+    <div class="register-main">
+        <div class="register-main-container">
+            <div class="register-main-sectionOne">
+                <i class="far fa-moon"></i>
+                <h2>Vamos começar!</h2>
+                <p>Dê seu primeiro passo fazendo sua conta na EnglishMoon</p>
+            </div>
+            <div class="register-main-sectionTwo">
+                <form action="/aa" method="POST">
+                    <div class="form-block">
+                        <p>NOME</p>
+                        <input type="text" name="name" placeholder="NOME" maxlength="45">
+                    </div>
+                    <div class="form-block">
+                        <p>GÊNERO</p>
+                        <div class="sub-form-block">
+                            <input type="radio" name="gender" value="male">
+                            <p>MASCULINO</p>
+                            <input type="radio" name="gender" value="female">
+                            <p>FEMININO</p>
+                        </div>
+                    </div>
+                    <div class="form-block">
+                        <p>NASCIMENTO</p>
+                        <input type="text" name="birthdate" placeholder="01/02/1980" maxlength="10">
+                    </div>
+                    <div class="form-block">
+                        <p>E-MAIL</p>
+                        <input type="text" name="email" placeholder="E-MAIL" max="45">
+                    </div>
+                    <div class="form-block">
+                        <p>TELEFONE</p>
+                        <input type="text" name="telephone" placeholder="(99) 99999-9999" maxlength="15">
+                    </div>
+                    <input type="submit" value="CADASTRAR">
+                </form>
+            </div>
+        </div>
+    </div>
+    <% include partials/footer %>
+</div>
+
+<script type="text/javascript" src="/scriptHeader.js"></script>
+
+</body>
+</html>

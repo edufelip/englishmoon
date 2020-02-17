@@ -707,6 +707,14 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+express-sanitizer@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/express-sanitizer/-/express-sanitizer-1.0.5.tgz#1622e250dbc8ac7f0986fcbcb0be13627d164047"
+  integrity sha512-48/Tf1DZ7JklRVTcXQLHAxhq4GNJTuHq2jjIYhyTmu0Bw+X06YPDD/e/tdn1QLYk706xw4N8JFxtjslRrDGb8g==
+  dependencies:
+    sanitizer "0.1.3"
+    underscore "1.8.3"
+
 express@^4.17.1:
   version "4.17.1"
   resolved "https://registry.yarnpkg.com/express/-/express-4.17.1.tgz#4491fc38605cf51f8629d39c2b5d026f98a4c134"
@@ -2049,6 +2057,11 @@ safe-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
+sanitizer@0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/sanitizer/-/sanitizer-0.1.3.tgz#d4f0af7475d9a7baf2a9e5a611718baa178a39e1"
+  integrity sha1-1PCvdHXZp7ryqeWmEXGLqheKOeE=
+
 sass@^1.24.3:
   version "1.24.3"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.24.3.tgz#ee2ced4953e79343da0d54d96d6e6e1af6d44290"
@@ -2450,6 +2463,11 @@ undefsafe@^2.0.2:
   integrity sha1-Il9rngM3Zj4Njnz9aG/Cg2zKznY=
   dependencies:
     debug "^2.2.0"
+
+underscore@1.8.3:
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
+  integrity sha1-Tz+1OxBuYJf8+ctBCfKl6b36UCI=
 
 union-value@^1.0.0:
   version "1.0.1"

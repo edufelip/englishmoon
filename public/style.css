@@ -221,42 +221,46 @@ i {
   align-items: center;
   justify-content: end;
 }
-.header .log button {
+.header .log button, .header .log a {
   border: 0;
   height: 30px;
   width: 65px;
   border-radius: 5px;
   transition: all 0.2s ease-in;
 }
-.header .log button:hover {
+.header .log button:hover, .header .log a:hover {
   cursor: pointer;
 }
-.header .log button:nth-of-type(1) {
+.header .log button {
   margin: 0 5px 0 15px;
   background-color: transparent;
   color: rgba(0, 0, 0, 0.651);
 }
-.header .log button:nth-of-type(1):focus {
+.header .log button:focus {
   outline: none;
 }
-.header .log button:nth-of-type(1):hover {
+.header .log button:hover {
   color: black;
 }
-.header .log button:nth-of-type(2) {
+.header .log a {
   width: 85px;
   font-weight: 600;
   height: 35px;
-  background-color: #3228c7;
+  background-color: #110f8a;
+  opacity: 0.8;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
+  text-decoration: none;
+  font-size: 15px;
 }
-.header .log button:nth-of-type(2):focus {
+.header .log a:focus {
   outline: none;
 }
-.header .log button:nth-of-type(2):hover {
+.header .log a:hover {
   background-color: #110f8a;
+  opacity: 1;
   color: white;
 }
 .header .log2 {
@@ -1198,6 +1202,107 @@ i {
   background-position: left bottom;
   color: white;
 }
+.main .register-main {
+  width: 100%;
+  height: 90vh;
+  background-color: rgba(229, 231, 243, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main .register-main .register-main-container {
+  width: 70%;
+  height: 80%;
+  display: flex;
+  border-radius: 20px;
+  box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.4);
+}
+.main .register-main .register-main-container .register-main-sectionOne {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 2;
+  background-color: #0b6d83;
+  border-radius: 20px 0 0 20px;
+  font-family: "Nunito";
+}
+.main .register-main .register-main-container .register-main-sectionOne i, .main .register-main .register-main-container .register-main-sectionOne h2, .main .register-main .register-main-container .register-main-sectionOne p {
+  color: rgba(255, 255, 255, 0.9);
+}
+.main .register-main .register-main-container .register-main-sectionOne p {
+  text-align: center;
+  display: block;
+  max-width: 260px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+.main .register-main .register-main-container .register-main-sectionOne i {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.main .register-main .register-main-container .register-main-sectionTwo {
+  flex: 3;
+  background-color: white;
+  border-radius: 0 20px 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main .register-main .register-main-container .register-main-sectionTwo form .form-block {
+  display: flex;
+  height: 30px;
+  width: 100%;
+  margin: 40px auto 0 auto;
+  align-items: center;
+  justify-content: space-around;
+}
+.main .register-main .register-main-container .register-main-sectionTwo form .form-block input, .main .register-main .register-main-container .register-main-sectionTwo form .form-block p {
+  font-family: "Nunito";
+  opacity: 0.85;
+}
+.main .register-main .register-main-container .register-main-sectionTwo form .form-block input[type=text] {
+  margin: 0 0 0 20px;
+  width: 70%;
+  height: 22px;
+  font-size: 12px;
+  padding: 0 5px;
+}
+.main .register-main .register-main-container .register-main-sectionTwo form .form-block input[type=radio]:hover {
+  cursor: pointer;
+}
+.main .register-main .register-main-container .register-main-sectionTwo form .form-block p {
+  display: block;
+  width: 90px;
+  font-size: 12px;
+}
+.main .register-main .register-main-container .register-main-sectionTwo form .form-block .sub-form-block {
+  width: 70%;
+  margin: 0 0 0 20px;
+  display: flex;
+  justify-content: space-around;
+}
+.main .register-main .register-main-container .register-main-sectionTwo form .form-block:nth-of-type(1) {
+  margin-top: 0;
+}
+.main .register-main .register-main-container .register-main-sectionTwo form input[type=submit] {
+  display: block;
+  height: 30px;
+  width: 120px;
+  margin: 30px auto 0 auto;
+  background: linear-gradient(to right, #0b6d83 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  border: 1px solid #0c7b93;
+  color: #0c7b93;
+  transition: all 0.4s ease;
+}
+.main .register-main .register-main-container .register-main-sectionTwo form input[type=submit]:hover {
+  background-position: left bottom;
+  color: white;
+  cursor: pointer;
+}
 
 @media (min-width: 1160px) {
   .main .footer {
@@ -1270,6 +1375,28 @@ i {
   }
   .main .oneArticle .oneApart {
     display: none;
+  }
+}
+@media (max-width: 960px) {
+  .main .register-main {
+    height: 120vh;
+  }
+  .main .register-main .register-main-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    flex-direction: column;
+  }
+  .main .register-main .register-main-container .register-main-sectionOne {
+    border-radius: 0;
+    flex: 1;
+  }
+  .main .register-main .register-main-container .register-main-sectionOne p {
+    margin: 0;
+  }
+  .main .register-main .register-main-container .register-main-sectionTwo {
+    flex: 2;
+    border-radius: 0;
   }
 }
 @media (max-width: 830px) {
@@ -1370,6 +1497,9 @@ i {
   }
   .main .contactMain .contactTwo h1 {
     margin-top: 50px;
+  }
+  .main .register-main .register-main-container .register-main-sectionOne {
+    margin-top: 25px;
   }
 }
 @media (max-width: 640px) {
@@ -1533,6 +1663,11 @@ i {
   }
   .header #dropmenu_desk {
     visibility: hidden;
+  }
+}
+@media (max-width: 360px) {
+  .main .register-main .register-main-container .register-main-sectionTwo form .form-block {
+    width: 85%;
   }
 }
 @media (max-width: 305px) {

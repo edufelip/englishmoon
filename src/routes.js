@@ -8,6 +8,10 @@ routes.get("/", PostController.list);
 
 routes.get("/articles", PostController.listAll);
 
+routes.get("/register", (req, res) => {
+    res.render("register");
+});
+
 routes.get("/articles/:post_name/:post_id", PostController.listPost);
 
 routes.get("/books", (req, res) => {

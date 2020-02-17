@@ -3,7 +3,7 @@ const Post = require('../models/Post');
 
 module.exports = {
   async index(req, res) {
-    const { user_id } = req.params;
+    const { user_id } = req.sanitize(req.params);
 
     const user = await User.findByPk(user_id, {
       include: { association: 'posts' }
@@ -13,8 +13,8 @@ module.exports = {
   },
 
   async store(req, res) {
-    const { user_id } = req.params;
-    const { title, body, image } = req.body;
+    const { user_id } = req.sanitize(req.params);
+    const { title, body, image } = req.sanitize(req.body);
     const user = await User.findByPk(user_id);
     if (!user) {
       return res.status(400).json({ error: 'User not found' });
@@ -51,10 +51,10 @@ module.exports = {
   },
   
   async listAll(req,res) {
-    const name = req.query.name;
+    const name = req.sanitize(req.query.name);
     const posts = [];
     const fitered = [];
-    const index = req.query.page;
+    const index = req.sanitize(req.query.page);
     const list = await Post.findAll({
       attributes: {exclude: ['body']}
     });
@@ -105,9 +105,10 @@ module.exports = {
   },
 
   async listPost(req, res){
-    const params = req.params.post_name;
+    const params = req.sanitize(req.params.post_name);
     const name = params.replace(/-/g, ' ');
-    const post = await Post.findByPk(req.params.post_id);
+    const post_id = req.sanitize(req.params.post_id);
+    const post = await Post.findByPk(post_id);
 
     if(post.title == name){
       const author = await User.findByPk(post.user_id);

@@ -1275,14 +1275,14 @@ i{
                         display: flex;
                         height: 30px;
                         width: 100%;
-                        margin: 40px auto 0 auto;
+                        margin: 25px auto 0 auto;
                         align-items: center;
                         justify-content: space-around;
                         input, p {
                             font-family: 'Nunito';
                             opacity: 0.85;
                         }
-                        input[type=text]{
+                        input[type=text], input[type=password]{
                             margin: 0 0 0 20px;
                             width: 70%;
                             height: 22px;
@@ -1290,6 +1290,7 @@ i{
                             padding: 0 5px;
                         }
                         input[type=radio]{
+                            margin-right: 5px;
                             &:hover{
                                 cursor: pointer;
                             }

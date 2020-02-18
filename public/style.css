@@ -1254,7 +1254,7 @@ i {
   display: flex;
   height: 30px;
   width: 100%;
-  margin: 40px auto 0 auto;
+  margin: 25px auto 0 auto;
   align-items: center;
   justify-content: space-around;
 }
@@ -1262,12 +1262,15 @@ i {
   font-family: "Nunito";
   opacity: 0.85;
 }
-.main .register-main .register-main-container .register-main-sectionTwo form .form-block input[type=text] {
+.main .register-main .register-main-container .register-main-sectionTwo form .form-block input[type=text], .main .register-main .register-main-container .register-main-sectionTwo form .form-block input[type=password] {
   margin: 0 0 0 20px;
   width: 70%;
   height: 22px;
   font-size: 12px;
   padding: 0 5px;
+}
+.main .register-main .register-main-container .register-main-sectionTwo form .form-block input[type=radio] {
+  margin-right: 5px;
 }
 .main .register-main .register-main-container .register-main-sectionTwo form .form-block input[type=radio]:hover {
   cursor: pointer;

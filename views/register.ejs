@@ -14,7 +14,7 @@
                         <input type="text" name="name" placeholder="NOME" maxlength="45">
                     </div>
                     <div class="form-block">
-                        <p>GÊNERO</p>
+                        <p>SEXO</p>
                         <div class="sub-form-block">
                             <input type="radio" name="gender" value="male">
                             <p>MASCULINO</p>
@@ -24,15 +24,19 @@
                     </div>
                     <div class="form-block">
                         <p>NASCIMENTO</p>
-                        <input type="text" name="birthdate" placeholder="01/02/1980" maxlength="10">
+                        <input id="birth" type="text" name="birthdate" placeholder="01/02/1980" maxlength="10">
+                    </div>
+                    <div class="form-block">
+                        <p>TELEFONE</p>
+                        <input id="field" type="text" name="telephone" placeholder="(99) 987651234" maxlength="14">
                     </div>
                     <div class="form-block">
                         <p>E-MAIL</p>
                         <input type="text" name="email" placeholder="E-MAIL" max="45">
                     </div>
                     <div class="form-block">
-                        <p>TELEFONE</p>
-                        <input type="text" name="telephone" placeholder="(99) 99999-9999" maxlength="15">
+                        <p>SENHA</p>
+                        <input type="password" name="password" placeholder="SUA SENHA" maxlength="20">
                     </div>
                     <input type="submit" value="CADASTRAR">
                 </form>
@@ -43,6 +47,7 @@
 </div>
 
 <script type="text/javascript" src="/scriptHeader.js"></script>
+<script type="text/javascript" src="/scriptAuth.js"></script>
 
 </body>
 </html>

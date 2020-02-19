@@ -1278,6 +1278,9 @@ i{
                         margin: 25px auto 0 auto;
                         align-items: center;
                         justify-content: space-around;
+                        i{
+                            visibility: hidden;
+                        }
                         input, p {
                             font-family: 'Nunito';
                             opacity: 0.85;

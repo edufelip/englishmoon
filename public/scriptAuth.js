@@ -1,5 +1,33 @@
 const field = document.querySelector("#field");
 const birth = document.querySelector("#birth");
+const btn = document.querySelector("#submitButton");
+const inputs = document.querySelectorAll(".input")
+
+btn.onclick = (evt) => {
+    let gender = (inputs[1].checked == true)? inputs[1].value : (inputs[2].checked == true)? inputs[2].value : '';
+    const data = {
+        "name": inputs[0].value,
+        "gender": gender,
+        "birthday": inputs[3].value,
+        "telephone": inputs[4].value,
+        "email": inputs[5].value,
+        "password": inputs[6].value,
+    }
+    fetch('http://localhost:3000/users', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then((response) => {
+        console.log(response)
+    })
+    .catch( (err) => {
+        console.log(err);
+    })
+    return false;
+}
 
 let fieldConfirm = true;
 let keyConfirm = (evt) => {

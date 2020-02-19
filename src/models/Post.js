@@ -6,6 +6,7 @@ class Post extends Model {
       title: DataTypes.STRING,
       body: DataTypes.TEXT,
       image: DataTypes.INTEGER,
+      description: DataTypes.STRING
     }, {
       sequelize
     })

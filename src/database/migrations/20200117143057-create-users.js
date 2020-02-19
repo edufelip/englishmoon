@@ -13,7 +13,23 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      gender: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      birthday: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      telephone: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      password: {
         type: Sequelize.STRING,
         allowNull: false,
       },

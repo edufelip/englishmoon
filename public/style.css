@@ -1258,6 +1258,9 @@ i {
   align-items: center;
   justify-content: space-around;
 }
+.main .register-main .register-main-container .register-main-sectionTwo form .form-block i {
+  visibility: hidden;
+}
 .main .register-main .register-main-container .register-main-sectionTwo form .form-block input, .main .register-main .register-main-container .register-main-sectionTwo form .form-block p {
   font-family: "Nunito";
   opacity: 0.85;

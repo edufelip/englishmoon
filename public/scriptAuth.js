@@ -2,6 +2,9 @@ const field = document.querySelector("#field");
 const birth = document.querySelector("#birth");
 const btn = document.querySelector("#submitButton");
 const inputs = document.querySelectorAll(".input")
+const icons = document.querySelectorAll(".fas.fa-exclamation");
+const secTwo = document.querySelector(".register-main-sectionTwo").querySelector("form")
+const regSuc = document.querySelector(".register-success")
 
 btn.onclick = (evt) => {
     let gender = (inputs[1].checked == true)? inputs[1].value : (inputs[2].checked == true)? inputs[2].value : '';
@@ -21,7 +24,26 @@ btn.onclick = (evt) => {
         }
     })
     .then((response) => {
-        console.log(response)
+        return response.json();
+    })
+    .then((data) => {
+        if(data.id){
+            secTwo.style.opacity = "0";
+            setTimeout(() => {
+                secTwo.style.display = "none"
+                setTimeout(() => {
+                    regSuc.style.display = "flex";
+                    regSuc.style.opacity = "1";
+                }, 100)
+            }, 400);
+        }
+        icons[0].style.opacity = (data.name) ? "1" : "0"
+        icons[1].style.opacity = (data.gender) ? "1" : "0"
+        icons[2].style.opacity = (data.birth) ? "1" : "0"
+        icons[3].style.opacity = (data.telephone) ? "1" : "0"
+        icons[4].style.opacity = (data.emailWrong || data.emailUsed) ? "1" : "0"
+        icons[5].style.opacity = (data.password) ? "1" : "0"
+        return data
     })
     .catch( (err) => {
         console.log(err);

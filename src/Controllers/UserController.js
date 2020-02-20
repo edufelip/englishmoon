@@ -1,4 +1,6 @@
 const User = require('../models/User');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const checkEmail = (mail) => {
   let check = false;
@@ -23,6 +25,7 @@ const checkEmail = (mail) => {
 const checkPass = (pass) => {
   let check = true;
   if(!pass){
+    check = false;
     return check;
   } else {
     let detach = pass.split('');
@@ -35,6 +38,7 @@ const checkPass = (pass) => {
 const checkTel = (tel) => {
   let check = true;
   if(!tel){
+    check = false;
     return check;
   }else {
     let detach = tel.split('');
@@ -45,6 +49,7 @@ const checkTel = (tel) => {
 const checkBirth = (date) => {
   let check = true;
   if(!date){
+    check = false;
     return check;
   } else {
     let detach = date.split('');
@@ -80,24 +85,29 @@ module.exports = {
     const errorPassword = !checkPass(password);
 
     let problems = {
-      'nome': errorName,
+      'name': errorName,
       'gender': errorGender,
       'birth': errorBirth,
-      'telep': errorTelephone,
+      'telephone': errorTelephone,
       'emailWrong': errorEmailWrong,
       'emailUsed': errorEmailUsed,
       'password': errorPassword
     }
-    // console.log(problems)
 
     if (errorName || errorGender || errorBirth || errorTelephone || errorEmailUsed || errorEmailWrong || errorPassword){
       return res.json(problems);
-      // return res.render("registerErr", {eName:errorName, eGender:errorGender, eBirth:errorBirth, eTelephone:errorTelephone, eEmailW:errorEmailWrong, eMailU:errorEmailUsed, ePassword:errorPassword})
     } else {
-      const user = await User.create({name, gender, birthday, telephone, email, password});
+      let hashedPass;
+      bcrypt.hash(password, saltRounds, (err, hash) => {
+        hashedPass = hash;
+      });
+      const user = await User.create({name, gender, birthday, telephone, email, hashedPass});
       return res.json(user)
-      // let arrayConfirm = true;
-      // return res.render("register", {arrayConfirm:arrayConfirm});
     }
-  }
+  },
+
+  // async signIn(req, res) {
+  //   const {email, password} = req.body;
+
+  // }
 };

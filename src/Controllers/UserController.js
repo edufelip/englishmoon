@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 const saltRounds = 10;
 
 const checkEmail = (mail) => {
@@ -76,7 +77,6 @@ module.exports = {
     }) : null;
 
     const errorName = foundUserName || !name;
-    // console.log(foundUserName)
     const errorGender = !gender;
     const errorBirth = !checkBirth(birthday);
     const errorTelephone = !checkTel(telephone);
@@ -97,17 +97,37 @@ module.exports = {
     if (errorName || errorGender || errorBirth || errorTelephone || errorEmailUsed || errorEmailWrong || errorPassword){
       return res.json(problems);
     } else {
-      let hashedPass;
-      bcrypt.hash(password, saltRounds, (err, hash) => {
-        hashedPass = hash;
-      });
-      const user = await User.create({name, gender, birthday, telephone, email, hashedPass});
-      return res.json(user)
+      const hash = await bcrypt.hash(password, saltRounds);
+      const user = await User.create(Object.assign(req.body, {password : hash}));
+      return res.json(user);
     }
   },
 
   // async signIn(req, res) {
   //   const {email, password} = req.body;
+  //   if(email){
+  //     const user = await findOne({
+  //       where: {email: email}
+  //     })
+  //   }
+  //   if(!user || !email){
+  //     let error = {
+  //       'email_status': 'invalid'
+  //     }
+  //     return res.json(error);
+  //   } else {
+  //     const result = await bcrypt.compare(password, user.password);
+  //     if (result) {
+  //       passport.authenticate('local')(req, res, () => {
+  //         res.redirect('/');
+  //       })
+  //     } else {
+  //       let error = {
+  //         'pass_status': 'invalid'
+  //       }
+  //       return res.json(error);
+  //     }
+  //   }
 
   // }
 };

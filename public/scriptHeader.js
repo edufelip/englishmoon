@@ -18,6 +18,9 @@ const cancelSearch = document.querySelector(".cancel-search-tiny");
 const cancelAut = document.querySelector(".cancel-dropdown-aut");
 const line = document.querySelectorAll(".line");
 const lis = document.querySelectorAll("li");
+const signForm = document.querySelector(".form-container")
+const signBtn = signForm.querySelector(".signBtn")
+const signForms = signForm.querySelectorAll("input")
 
 for (let i = 0; i < lis.length; i++){
     let anchor = lis[i].querySelector("a");
@@ -149,3 +152,23 @@ window.addEventListener("scroll", () => {
     if (header.getBoundingClientRect().top > 0) root.style.setProperty('--position-y', 0 + "px")
     lastScrollTop = scrollTop;
 });
+
+//
+
+signBtn.onclick = (evt) => {
+    const data = {
+        "name": signForms[0].value,
+        "password": signForms[1].value
+    }
+    fetch('http://localhost:3000/login', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+    return false;
+}

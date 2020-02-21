@@ -5,8 +5,8 @@ const sanitizer     = require("express-sanitizer");
 const passport      = require('passport');
 const LocalStrategy = require('passport-local')
 const session       = require('express-session');
+const bcrypt        = require('bcrypt');
 
-const routes = require("./routes");
 const User = require("./models/User")
 
 require('./database/');
@@ -16,7 +16,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(sanitizer());
-app.use(routes);
 
 app.use(session({
     secret: 'johnson',
@@ -25,7 +24,23 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-// passport.use(new LocalStrategy(User.))
+passport.use(new LocalStrategy (
+    (username, password, done) => {
+        User.findOne({
+            where: {name: username}
+        }).then( (user) => {
+            if(!user){
+                return done(null, false, {message: 'incorrect username'});
+            }
+            if(user.password != password){
+                return done(null, false, {message: 'incorrect password'});
+            }
+            return done(null, user);
+        })
+        .catch(err => done(err));
+    }
+));
+
 passport.serializeUser((user, done) => {
     done(null, user.id);
 })
@@ -38,6 +53,9 @@ passport.deserializeUser((id, done) => {
         }
     })
 })
+
+const routes = require("./routes");
+app.use(routes);
 
 app.listen(3000, (err) => {
     if(!err) {

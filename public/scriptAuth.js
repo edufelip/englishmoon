@@ -27,6 +27,7 @@ btn.onclick = (evt) => {
         return response.json();
     })
     .then((data) => {
+        console.log(data)
         if(data.id){
             secTwo.style.opacity = "0";
             setTimeout(() => {

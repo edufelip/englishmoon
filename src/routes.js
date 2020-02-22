@@ -1,5 +1,6 @@
 const express = require("express");
 const passport = require("passport");
+const flash = require('connect-flash')
 const routes = express.Router();
 
 const UserController = require('./controllers/UserController');
@@ -9,7 +10,7 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
-    res.redirect('/')
+    res.redirect('/register')
 }
 function isNotLoggedIn(req, res, next){
     if(req.isAuthenticated()){
@@ -25,7 +26,7 @@ routes.get("/articles", PostController.listAll);
 routes.get("/articles/:post_name/:post_id", PostController.listPost);
 
 routes.get("/books", (req, res) => {
-    res.render("underConstruction");
+    res.render("underConstruction", {messages: req.flash('message')});
 });
 
 routes.get("/courses", (req, res) => {
@@ -45,8 +46,8 @@ routes.get("/register", isNotLoggedIn,(req, res) => {
 });
 
 routes.post("/login", passport.authenticate("local", {
-    sucessRedirect: "/secret",
-    failureRedirect: "/"
+    sucessRedirect: "/courses",
+    failureRedirect: "/books"
 }), function(req, res){
 });
 
@@ -54,8 +55,6 @@ routes.get("/logout", (req, res) => {
     req.logout();
     res.redirect('/');
 });
-
-// routes.post("/signin", UserController.signIn)
 
 routes.get('/users', UserController.index);
 routes.post('/users', UserController.store);

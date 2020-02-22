@@ -101,33 +101,5 @@ module.exports = {
       const user = await User.create(Object.assign(req.body, {password : hash}));
       return res.json(user);
     }
-  },
-
-  // async signIn(req, res) {
-  //   const {email, password} = req.body;
-  //   if(email){
-  //     const user = await findOne({
-  //       where: {email: email}
-  //     })
-  //   }
-  //   if(!user || !email){
-  //     let error = {
-  //       'email_status': 'invalid'
-  //     }
-  //     return res.json(error);
-  //   } else {
-  //     const result = await bcrypt.compare(password, user.password);
-  //     if (result) {
-  //       passport.authenticate('local')(req, res, () => {
-  //         res.redirect('/');
-  //       })
-  //     } else {
-  //       let error = {
-  //         'pass_status': 'invalid'
-  //       }
-  //       return res.json(error);
-  //     }
-  //   }
-
-  // }
+  }
 };

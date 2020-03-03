@@ -15,13 +15,13 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(sanitizer());
-app.use(flash());
 
 app.use(session({
     secret: 'johnson',
     resave: true,
     saveUninitialized: true
 }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 

@@ -46,10 +46,21 @@ routes.get("/register", isNotLoggedIn,(req, res) => {
 });
 
 routes.post("/login", passport.authenticate("local", {
-    sucessRedirect: "/courses",
-    failureRedirect: "/books"
+    sucessRedirect: "/contact",
+    failureRedirect: "/failure",
+    failureFlash: true
 }), function(req, res){
 });
+
+// routes.post("login", (req, res) => {
+//     passport.authenticate('local', (err, user, info) => {
+//         if(err) return err;
+//         if(!user){
+//             res.send(info.message)
+//             return
+//         }
+//     }), function (req, res);
+// })
 
 routes.get("/logout", (req, res) => {
     req.logout();

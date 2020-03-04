@@ -15,6 +15,7 @@ btn.onclick = (evt) => {
         "telephone": inputs[4].value,
         "email": inputs[5].value,
         "password": inputs[6].value,
+        "passwordConfirm": inputs[7].value
     }
     fetch('http://localhost:3000/users', {
         method: 'POST',
@@ -43,6 +44,7 @@ btn.onclick = (evt) => {
         icons[3].style.opacity = (data.telephone) ? "1" : "0"
         icons[4].style.opacity = (data.emailWrong || data.emailUsed) ? "1" : "0"
         icons[5].style.opacity = (data.password) ? "1" : "0"
+        icons[6].style.opacity = (data.passwordConfirm) ? "1" : "0"
         return data
     })
     .catch( (err) => {

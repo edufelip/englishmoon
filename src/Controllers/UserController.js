@@ -1,6 +1,5 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-const passport = require('passport');
 const saltRounds = 10;
 
 const checkEmail = (mail) => {
@@ -67,7 +66,7 @@ module.exports = {
   },
 
   async store(req, res) {
-    const { name, gender, birthday, telephone, email, password } = req.body;
+    const { name, gender, birthday, telephone, email, password, passwordConfirm } = req.body;
     
     const foundUserName = (name) ? await User.findOne({
       where: {name: name}
@@ -83,6 +82,7 @@ module.exports = {
     const errorEmailWrong = !checkEmail(email);
     const errorEmailUsed = foundUserEmail;
     const errorPassword = !checkPass(password);
+    const errorPasswordConfirm = password === passwordConfirm ? false : true;
 
     let problems = {
       'name': errorName,
@@ -91,10 +91,11 @@ module.exports = {
       'telephone': errorTelephone,
       'emailWrong': errorEmailWrong,
       'emailUsed': errorEmailUsed,
-      'password': errorPassword
+      'password': errorPassword,
+      'passwordConfirm' : errorPasswordConfirm
     }
 
-    if (errorName || errorGender || errorBirth || errorTelephone || errorEmailUsed || errorEmailWrong || errorPassword){
+    if (errorName || errorGender || errorBirth || errorTelephone || errorEmailUsed || errorEmailWrong || errorPassword || errorPasswordConfirm){
       return res.json(problems);
     } else {
       const hash = await bcrypt.hash(password, saltRounds);

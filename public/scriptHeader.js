@@ -121,9 +121,11 @@ document.onkeydown = function(evt) {
 tinyLog.addEventListener("click", () => {
     changeAut();
 })
-regularLog.addEventListener("click", () => {
-    changeAut();
-})
+if(regularLog) {
+    regularLog.addEventListener("click", () => {
+        changeAut();
+    })
+}
 cancelAut.addEventListener("click", () => {
     changeAut();
 })

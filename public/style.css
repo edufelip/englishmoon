@@ -418,7 +418,7 @@ i {
   margin-top: 5vh;
   text-align: center;
 }
-.header .dropdown-aut p {
+.header .dropdown-aut p, .header .dropdown-aut h5 {
   text-align: center;
   width: 55%;
   display: block;
@@ -426,6 +426,12 @@ i {
   margin-top: 2vh;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.712);
+}
+.header .dropdown-aut h5 {
+  color: #AB1616;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 15px;
 }
 .header .dropdown-aut .form-container {
   width: 270px;

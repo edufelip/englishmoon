@@ -23,10 +23,11 @@ function isNotLoggedIn(req, res, next){
 routes.get("/", PostController.list);
 
 routes.get("/articles", PostController.listAll);
+
 routes.get("/articles/:post_name/:post_id", PostController.listPost);
 
 routes.get("/books", (req, res) => {
-    res.render("underConstruction", {messages: req.flash('message')});
+    res.render("underConstruction");
 });
 
 routes.get("/courses", (req, res) => {
@@ -41,25 +42,26 @@ routes.get("/profile", isLoggedIn, (req, res) => {
     res.render("profile");
 });
 
-routes.get("/register", isNotLoggedIn,(req, res) => {
+routes.get("/register", isNotLoggedIn, (req, res) => {
     res.render("register");
 });
 
 routes.post("/login", passport.authenticate("local", {
-    sucessRedirect: "/contact",
-    failureRedirect: "/failure",
+    successRedirect: "/contact",
+    failureRedirect: "/register",
     failureFlash: true
 }), function(req, res){
 });
-
-// routes.post("login", (req, res) => {
+// routes.post("/login", (req, res, next) => {
 //     passport.authenticate('local', (err, user, info) => {
-//         if(err) return err;
+//         if(err) {
+//             return next(err)
+//         }
 //         if(!user){
-//             res.send(info.message)
+//             res.render("/", {message: req.flash('erro')})
 //             return
 //         }
-//     }), function (req, res);
+//     })
 // })
 
 routes.get("/logout", (req, res) => {

@@ -86,8 +86,16 @@
             </ul>
         </div>
         <div class="log flex">
-            <button class="regular-log">Entrar</button>
-            <a href="/register"> Registrar </a>
+            <% if (currentUser) { %>
+                <% let name = currentUser.name.split('') %>
+                <% name = name.slice(0, name.indexOf(' ')) %>
+                <% name = name.join('') %>
+                <p>Olá, <%=name%></p>
+                <i class="far fa-user"></i>
+            <% } else { %>
+                <button class="regular-log">Entrar</button>
+                <a href="/register"> Registrar </a>
+            <% } %>
         </div>
         <div class="log2 flexOne flex">
             <i class="far fa-user"></i>
@@ -119,6 +127,7 @@
                     <input maxlength="35" type="text" name="email">
                     <p>senha</p>
                     <input maxlength="35" type="password" name="password">
+                        <h5><%= message %></h5>
                     <p> <a href=""> Esqueceu a sua senha? </a> </p>
                     <button class="signBtn">Entrar</button>
                     <div class="signup">

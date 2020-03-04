@@ -1,9 +1,10 @@
 const User = require('../models/User');
 const Post = require('../models/Post');
+const flash = require('connect-flash')
 
 module.exports = {
   async index(req, res) {
-    const { user_id } = req.sanitize(req.params);
+    const { user_id } = req.params;
 
     const user = await User.findByPk(user_id, {
       include: { association: 'posts' }
@@ -13,7 +14,7 @@ module.exports = {
   },
 
   async store(req, res) {
-    const { user_id } = req.sanitize(req.params);
+    const { user_id } = req.params;
     const { title, body, image } = req.sanitize(req.body);
     const user = await User.findByPk(user_id);
     if (!user) {

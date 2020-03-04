@@ -422,7 +422,7 @@ i{
             margin-top: 5vh;
             text-align: center;
         }
-        p {
+        p, h5 {
             text-align: center;
             width: 55%;
             display: block;
@@ -430,6 +430,12 @@ i{
             margin-top: 2vh;
             font-weight: 400;
             color: rgba(0, 0, 0, 0.712);
+        }
+        h5 {
+            color: $mainRed;
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 15px;
         }
         .form-container{
             width: 270px;

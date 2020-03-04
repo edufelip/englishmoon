@@ -15,17 +15,17 @@ module.exports = function(passport){
             User.findOne({
                 where: {email: email}
             }).then((user) => {
-                if(!user) return done(null, false, {message: "account does not exist"});
+                if(!user) return done(null, false, {message: "E-mail inexistente"});
                 if(!isValidPassword(password, user.password)){
                     return done(null, false, {
-                        message: 'incorrect password'
+                        message: 'Senha incorreta'
                     })
                 }
                 return done(null, user)
             }).catch((err) => {
                 console.log("Error: ", err);
                 return done(null, false, {
-                    message: 'Something went wrong'
+                    message: 'Algo deu errado'
                 });
             });
         }
@@ -37,11 +37,9 @@ module.exports = function(passport){
     
     passport.deserializeUser((id, done) => {
         User.findByPk(id).then((user) => {
-            if (user) {
-                done(null, user);
-            } else {
-                done(user.errors, null);
-            }
+            done(null, user);
+        }).catch((err) => {
+            done(err);
         })
     })    
 }

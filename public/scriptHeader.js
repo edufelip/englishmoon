@@ -16,11 +16,13 @@ const searchButton = document.querySelector(".search-sup");
 const searchTiny = document.querySelector(".search-tiny");
 const cancelSearch = document.querySelector(".cancel-search-tiny");
 const cancelAut = document.querySelector(".cancel-dropdown-aut");
+const profileBtn = document.querySelector(".profilebtn");
 const line = document.querySelectorAll(".line");
 const lis = document.querySelectorAll("li");
-const signForm = document.querySelector(".form-container")
-const signBtn = signForm.querySelector(".signBtn")
-const signForms = signForm.querySelectorAll("input")
+const signForm = document.querySelector(".form-container");
+const signBtn = signForm.querySelector(".signBtn");
+const signForms = signForm.querySelectorAll("input");
+const profileOpt = document.querySelector(".profile-opt")
 
 for (let i = 0; i < lis.length; i++){
     let anchor = lis[i].querySelector("a");
@@ -154,4 +156,26 @@ window.addEventListener("scroll", () => {
     if (header.getBoundingClientRect().top > 0) root.style.setProperty('--position-y', 0 + "px")
     lastScrollTop = scrollTop;
 });
+
+let status = false;
+if (profileBtn != null) {
+    profileBtn.addEventListener("mouseenter", () => {
+        profileOpt.style.visibility = "visible";
+    })
+    profileBtn.addEventListener("mouseleave", () => {
+        if(!status){
+            profileOpt.style.visibility= "hidden"
+        }
+    })
+}
+if (profileOpt != null) {
+    profileOpt.addEventListener("mouseenter", () => {
+        status = true;
+        profileOpt.style.visibility = "visible";
+    })
+    profileOpt.addEventListener("mouseleave", () => {
+        status = false;
+        profileOpt.style.visibility= "hidden"
+    })
+}
 

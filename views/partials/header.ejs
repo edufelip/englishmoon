@@ -90,8 +90,15 @@
                 <% let name = currentUser.name.split('') %>
                 <% name = name.slice(0, name.indexOf(' ')) %>
                 <% name = name.join('') %>
-                <p>Olá, <%=name%></p>
-                <i class="far fa-user"></i>
+                <div class="loged-log">
+                    <p>Olá, <span><%=name%></span></p>
+                    <i class="far fa-user profilebtn"></i>
+                </div>
+                <div class="profile-opt">
+                    <a href="">SUA CONTA</a>
+                    <a href="">SEUS CURSOS</a>
+                    <a href="/logout">SAIR</a>
+                </div>
             <% } else { %>
                 <button class="regular-log">Entrar</button>
                 <a href="/register"> Registrar </a>
@@ -123,9 +130,9 @@
             <p>Pronto pra começar a estudar? Faça login e comece agora mesmo</p>
             <div class="form-container">
                 <form action="/login" method="POST">
-                    <p>e-mail</p>
+                    <p>E-MAIL</p>
                     <input maxlength="35" type="text" name="email">
-                    <p>senha</p>
+                    <p>SENHA</p>
                     <input maxlength="35" type="password" name="password">
                         <h5><%= message %></h5>
                     <p> <a href=""> Esqueceu a sua senha? </a> </p>
@@ -135,7 +142,6 @@
                     </div>
                     <p> ou </p>
                     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="light"></div>
-                    <!-- <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div> -->
                 </form>
             </div>
         </div>

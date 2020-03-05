@@ -15,17 +15,17 @@ module.exports = function(passport){
             User.findOne({
                 where: {email: email}
             }).then((user) => {
-                if(!user) return done(null, false, {message: "E-mail inexistente"});
+                if(!user) return done(null, false, {message: "e-mail inexistente"});
                 if(!isValidPassword(password, user.password)){
                     return done(null, false, {
-                        message: 'Senha incorreta'
+                        message: 'senha incorreta'
                     })
                 }
                 return done(null, user)
             }).catch((err) => {
                 console.log("Error: ", err);
                 return done(null, false, {
-                    message: 'Algo deu errado'
+                    message: 'algo deu errado'
                 });
             });
         }

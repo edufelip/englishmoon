@@ -263,6 +263,70 @@ i {
   opacity: 1;
   color: white;
 }
+.header .log .loged-log {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.header .log .loged-log p {
+  color: rgba(0, 0, 0, 0.651);
+  margin-right: 10px;
+}
+.header .log .loged-log p span {
+  color: #110f8a;
+}
+.header .log .loged-log i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-right: 40px;
+  height: 100%;
+  width: 40px;
+}
+.header .log .loged-log i:hover {
+  cursor: pointer;
+}
+.header .log .profile-opt {
+  visibility: hidden;
+  width: 200px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+  box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 95%;
+}
+.header .log .profile-opt a {
+  border-radius: 0;
+  background-color: transparent;
+  width: 100%;
+  font-weight: 300;
+  font-size: 12px;
+  color: black;
+  transition: all 0s ease;
+}
+.header .log .profile-opt a:hover {
+  background-color: whitesmoke;
+}
+.header .log .profile-opt a:nth-of-type(1) {
+  margin-top: 5px;
+}
+.header .log .profile-opt a:nth-of-type(3) {
+  width: 40%;
+  border-radius: 6px;
+  border: 1px solid #AB1616;
+  color: #AB1616;
+  height: 25px;
+  margin-top: 5px;
+}
+.header .log .profile-opt a:nth-of-type(3):hover {
+  background-color: transparent;
+}
 .header .log2 {
   display: none;
   visibility: visible;
@@ -453,7 +517,7 @@ i {
   width: 100%;
   text-align: start;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 12px;
   color: rgba(0, 0, 0, 0.712);
 }
 .header .dropdown-aut .form-container form p:nth-of-type(3) {

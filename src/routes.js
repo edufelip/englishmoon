@@ -47,8 +47,8 @@ routes.get("/register", isNotLoggedIn, (req, res) => {
 });
 
 routes.post("/login", passport.authenticate("local", {
-    successRedirect: "/contact",
-    failureRedirect: "/register",
+    successRedirect: "/",
+    failureRedirect: "/",
     failureFlash: true
 }), function(req, res){
 });

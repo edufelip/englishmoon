@@ -273,6 +273,7 @@ i {
 .header .log .loged-log p {
   color: rgba(0, 0, 0, 0.651);
   margin-right: 10px;
+  font-weight: 300;
 }
 .header .log .loged-log p span {
   color: #110f8a;
@@ -281,7 +282,7 @@ i {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 26px;
   margin-right: 40px;
   height: 100%;
   width: 40px;
@@ -327,7 +328,7 @@ i {
 .header .log .profile-opt a:nth-of-type(3):hover {
   background-color: transparent;
 }
-.header .log2 {
+.header .log2, .header .log2-loged {
   display: none;
   visibility: visible;
   opacity: 1;
@@ -1501,7 +1502,7 @@ i {
   .header .log {
     display: none;
   }
-  .header .log2 {
+  .header .log2, .header .log2-loged {
     height: 100%;
     width: 50px;
     display: flex;
@@ -1510,12 +1511,12 @@ i {
     align-items: center;
     transition: opacity 0.2s ease-in;
   }
-  .header .log2 i {
+  .header .log2 i, .header .log2-loged i {
     margin: 0 10px 0 0;
     font-size: 25px;
     color: rgba(0, 0, 0, 0.651);
   }
-  .header .log2 i:hover {
+  .header .log2 i:hover, .header .log2-loged i:hover {
     cursor: pointer;
   }
   .header .dropdown-aut .form-container form .signup a {

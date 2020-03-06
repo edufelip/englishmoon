@@ -5,6 +5,7 @@ const actHamb = document.querySelectorAll(".act-hamb-bars");
 const hamb = document.querySelector(".hamb-bars");
 const shadow = document.querySelector(".shadow");
 const tinyLog = document.querySelector(".log2");
+const tinyLogLoged = document.querySelector(".log2-loged");
 const regularLog = document.querySelector(".regular-log");
 const dropAut = document.querySelector(".dropdown-aut");
 const logo = document.querySelector(".logo");
@@ -78,10 +79,12 @@ const changeAut = () => {
 }
 const searchOn = () => {
     searchButton.classList.toggle("search-translate");
-    tinyLog.style.opacity = "0";
-    setTimeout( () => {
-        tinyLog.style.visibility = "hidden";
-    }, 200);
+    if(tinyLog != null){
+        tinyLog.style.opacity = "0";
+        setTimeout( () => {
+            tinyLog.style.visibility = "hidden";
+        }, 200);
+    }
     searchTiny.style.visibility = "visible";
     searchTiny.style.opacity = "1";
     logo.style.visibility = "hidden";
@@ -93,8 +96,10 @@ const searchOff = () => {
     logo.style.visibility = "visible";
     logo.style.opacity = "1";
     searchButton.classList.toggle("search-translate");
-    tinyLog.style.opacity = "1";
-    tinyLog.style.visibility = "visible";
+    if(tinyLog != null){
+        tinyLog.style.opacity = "1";
+        tinyLog.style.visibility = "visible";
+    }
 }
 
 
@@ -120,9 +125,11 @@ document.onkeydown = function(evt) {
     }
 };
 
-tinyLog.addEventListener("click", () => {
-    changeAut();
-})
+if(tinyLog != null){
+    tinyLog.addEventListener("click", () => {
+        changeAut();
+    })
+}
 if(regularLog) {
     regularLog.addEventListener("click", () => {
         changeAut();
@@ -178,4 +185,8 @@ if (profileOpt != null) {
         profileOpt.style.visibility= "hidden"
     })
 }
-
+if(tinyLogLoged != null) {
+    tinyLogLoged.addEventListener("click", () => {
+        profileOpt.style.visibility = "visible"
+    })
+}

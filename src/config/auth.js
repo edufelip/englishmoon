@@ -1,6 +1,8 @@
 const LocalStrategy = require('passport-local').Strategy
+const GoogleStrategy = require('passport-google-oauth20');
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
+const keys = require('../config/googleCred')
 
 module.exports = function(passport){
     passport.use(new LocalStrategy({
@@ -30,6 +32,15 @@ module.exports = function(passport){
             });
         }
     ));
+
+    passport.use(new GoogleStrategy({
+        callbackURL: '/api/auth/google/callback',
+        clientID: keys.google.clientID,
+        clientSecret: keys.google.clientSecret
+    }, () => {
+            
+        })
+    )
 
     passport.serializeUser((user, done) => {
         done(null, user.id);

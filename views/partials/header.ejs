@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="/style.css">
     <link href="/fontawesome-free-5.12.0-web/css/all.css" rel="stylesheet">
 
-    <!-- <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="1000149458890-9h7dgm19rjh3phq0uj66pbdf76qq72mv.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
     <!-- navbar -->
@@ -92,10 +92,10 @@
                 <% name = name.join('') %>
                 <div class="loged-log">
                     <p>Olá, <span><%=name%></span></p>
-                    <i class="far fa-user profilebtn"></i>
+                    <i class="fas fa-user-circle profilebtn"></i>
                 </div>
                 <div class="profile-opt">
-                    <a href="">SUA CONTA</a>
+                    <a href="/profile">SUA CONTA</a>
                     <a href="">SEUS CURSOS</a>
                     <a href="/logout">SAIR</a>
                 </div>
@@ -104,9 +104,15 @@
                 <a href="/register"> Registrar </a>
             <% } %>
         </div>
-        <div class="log2 flexOne flex">
-            <i class="far fa-user"></i>
-        </div>
+        <% if (currentUser) { %>
+            <div class="log2-loged flexOne flex">
+                <i class="fas fa-user-circle"></i>
+            </div>
+        <% } else { %>
+            <div class="log2 flexOne flex">
+                <i class="far fa-user"></i>
+            </div>
+        <% } %>
         <div class="search flex">
             <form action="">
                 <input maxlength="60" type="text" name="search" placeholder="O que está procurando?">
@@ -134,7 +140,11 @@
                     <input maxlength="35" type="text" name="email">
                     <p>SENHA</p>
                     <input maxlength="35" type="password" name="password">
-                        <h5><%= message %></h5>
+                        <% if(message == "Missing credentials") { %>
+                            <h5>Faltando Credenciais</h5>
+                        <% } else { %>
+                            <h5><%= message %></h5>
+                        <% } %>
                     <p> <a href=""> Esqueceu a sua senha? </a> </p>
                     <button class="signBtn">Entrar</button>
                     <div class="signup">

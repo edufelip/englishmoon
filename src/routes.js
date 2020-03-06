@@ -52,6 +52,10 @@ routes.post("/login", passport.authenticate("local", {
     failureFlash: true
 }), function(req, res){
 });
+
+routes.get("/google", passport.authenticate('google', {
+    scope: ['profile']
+}))
 // routes.post("/login", (req, res, next) => {
 //     passport.authenticate('local', (err, user, info) => {
 //         if(err) {

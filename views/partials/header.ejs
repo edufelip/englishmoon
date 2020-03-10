@@ -8,10 +8,6 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <link href="/fontawesome-free-5.12.0-web/css/all.css" rel="stylesheet">
-
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="1000149458890-9h7dgm19rjh3phq0uj66pbdf76qq72mv.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
     <!-- navbar -->
@@ -26,19 +22,19 @@
             <div class="drop-menu-options">
                 <div class="flex drop-menu-options-sub">
                     <i class="far fa-bookmark"></i>
-                    <a href="#">Artigos</a>
+                    <a href="/articles">Artigos</a>
                 </div>
                 <div class="flex drop-menu-options-sub">
                     <i class="fas fa-book"></i>
-                    <a href="">Livros</a>
+                    <a href="/books">Livros</a>
                 </div>
                 <div class="flex drop-menu-options-sub">
                     <i class="fas fa-pencil-alt"></i>
-                    <a href="">Cursos</a>
+                    <a href="/courses">Cursos</a>
                 </div>
                 <div class="flex drop-menu-options-sub">
                     <i class="fas fa-phone-alt"></i>
-                    <a href="">Contato</a>
+                    <a href="/contact">Contato</a>
                 </div>
             </div>
         </div>
@@ -51,19 +47,19 @@
             <div class="drop-menu-options">
                 <div class="flex drop-menu-options-sub">
                     <i class="far fa-bookmark"></i>
-                    <a href="">Artigos</a>
+                    <a href="/articles">Artigos</a>
                 </div>
                 <div class="flex drop-menu-options-sub">
                     <i class="fas fa-book"></i>
-                    <a href="">Livros</a>
+                    <a href="/books">Livros</a>
                 </div>
                 <div class="flex drop-menu-options-sub">
                     <i class="fas fa-pencil-alt"></i>
-                    <a href="">Cursos</a>
+                    <a href="/courses">Cursos</a>
                 </div>
                 <div class="flex drop-menu-options-sub">
                     <i class="fas fa-phone-alt"></i>
-                    <a href="">Contato</a>
+                    <a href="/contact">Contato</a>
                 </div>
             </div>
         </div>
@@ -94,17 +90,17 @@
                     <p>Olá, <span><%=name%></span></p>
                     <i class="fas fa-user-circle profilebtn"></i>
                 </div>
-                <div class="profile-opt">
-                    <a href="/profile">SUA CONTA</a>
-                    <a href="">SEUS CURSOS</a>
-                    <a href="/logout">SAIR</a>
-                </div>
-            <% } else { %>
+                <% } else { %>
                 <button class="regular-log">Entrar</button>
                 <a href="/register"> Registrar </a>
-            <% } %>
-        </div>
+                <% } %>
+            </div>
         <% if (currentUser) { %>
+            <div class="profile-opt">
+                <a href="/profile">SUA CONTA</a>
+                <a href="">SEUS CURSOS</a>
+                <a href="/logout">SAIR</a>
+            </div>
             <div class="log2-loged flexOne flex">
                 <i class="fas fa-user-circle"></i>
             </div>
@@ -114,7 +110,7 @@
             </div>
         <% } %>
         <div class="search flex">
-            <form action="">
+            <form action="/articles" method="GET">
                 <input maxlength="60" type="text" name="search" placeholder="O que está procurando?">
                 <button id="search-icon"><i class="fas fa-search"></i></button>
             </form>
@@ -123,7 +119,7 @@
             </div>
         </div>
         <div class="search-tiny">
-            <form action="">
+            <form action="/articles" method="GET">
                 <i class="fas fa-times cancel-search-tiny"></i>
                 <input maxlength="60" type="text" name="search" placeholder="O que está procurando?">
                 <button><i class="fas fa-search"></i></button>
@@ -140,18 +136,20 @@
                     <input maxlength="35" type="text" name="email">
                     <p>SENHA</p>
                     <input maxlength="35" type="password" name="password">
-                        <% if(message == "Missing credentials") { %>
-                            <h5>Faltando Credenciais</h5>
-                        <% } else { %>
-                            <h5><%= message %></h5>
-                        <% } %>
+                    <% if(message == "Missing credentials") { %>
+                    <h5>PREENCHA OS CAMPOS</h5>
+                    <% } else { %>
+                    <h5><%= message %></h5>
+                    <% } %>
                     <p> <a href=""> Esqueceu a sua senha? </a> </p>
                     <button class="signBtn">Entrar</button>
                     <div class="signup">
                         <a href="/register"> Cadastre-se </a>
                     </div>
                     <p> ou </p>
-                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="light"></div>
+                    <div class="google-sign">
+                        <a href="/google"><i class="fab fa-google-plus-square"></i><p>Entrar</p></a>
+                    </div>
                 </form>
             </div>
         </div>

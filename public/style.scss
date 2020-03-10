@@ -278,6 +278,7 @@ i{
                 }
             }
             i {
+                visibility: visible;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -290,49 +291,56 @@ i{
                 }
             }
         }
-        .profile-opt{
-            visibility: hidden;
-            width: 200px;
-            height: 120px;
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-            align-items: center;
-            box-shadow: 1px 2px 5px 2px rgba(0,0,0,0.4);
-            position: absolute;
-            top: 95%;
-            a {
-                border-radius: 0;
-                background-color: transparent;
-                width: 100%;
-                font-weight: 300;
-                font-size: 12px;
-                color: black;
-                transition: all 0s ease;
-                &:hover {
-                    background-color: whitesmoke;
-                }
-            }
-            a:nth-of-type(1){
-                margin-top: 5px;
-            }
-            a:nth-of-type(3){
-                width: 40%;
-                border-radius: 6px;
-                border: 1px solid $mainRed;
-                color: $mainRed;
-                height: 25px;
-                margin-top: 5px;
-                &:hover {
-                    background-color: transparent;
-                }
-            }
-        }
     }
     .log2, .log2-loged{
         display: none;
         visibility: visible;
         opacity: 1;
+    }
+    .profile-opt{
+        visibility: hidden;
+        width: 200px;
+        height: 120px;
+        right: 50px;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        align-items: center;
+        box-shadow: 1px 2px 5px 2px rgba(0,0,0,0.4);
+        position: absolute;
+        top: 95%;
+        a {
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            height: 35px;
+            font-weight: 300;
+            font-size: 12px;
+            color: black;
+            transition: all 0s ease;
+            &:hover {
+                background-color: whitesmoke;
+            }
+        }
+        a:nth-of-type(1){
+            margin-top: 5px;
+        }
+        a:nth-of-type(3){
+            width: 40%;
+            border-radius: 6px;
+            border: 1px solid $mainRed;
+            color: $mainRed;
+            height: 25px;
+            margin-top: 5px;
+            &:hover {
+                background-color: transparent;
+            }
+        }
     }
     .search{
         width: 335px;
@@ -508,6 +516,9 @@ i{
             height: 60%;
             margin: 0 auto;
             form{
+                h5 {
+                    font-size: 12px;
+                }
                 input{
                     display: block;
                     height: 30px;
@@ -556,6 +567,35 @@ i{
                         border-radius: 4px;
                     }
                 }
+                .google-sign{
+                    width: 120px;
+                    height: 35px;
+                    margin: 0 auto;
+                    a {
+                        display: flex;
+                        width: 100%;
+                        height: 100%;
+                        align-items: center;
+                        text-decoration: none;
+                        box-shadow: -2px 2px 5px 0px rgba(0,0,0,0.3);
+                        transition: all 0.3s ease;
+                        i {
+                            top: 0;
+                            left: 0;
+                            position: relative;
+                            font-size: 24px;
+                            margin: 0 0 0 10px;
+                            color: $mainRed;
+                        }
+                        p {
+                            margin: 0 0 0 20px;
+                            font-size: 14px;
+                        }
+                        &:hover{
+                            box-shadow: 0px 0px 7px 1px rgba(84, 112, 177, 0.856);
+                        }
+                    }
+                }
                 button{
                     transition: all 0.2s linear;
                     display: block;
@@ -571,9 +611,9 @@ i{
                         background-color: $hoverBlue;
                     }
                 }
-                .g-signin2 {
-                    display: flex;
-                    justify-content: center;
+                .google-sign {
+                    width: 120px;
+
                 }
             }
         }
@@ -1578,6 +1618,9 @@ i{
                     }
                 }
             }
+        }
+        .profile-opt{
+            right: 20px;
         }
     }
     .main {

@@ -7,6 +7,8 @@ const session       = require('express-session');
 const flash         = require('connect-flash')
 const bcrypt        = require('bcrypt');
 const passport      = require('passport');
+const sessionSecret = require('./config/credentials')
+
 require('./config/auth')(passport)
 require('./database/');
 
@@ -17,7 +19,7 @@ app.use(express.json());
 app.use(sanitizer());
 
 app.use(session({
-    secret: 'johnson',
+    secret: sessionSecret.session.secret,
     resave: true,
     saveUninitialized: true
 }));

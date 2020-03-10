@@ -89,6 +89,8 @@ const searchOn = () => {
     searchTiny.style.opacity = "1";
     logo.style.visibility = "hidden";
     logo.style.opacity = "0";
+    if(tinyLogLoged != null) tinyLogLoged.style.visibility = "hidden"
+    if(profileOpt != null) profileOpt.style.visibility = "hidden"
 }
 const searchOff = () => {
     searchTiny.style.opacity = "0";
@@ -100,6 +102,7 @@ const searchOff = () => {
         tinyLog.style.opacity = "1";
         tinyLog.style.visibility = "visible";
     }
+    if(tinyLogLoged != null) tinyLogLoged.style.visibility = "visible"
 }
 
 
@@ -184,9 +187,12 @@ if (profileOpt != null) {
         status = false;
         profileOpt.style.visibility= "hidden"
     })
+    profileOpt.addEventListener("click", () => {
+        profileOpt.style.visibility = profileOpt.style.visibility == "visible" ? "hidden" : "visible"
+    })
 }
 if(tinyLogLoged != null) {
     tinyLogLoged.addEventListener("click", () => {
-        profileOpt.style.visibility = "visible"
+        profileOpt.style.visibility = profileOpt.style.visibility == "visible" ? "hidden" : "visible"
     })
 }

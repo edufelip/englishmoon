@@ -54,19 +54,12 @@ routes.post("/login", passport.authenticate("local", {
 });
 
 routes.get("/google", passport.authenticate('google', {
-    scope: ['profile']
+    scope: ['openid', 'email', 'profile']
 }))
-// routes.post("/login", (req, res, next) => {
-//     passport.authenticate('local', (err, user, info) => {
-//         if(err) {
-//             return next(err)
-//         }
-//         if(!user){
-//             res.render("/", {message: req.flash('erro')})
-//             return
-//         }
-//     })
-// })
+
+routes.get("/api/auth/google/callback", passport.authenticate('google'), (req, res) => {
+    res.redirect('/')
+})
 
 routes.get("/logout", (req, res) => {
     req.logout();

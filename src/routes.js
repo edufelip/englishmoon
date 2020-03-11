@@ -38,8 +38,13 @@ routes.get("/contact", (req, res) => {
     res.render("contact");
 });
 
-routes.get("/profile", isLoggedIn, (req, res) => {
+// routes.get("/profile", isLoggedIn, (req, res) => {
+routes.get("/profile/info", (req, res) => {
     res.render("profile");
+});
+
+routes.get("/profile/courses", isLoggedIn, (req, res) => {
+    res.render("userCourses");
 });
 
 routes.get("/register", isNotLoggedIn, (req, res) => {

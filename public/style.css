@@ -1441,6 +1441,54 @@ i {
   color: white;
   cursor: pointer;
 }
+.main .profileMain {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+}
+.main .profileMain .profileLeft {
+  height: 100%;
+  flex: 1;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 10px 0px 8px 0px rgba(0, 0, 0, 0.75);
+}
+.main .profileMain .profileLeft .profileContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  border-bottom: 0.5px solid rgba(128, 128, 128, 0.6);
+}
+.main .profileMain .profileLeft .profileContainer:hover {
+  cursor: pointer;
+  background-color: whitesmoke;
+}
+.main .profileMain .profileLeft .profileContainer p {
+  opacity: 0.9;
+  width: 100%;
+  text-align: center;
+}
+.main .profileMain .profileLeft .profileContainer p .info-bar {
+  height: 100%;
+  width: 2px;
+  background-color: #3228c7;
+  right: 0;
+}
+.main .profileMain .profileLeft .profileContainer .info-active-bar {
+  visibility: hidden;
+  display: block;
+  height: 100%;
+  width: 2px;
+  background-color: #3228c7;
+}
+.main .profileMain .profileRight {
+  height: 100%;
+  flex: 4;
+  background-color: whitesmoke;
+}
 
 @media (min-width: 1160px) {
   .main .footer {

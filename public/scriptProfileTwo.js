@@ -2,5 +2,5 @@ const optOne = document.querySelector(".yourInfo")
 const optionBtn = document.querySelectorAll(".profileContainer")
 const optionBar = document.querySelectorAll(".info-active-bar")
 
-optionBar[0].style.visibility = "visible"
-optionBtn[0].style.background = "#1f23ab20"
+optionBar[1].style.visibility = "visible"
+optionBtn[1].style.background = "#1f23ab10"

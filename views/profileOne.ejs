@@ -1,0 +1,73 @@
+<% include partials/header %>
+
+<div class="main">
+    <div class="profileMain">
+        <div class="profileLeft">
+            <div class="profileContainer">
+                <a href="/profile/info" class="yourInfo">Suas Informações</a>
+                <div class="info-active-bar"></div>
+            </div>
+            <div class="profileContainer">
+                <a href="/profile/payment" class="paymentMethods">Métodos de Pagamento</a>
+                <div class="info-active-bar"></div>
+            </div>
+            <div class="profileContainer">
+                <a href="/profile/buy-history" class="buyHistory">Histórico de Compras</a>
+                <div class="info-active-bar"></div>
+            </div>
+        </div>
+        <div class="profileRight">
+            <div class="profileRight-box">
+                <div class="profileRight-box-left">
+                    <div class="box-photo">
+
+                    </div>
+                     <div class="deleteAcc">
+                         <a href="/profile/info/delete-account">DELETAR CONTA</a>
+                     </div>
+                </div>
+                <div class="profileRight-box-right">
+                    <form action="">
+                        <div class="profile-container">
+                            <p>NOME</p>
+                            <input type="text" name="name" value="" maxlength="45">
+                        </div>
+                        <div class="profile-container">
+                            <p class="exception">SEXO</p>
+                            <div class="sub-form">
+                                <input type="radio" name="gender" value="male">
+                                <p>MASCULINO</p>
+                                <input type="radio" name="gender" value="female">
+                                <p>FEMININO</p>
+                            </div>
+                        </div>
+                        <div class="profile-container">
+                            <p>TELEFONE</p>
+                            <input type="text" name="telephone" maxlength="14">
+                        </div>
+                        <div class="profile-container">
+                            <p>NASCIMENTO</p>
+                            <input type="text" name="birthdate" maxlength="10">
+                        </div>
+                        <div class="profile-container">
+                            <p>E-MAIL</p>
+                            <input type="text" name="e-mail" maxlength="45">
+                        </div>
+                        <div class="profile-container">
+                            <a href="">MUDAR SENHA</a>
+                        </div>
+                        <div class="button-wrapper">
+                            <button>SALVAR MUDANÇAS</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%include partials/footer %>
+</div>
+
+<script type="text/javascript" src="/scriptHeader.js"></script>
+<script type="text/javascript" src="/scriptProfileOne.js"></script>
+</body>
+</html>

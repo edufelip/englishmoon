@@ -1466,12 +1466,18 @@ i {
   cursor: pointer;
   background-color: whitesmoke;
 }
-.main .profileMain .profileLeft .profileContainer p {
+.main .profileMain .profileLeft .profileContainer a {
   opacity: 0.9;
   width: 100%;
-  text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
 }
-.main .profileMain .profileLeft .profileContainer p .info-bar {
+.main .profileMain .profileLeft .profileContainer a .info-bar {
   height: 100%;
   width: 2px;
   background-color: #3228c7;
@@ -1488,6 +1494,77 @@ i {
   height: 100%;
   flex: 4;
   background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main .profileMain .profileRight .profileRight-box {
+  width: 800px;
+  height: 475px;
+  background-color: white;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.4);
+  display: flex;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left {
+  flex: 1;
+  border-right: 0.5px solid #00000060;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left .box-photo {
+  width: 90%;
+  height: 40%;
+  margin: 10px auto 0 auto;
+  background-color: yellow;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left .deleteAcc {
+  display: flex;
+  width: 90%;
+  margin: 5px auto 0 auto;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left .deleteAcc a {
+  text-decoration: none;
+  color: #AB1616;
+  font-family: "Open Sans";
+  font-size: 12px;
+  font-weight: 600;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form {
+  margin-top: 20px;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form a {
+  text-decoration: none;
+  font-size: 14px;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container p {
+  width: 130px;
+  font-size: 14px;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container input[type=text] {
+  width: 300px;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container .sub-form {
+  display: flex;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container .sub-form p {
+  margin-left: 10px;
+  width: 95px;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form .button-wrapper {
+  width: 150px;
+  margin: 20px auto;
 }
 
 @media (min-width: 1160px) {

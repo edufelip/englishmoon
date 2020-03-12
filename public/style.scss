@@ -1488,10 +1488,16 @@ i{
                     cursor: pointer;
                     background-color: whitesmoke;
                 }
-                p {
+                a {
                     opacity: 0.9;
                     width: 100%;
-                    text-align: center;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-decoration: none;
+                    color: black;
+                    font-size: 14px;
                     .info-bar{
                         height: 100%;
                         width: 2px;
@@ -1512,6 +1518,78 @@ i{
             height: 100%;
             flex: 4;
             background-color: rgb(245, 245, 245);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .profileRight-box{
+                // width: 80%;
+                width: 800px;
+                height: 475px;
+                background-color: white;
+                box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.4);
+                display: flex;
+                .profileRight-box-left {
+                    flex: 1;
+                    border-right: 0.5px solid #00000060;
+                    .box-photo{
+                        width: 90%;
+                        height: 40%;
+                        margin: 10px auto 0 auto;
+                        background-color: yellow;
+                    }
+                    .deleteAcc{
+                        display: flex;
+                        width: 90%;
+                        margin: 5px auto 0 auto;
+                        height: 30px;
+                        justify-content: center;
+                        align-items: center;
+                        a {
+                            text-decoration: none;
+                            color: $mainRed;
+                            font-family: "Open Sans";
+                            font-size: 12px;
+                            font-weight: 600;
+                        }
+                    }
+                }
+                .profileRight-box-right {
+                    flex: 3;
+                    display: flex;
+                    justify-content: center;
+                    form {
+                        margin-top: 20px;
+                        a {
+                            text-decoration: none;
+                            font-size: 14px;
+                        }
+                        .profile-container{
+                            display: flex;
+                            width: 80%;
+                            margin: 0 auto;
+                            margin-top: 30px;
+                            p {
+                                width: 130px;
+                                font-size: 14px;
+                            }
+                            input[type=text]{
+                                width: 300px;
+                            }
+                            .sub-form{
+                                display: flex;
+                                p {
+                                    margin-left: 10px;
+                                    width: 95px;
+                                }
+                            }
+                        }
+                        .button-wrapper {
+                            width: 150px;
+                            margin: 20px auto;
+                        }
+                    }
+                }
+            }
         }
     }
 }

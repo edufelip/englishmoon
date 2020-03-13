@@ -22,36 +22,47 @@
                     <div class="box-photo">
 
                     </div>
+                     <div class="deleteAcc changePhoto">
+                         <a href="/profile/info/delete-account">MUDAR FOTO</a>
+                     </div>
                      <div class="deleteAcc">
-                         <a href="/profile/info/delete-account">DELETAR CONTA</a>
+                         <form action="/users?_method=DELETE" method="POST">
+                            <input type="text" name="email" value="edu_felip@hotmail.com" style="display: none;">
+                             <button>DELETAR CONTA</button>
+                         </form>
                      </div>
                 </div>
                 <div class="profileRight-box-right">
-                    <form action="">
+                    <form action="/users?_method=PUT" method="POST">
                         <div class="profile-container">
                             <p>NOME</p>
-                            <input type="text" name="name" value="" maxlength="45">
+                            <span><p>Eduardo Felipe</p><i class="edit fas fa-pencil-alt"></i></span>
+                            <input class="editField" type="text" name="name" value="Eduardo Felipe" maxlength="45">
                         </div>
                         <div class="profile-container">
                             <p class="exception">SEXO</p>
+                            <span><p>Masculino</p><i class="edit fas fa-pencil-alt"></i></span>
                             <div class="sub-form">
-                                <input type="radio" name="gender" value="male">
-                                <p>MASCULINO</p>
-                                <input type="radio" name="gender" value="female">
-                                <p>FEMININO</p>
+                                <input class="radio-input mg-left" type="radio" name="gender" value="Male" checked>
+                                <p>Masculino</p>
+                                <input class="radio-input" type="radio" name="gender" value="Female">
+                                <p>Feminino</p>
                             </div>
                         </div>
                         <div class="profile-container">
                             <p>TELEFONE</p>
-                            <input type="text" name="telephone" maxlength="14">
+                            <span><p>(21) 985670564</p><i class="edit fas fa-pencil-alt"></i></span>
+                            <input class="editField" type="text" name="telephone" maxlength="14" value="(21) 985670564">
                         </div>
                         <div class="profile-container">
                             <p>NASCIMENTO</p>
-                            <input type="text" name="birthdate" maxlength="10">
+                            <span><p>04/06/1998</p><i class="edit fas fa-pencil-alt"></i></span>
+                            <input class="editField" type="text" name="birthday" maxlength="10" value="04/06/1998">
                         </div>
                         <div class="profile-container">
                             <p>E-MAIL</p>
-                            <input type="text" name="e-mail" maxlength="45">
+                            <span><p>edu_felip@hotmail.com</p></span>
+                            <input type="text" name="email" value="edu_felip@hotmail.com">
                         </div>
                         <div class="profile-container">
                             <a href="">MUDAR SENHA</a>

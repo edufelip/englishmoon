@@ -102,5 +102,28 @@ module.exports = {
       const user = await User.create(Object.assign(req.body, {password : hash}));
       return res.json(user);
     }
+  },
+
+  async edit(req, res) {
+    const { name, gender, birthday, telephone, email } = req.body;
+    const user = await User.findOne({
+      where: {email: email}
+    })
+    user.name = name;
+    user.gender = gender;
+    user.birthday = birthday;
+    user.telephone = telephone;
+    user.email = email;
+    await user.save();
+    return res.redirect("/profile/info");
+  },
+  
+  async destroy(req, res) {
+    const { email } = req.body
+    const user = await User.findOne({
+      where: {email: email}
+    })
+    await user.destroy();
+    return res.redirect("/")
   }
 };

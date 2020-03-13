@@ -1513,7 +1513,7 @@ i {
   width: 90%;
   height: 40%;
   margin: 10px auto 0 auto;
-  background-color: yellow;
+  border: 1px solid #00000090;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-left .deleteAcc {
   display: flex;
@@ -1523,12 +1523,28 @@ i {
   justify-content: center;
   align-items: center;
 }
-.main .profileMain .profileRight .profileRight-box .profileRight-box-left .deleteAcc a {
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left .deleteAcc button, .main .profileMain .profileRight .profileRight-box .profileRight-box-left .deleteAcc a {
   text-decoration: none;
   color: #AB1616;
   font-family: "Open Sans";
   font-size: 12px;
   font-weight: 600;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left .deleteAcc button {
+  border: 0;
+  background-color: transparent;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left .deleteAcc button:hover {
+  cursor: pointer;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left .changePhoto a {
+  width: 55%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #110f8a;
+  color: #110f8a;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-right {
   flex: 3;
@@ -1536,11 +1552,16 @@ i {
   justify-content: center;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-right form {
-  margin-top: 20px;
+  margin-top: 30px;
+  height: 85%;
+  width: 70%;
+  border-top: 1px solid #00000050;
+  border-bottom: 1px solid #00000050;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-right form a {
   text-decoration: none;
   font-size: 14px;
+  color: #3228c7;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container {
   display: flex;
@@ -1548,23 +1569,56 @@ i {
   margin: 0 auto;
   margin-top: 30px;
 }
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container a {
+  font-size: 12px;
+}
 .main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container p {
   width: 130px;
-  font-size: 14px;
+  height: 22px;
+  font-size: 12px;
+  opacity: 1;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container span {
+  display: flex;
+  transition: all 0.3s ease;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container span p {
+  width: 160px;
+  opacity: 0.8;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container span i:hover {
+  cursor: pointer;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container input[type=text] {
-  width: 300px;
+  width: 250px;
+  height: 14px;
+  margin-left: 25px;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container input {
+  display: none;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container .sub-form {
-  display: flex;
+  display: none;
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container .sub-form p {
   margin-left: 10px;
-  width: 95px;
+  width: 65px;
+  opacity: 0.8;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-right form .button-wrapper {
   width: 150px;
   margin: 20px auto;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form .button-wrapper button {
+  background-color: transparent;
+  color: #110f8a;
+  border: 1px solid #110f8a;
+  height: 30px;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-right form .button-wrapper button:hover {
+  cursor: pointer;
 }
 
 @media (min-width: 1160px) {

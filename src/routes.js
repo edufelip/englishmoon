@@ -76,7 +76,12 @@ routes.get("/logout", (req, res) => {
     res.redirect('/');
 });
 
-routes.get('/users', UserController.index);
+// routes.get('/users', UserController.index);
+
+routes.put('/users', UserController.edit);
+
+routes.delete('/users', UserController.destroy);
+
 routes.post('/users', UserController.store);
 
 routes.get('/users/:user_id/posts', PostController.index);

@@ -1649,6 +1649,15 @@ i{
             }
         }
     }
+    .password-main{
+        height: 90vh;
+        .password-box{
+            width: 400px;
+            height: 200px;
+            background-color: black;
+            margin: 100px auto 0 auto
+        }
+    }
 }
 
 @media (min-width: 1160px){

@@ -47,6 +47,9 @@ routes.get("/profile/payment", (req, res) => {
 routes.get("/profile/buy-history", (req, res) => {
     res.render("profileThree");
 });
+routes.get("/profile/password", (req, res) => {
+    res.render("profilePassword");
+});
 
 routes.get("/profile/courses", isLoggedIn, (req, res) => {
     res.render("userCourses");

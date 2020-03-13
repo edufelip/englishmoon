@@ -1620,6 +1620,15 @@ i {
 .main .profileMain .profileRight .profileRight-box .profileRight-box-right form .button-wrapper button:hover {
   cursor: pointer;
 }
+.main .password-main {
+  height: 90vh;
+}
+.main .password-main .password-box {
+  width: 400px;
+  height: 200px;
+  background-color: black;
+  margin: 100px auto 0 auto;
+}
 
 @media (min-width: 1160px) {
   .main .footer {

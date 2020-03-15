@@ -1651,11 +1651,58 @@ i{
     }
     .password-main{
         height: 90vh;
+        background-color:rgba(223, 223, 223, 0.4);
+        display: flex;
+        justify-content: center;
         .password-box{
-            width: 400px;
-            height: 200px;
-            background-color: black;
-            margin: 100px auto 0 auto
+            position: absolute;
+            background-color: white;
+            width: 500px;
+            height: 300px;
+            box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.4);
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            h2 {
+                flex: 1;
+                margin: 20px 0 0 0;
+                font-weight: 600;
+                font-family: 'Nunito';
+            }
+            form {
+                flex: 5;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: start;
+                margin-bottom: 30px;
+                width: 70%;
+                .sub-pass {
+                    width: 100%;
+                        input {
+                            width: 100%;
+                            border: 1px solid #00000030;
+                        }
+                        p {
+                            border: 4px 0 0 0;
+                            opacity: 0.8;
+                            font-size: 14px;
+                            font-family: 'Open Sans';
+                        }
+                    }
+                    button {
+                        border: 0;
+                        background-color: $hoverBlue;
+                        color: white;
+                        font-family: 'Open Sans';
+                        padding: 4px 3px;
+                        &:hover {
+                            cursor: pointer;
+                        }
+                }
+            }
         }
     }
 }

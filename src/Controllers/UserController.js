@@ -125,5 +125,19 @@ module.exports = {
     })
     await user.destroy();
     return res.redirect("/")
+  },
+
+  async changePassword(req, res) {
+    const {oldPass, newPass, newPassAgain} = req.body
+    const currentUser = req.user;
+    const verifyOld = bcrypt.compareSync(oldPass, currentUser.password)
+    if(!verifyOld || newPass != newPassAgain) return false;
+    const user = await User.findOne({
+      where: {email: currentUser.email}
+    })
+    const hash = await bcrypt.hash(newPass, saltRounds);
+    user.password = hash;
+    user.save();
+    return true;
   }
 };

@@ -1678,29 +1678,50 @@ i{
                 justify-content: space-around;
                 align-items: start;
                 margin-bottom: 30px;
-                width: 70%;
+                width: 60%;
                 .sub-pass {
                     width: 100%;
-                        input {
-                            width: 100%;
-                            border: 1px solid #00000030;
-                        }
-                        p {
-                            border: 4px 0 0 0;
-                            opacity: 0.8;
-                            font-size: 14px;
-                            font-family: 'Open Sans';
-                        }
+                    input {
+                        width: 95%;
+                        border: 1px solid #00000030;
+                        padding: 2px 0;
+                        transition: all 0.3s ease;
                     }
-                    button {
-                        border: 0;
-                        background-color: $hoverBlue;
-                        color: white;
+                    p {
+                        border: 4px 0 0 0;
+                        color: black;
+                        opacity: 0.8;
+                        font-size: 14px;
                         font-family: 'Open Sans';
-                        padding: 4px 3px;
-                        &:hover {
-                            cursor: pointer;
-                        }
+                        visibility: visible;
+                    }
+                    i {
+                        margin-left: 2px;
+                        color: $mainRed;
+                        transition: all 0.3s ease;
+                        opacity: 0;
+                    }
+                }
+                button {
+                    border: 0;
+                    color: $hoverBlue;
+                    background-color: transparent;
+                    font-family: 'Open Sans';
+                    font-weight: 600;
+                    font-size: 14px;
+                    padding: 4px 3px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    &:focus {
+                        outline: none;
+                    }
+                }
+                p {
+                    font-size: 14px;
+                    color: $mainRed;
+                    opacity: 0;
+                    transition: all 0.3s ease;
                 }
             }
         }

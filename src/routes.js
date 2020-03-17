@@ -50,7 +50,7 @@ routes.get("/profile/buy-history", (req, res) => {      // add isloged
 routes.get("/profile/password", (req, res) => {         // add isloged
     res.render("profilePassword");
 });
-routes.post("/profile/password/edit", UserController.changePassword);   // add isloged
+routes.post("/profile/password", UserController.changePassword);   // add isloged
 
 routes.get("/profile/courses", isLoggedIn, (req, res) => {
     res.render("userCourses");

@@ -128,16 +128,32 @@ module.exports = {
   },
 
   async changePassword(req, res) {
-    const {oldPass, newPass, newPassAgain} = req.body
+    function Status(id, msg){
+      this.id = id;
+      this.msg = msg
+    }
+    const {oldPassword, newPassword, newPasswordAgain} = req.body
+    if(newPassword.length < 6) {
+      const status = new Status(1, "A senha deve conter no mínimo 6 caracteres")
+      return res.json(status);
+    }
+    if(newPassword != newPasswordAgain) {
+      const status = new Status(2, "As senhas diferem")
+      return res.json(status)
+    }
     const currentUser = req.user;
     const verifyOld = bcrypt.compareSync(oldPass, currentUser.password)
-    if(!verifyOld || newPass != newPassAgain) return false;
+    if(!verifyOld) {
+      const status = new Status(3, "A senha antiga está incorreta")
+      return res.json(status)
+    }
     const user = await User.findOne({
       where: {email: currentUser.email}
     })
     const hash = await bcrypt.hash(newPass, saltRounds);
     user.password = hash;
     user.save();
-    return true;
+    const status = new Status(4, "A senha foi alterada com sucesso");
+    return res.json(status)
   }
 };

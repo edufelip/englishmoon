@@ -1651,30 +1651,51 @@ i {
   justify-content: space-around;
   align-items: start;
   margin-bottom: 30px;
-  width: 70%;
+  width: 60%;
 }
 .main .password-main .password-box form .sub-pass {
   width: 100%;
 }
 .main .password-main .password-box form .sub-pass input {
-  width: 100%;
+  width: 95%;
   border: 1px solid #00000030;
+  padding: 2px 0;
+  transition: all 0.3s ease;
 }
 .main .password-main .password-box form .sub-pass p {
   border: 4px 0 0 0;
+  color: black;
   opacity: 0.8;
   font-size: 14px;
   font-family: "Open Sans";
+  visibility: visible;
+}
+.main .password-main .password-box form .sub-pass i {
+  margin-left: 2px;
+  color: #AB1616;
+  transition: all 0.3s ease;
+  opacity: 0;
 }
 .main .password-main .password-box form button {
   border: 0;
-  background-color: #110f8a;
-  color: white;
+  color: #110f8a;
+  background-color: transparent;
   font-family: "Open Sans";
+  font-weight: 600;
+  font-size: 14px;
   padding: 4px 3px;
 }
 .main .password-main .password-box form button:hover {
   cursor: pointer;
+}
+.main .password-main .password-box form button:focus {
+  outline: none;
+}
+.main .password-main .password-box form p {
+  font-size: 14px;
+  color: #AB1616;
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 
 @media (min-width: 1160px) {

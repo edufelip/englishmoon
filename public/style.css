@@ -1513,12 +1513,46 @@ i {
   width: 90%;
   height: 40%;
   margin: 10px auto 0 auto;
-  border: 1px solid #00000090;
+  border: 1px solid #00000040;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left form {
+  display: flex;
+  justify-content: center;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left form #file-select {
+  display: none;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left form label {
+  position: absolute;
+  font-size: 14px;
+  border: 1px solid #1a7897;
+  background-color: #176e8b;
+  padding: 6px 18px 7px 19px;
+  margin-top: -35px;
+  font-family: "Nunito";
+  color: white;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left form label i {
+  color: white;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left form label:hover {
+  cursor: pointer;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left form button {
+  margin-top: 30px;
+}
+.main .profileMain .profileRight .profileRight-box .profileRight-box-left p {
+  text-align: center;
+  font-size: 14px;
+  height: 14px;
+  opacity: 0.8;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-left .deleteAcc {
   display: flex;
   width: 90%;
-  margin: 5px auto 0 auto;
+  margin: 0 auto;
   height: 30px;
   justify-content: center;
   align-items: center;
@@ -1528,23 +1562,18 @@ i {
   color: #AB1616;
   font-family: "Open Sans";
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 300;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-left .deleteAcc button {
   border: 0;
   background-color: transparent;
+  border: 1px solid #AB1616;
+  transition: all 0.4 s ease;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-left .deleteAcc button:hover {
   cursor: pointer;
-}
-.main .profileMain .profileRight .profileRight-box .profileRight-box-left .changePhoto a {
-  width: 55%;
-  height: 90%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #110f8a;
-  color: #110f8a;
+  background-color: #AB1616;
+  color: white;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-right {
   flex: 3;
@@ -1590,9 +1619,9 @@ i {
   cursor: pointer;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container input[type=text] {
-  width: 250px;
+  width: 180px;
   height: 14px;
-  margin-left: 25px;
+  margin-left: 0px;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-right form .profile-container input {
   display: none;
@@ -1616,9 +1645,12 @@ i {
   color: #110f8a;
   border: 1px solid #110f8a;
   height: 30px;
+  transition: all 0.4s ease;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-right form .button-wrapper button:hover {
   cursor: pointer;
+  background-color: #110f8a;
+  color: white;
 }
 .main .password-main {
   height: 90vh;
@@ -1629,10 +1661,10 @@ i {
 .main .password-main .password-box {
   position: absolute;
   background-color: white;
-  width: 500px;
+  width: 40%;
   height: 300px;
   box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.4);
-  margin-top: 50px;
+  margin-top: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1640,7 +1672,7 @@ i {
 }
 .main .password-main .password-box h2 {
   flex: 1;
-  margin: 20px 0 0 0;
+  margin: 30px 0 0 0;
   font-weight: 600;
   font-family: "Nunito";
 }
@@ -1657,7 +1689,7 @@ i {
   width: 100%;
 }
 .main .password-main .password-box form .sub-pass input {
-  width: 95%;
+  width: 100%;
   border: 1px solid #00000030;
   padding: 2px 0;
   transition: all 0.3s ease;
@@ -1928,6 +1960,16 @@ i {
   }
   .header .dropdown-aut .form-container form input {
     width: 50vw;
+  }
+}
+@media (max-width: 530px) {
+  .main .password-main .password-box {
+    margin-top: 30%;
+    width: 95%;
+  }
+  .main .password-main .password-box form button {
+    border: 1px solid #110f8a;
+    margin-top: 4px;
   }
 }
 @media (max-width: 505px) {

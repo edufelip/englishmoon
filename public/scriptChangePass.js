@@ -18,32 +18,17 @@ passBtn.onclick = (evt) => {
     }).then((response) => {
         return response.json();
     }).then((data) => {
-        console.log(data)
         message.style.opacity = "1"
         message.innerHTML = data.msg;
-        if(data.id == 1){
-            exclam[1].style.outline = "1px solid red"
-        }
-        if(data.id == 2){
-            exclam[1].style.outline = "1px solid red"
-            exclam[2].style.outline = "1px solid red"
-        }
-        if(data.id == 3){
-            exclam[0].style.outline = "1px solid red"
-        }
+        exclam[0].style.outline = data.id == 3 ? "1px solid red" : "none"
+        exclam[1].style.outline = data.id == 1 || data.id == 2 ? "1px solid red" : "none"
+        exclam[2].style.outline = data.id == 2 ? "1px solid red" : "none"
         if(data.id == 4){
             message.style.color = "green"
+            setTimeout(() => {
+                window.location.replace("http://localhost:3000/profile/info")
+            }, 2000);
         }
     })
     return false
-}
-
-for(let i = 0; i < changePass.length; i++){
-    changePass[i].addEventListener("keyup", () => {
-        if((i == 0) && changePass[i].value.length < 6) {
-            exclam[i+1].style.outline = "1px solid #FF000090"
-        } else {
-            exclam[i+1].style.outline = "none"
-        }
-    })
 }

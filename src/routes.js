@@ -2,6 +2,8 @@ const express = require("express");
 const passport = require("passport");
 const flash = require('connect-flash')
 const routes = express.Router();
+const multer = require("multer")
+const upload = multer({dest: 'uploads/'})
 
 const UserController = require('./controllers/UserController');
 const PostController = require('./controllers/PostController');
@@ -23,13 +25,11 @@ function isNotLoggedIn(req, res, next){
 routes.get("/", PostController.list);
 
 routes.get("/articles", PostController.listAll);
-
 routes.get("/articles/:post_name/:post_id", PostController.listPost);
 
 routes.get("/books", (req, res) => {
     res.render("underConstruction");
 });
-
 routes.get("/courses", (req, res) => {
     res.render("underConstruction");
 });
@@ -41,17 +41,10 @@ routes.get("/contact", (req, res) => {
 routes.get("/profile/info", (req, res) => {
     res.render("profileOne");
 });
-routes.get("/profile/payment", (req, res) => {      // add isloged
-    res.render("profileTwo");
-});
-routes.get("/profile/buy-history", (req, res) => {      // add isloged
-    res.render("profileThree");
-});
 routes.get("/profile/password", (req, res) => {         // add isloged
     res.render("profilePassword");
 });
 routes.post("/profile/password", UserController.changePassword);   // add isloged
-
 routes.get("/profile/courses", isLoggedIn, (req, res) => {
     res.render("userCourses");
 });
@@ -81,12 +74,10 @@ routes.get("/logout", (req, res) => {
 });
 
 // routes.get('/users', UserController.index);
-
 routes.put('/users', UserController.edit);
-
 routes.delete('/users', UserController.destroy);
-
 routes.post('/users', UserController.store);
+routes.post('/users/photo', upload.single('img'), UserController.changePhoto);
 
 routes.get('/users/:user_id/posts', PostController.index);
 routes.post('/users/:user_id/posts', PostController.store);

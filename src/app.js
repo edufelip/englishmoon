@@ -9,6 +9,7 @@ const bcrypt        = require('bcrypt');
 const passport      = require('passport');
 const sessionSecret = require('./config/credentials')
 const methodOverride = require("method-override")
+const multer        = require("multer")
 
 require('./config/auth')(passport)
 require('./database/');

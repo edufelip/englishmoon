@@ -8,11 +8,11 @@
                 <div class="info-active-bar"></div>
             </div>
             <div class="profileContainer">
-                <a href="/profile/payment" class="paymentMethods">Métodos de Pagamento</a>
+                <a style="cursor:not-allowed;" class="paymentMethods">Métodos de Pagamento</a>
                 <div class="info-active-bar"></div>
             </div>
             <div class="profileContainer">
-                <a href="/profile/buy-history" class="buyHistory">Histórico de Compras</a>
+                <a style="cursor:not-allowed;" class="buyHistory">Histórico de Compras</a>
                 <div class="info-active-bar"></div>
             </div>
         </div>
@@ -22,10 +22,13 @@
                     <div class="box-photo">
 
                     </div>
-                     <div class="deleteAcc changePhoto">
-                         <a href="/profile/info/delete-account">MUDAR FOTO</a>
-                     </div>
-                     <div class="deleteAcc">
+                    <form id="photo-form" action="/users/photo" method="POST" enctype="multipart/form-data">
+                        <input id="file-select" type="file" name="img">
+                        <label for="file-select"> <i class="fas fa-images"></i> Selecione uma Foto </label>
+                        <!-- <button>Enviar</button> -->
+                    </form>
+                    <p id="img-form-title"></p>
+                    <div class="deleteAcc">
                          <form action="/users?_method=DELETE" method="POST">
                             <input type="text" name="email" value="edu_felip@hotmail.com" style="display: none;">
                              <button>DELETAR CONTA</button>

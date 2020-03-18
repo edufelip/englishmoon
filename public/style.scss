@@ -1534,12 +1534,46 @@ i{
                         width: 90%;
                         height: 40%;
                         margin: 10px auto 0 auto;
-                        border: 1px solid #00000090;
+                        border: 1px solid #00000040;
+                    }
+                    form {
+                        display: flex;
+                        justify-content: center;
+                        #file-select {
+                            display: none;
+                        }
+                        label {
+                            i {
+                                color: white;
+                            }
+                            position: absolute;
+                            font-size: 14px;
+                            border: 1px solid #1a7897;
+                            background-color:  #176e8b;
+                            padding: 6px 18px 7px 19px;
+                            margin-top: -35px;
+                            font-family: 'Nunito';
+                            color: white;
+                            opacity: 0;
+                            transition: all 0.4s ease;
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+                        button {
+                            margin-top: 30px;
+                        }
+                    }
+                    p {
+                        text-align: center;
+                        font-size: 14px;
+                        height: 14px;
+                        opacity: 0.8;
                     }
                     .deleteAcc{
                         display: flex;
                         width: 90%;
-                        margin: 5px auto 0 auto;
+                        margin: 0 auto;
                         height: 30px;
                         justify-content: center;
                         align-items: center;
@@ -1548,25 +1582,18 @@ i{
                             color: $mainRed;
                             font-family: "Open Sans";
                             font-size: 12px;
-                            font-weight: 600;
+                            font-weight: 300;
                         }
                         button {
                             border: 0;
                             background-color: transparent;
+                            border: 1px solid $mainRed;
+                            transition: all 0.4 s ease;
                             &:hover {
                                 cursor: pointer;
+                                background-color: $mainRed;
+                                color: white;
                             }
-                        }
-                    }
-                    .changePhoto {
-                        a {
-                            width: 55%;
-                            height: 90%;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            border: 1px solid $hoverBlue;
-                            color: $hoverBlue;
                         }
                     }
                 }
@@ -1613,9 +1640,9 @@ i{
                                 }
                             }
                             input[type=text]{
-                                width: 250px;
+                                width: 180px;
                                 height: 14px;
-                                margin-left: 25px;
+                                margin-left: 0px;
                             }
                             input {
                                 display: none;
@@ -1639,8 +1666,11 @@ i{
                                 color: $hoverBlue;
                                 border: 1px solid $hoverBlue;
                                 height: 30px;
+                                transition: all 0.4s ease;
                                 &:hover {
                                     cursor: pointer;
+                                    background-color: $hoverBlue;
+                                    color: white;
                                 }
                             }
                         }
@@ -1657,17 +1687,17 @@ i{
         .password-box{
             position: absolute;
             background-color: white;
-            width: 500px;
+            width: 40%;
             height: 300px;
             box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.4);
-            margin-top: 50px;
+            margin-top: 80px;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             h2 {
                 flex: 1;
-                margin: 20px 0 0 0;
+                margin: 30px 0 0 0;
                 font-weight: 600;
                 font-family: 'Nunito';
             }
@@ -1682,7 +1712,7 @@ i{
                 .sub-pass {
                     width: 100%;
                     input {
-                        width: 95%;
+                        width: 100%;
                         border: 1px solid #00000030;
                         padding: 2px 0;
                         transition: all 0.3s ease;
@@ -2026,6 +2056,23 @@ i{
                     }
                     input{
                         width: 50vw;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 530px){
+    .main {
+        .password-main {
+            .password-box {
+                margin-top: 30%;
+                width: 95%;
+                form {
+                    button {
+                        border: 1px solid $hoverBlue;
+                        margin-top: 4px;
                     }
                 }
             }

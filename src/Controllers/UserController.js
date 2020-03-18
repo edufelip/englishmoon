@@ -119,7 +119,7 @@ module.exports = {
   },
   
   async destroy(req, res) {
-    const { email } = req.body
+    const email = req.user.email
     const user = await User.findOne({
       where: {email: email}
     })
@@ -142,7 +142,7 @@ module.exports = {
       return res.json(status)
     }
     const currentUser = req.user;
-    const verifyOld = bcrypt.compareSync(oldPass, currentUser.password)
+    const verifyOld = bcrypt.compareSync(oldPassword, currentUser.password)
     if(!verifyOld) {
       const status = new Status(3, "A senha antiga está incorreta")
       return res.json(status)
@@ -150,10 +150,20 @@ module.exports = {
     const user = await User.findOne({
       where: {email: currentUser.email}
     })
-    const hash = await bcrypt.hash(newPass, saltRounds);
+    const hash = await bcrypt.hash(newPassword, saltRounds);
     user.password = hash;
     user.save();
-    const status = new Status(4, "A senha foi alterada com sucesso");
+    const status = new Status(4, "Sua senha foi alterada com sucesso");
     return res.json(status)
+  },
+
+  async changePhoto(req, res) {
+    console.log(req.file)
+    // const email = req.user.email
+    // const user = await User.findOne({
+    //   where: {email: email}
+    // })
+    // user.photo = img
+    return res.redirect("/profile/info")
   }
 };

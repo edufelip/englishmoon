@@ -2,7 +2,7 @@ const LocalStrategy = require('passport-local').Strategy
 const GoogleStrategy = require('passport-google-oauth20');
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
-const keys = require('./credentials')
+const keys = require('./data_credentials')
 
 module.exports = function(passport){
 

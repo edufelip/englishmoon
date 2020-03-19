@@ -2,14 +2,11 @@ const express       = require ("express");
 const app           = express();
 const bodyParser    = require("body-parser");
 const sanitizer     = require("express-sanitizer");
-const LocalStrategy = require('passport-local').Strategy
 const session       = require('express-session');
 const flash         = require('connect-flash')
-const bcrypt        = require('bcrypt');
 const passport      = require('passport');
-const sessionSecret = require('./config/credentials')
+const sessionSecret = require('./config/data_credentials')
 const methodOverride = require("method-override")
-const multer        = require("multer")
 
 require('./config/auth')(passport)
 require('./database/');
@@ -33,6 +30,7 @@ app.use(passport.session());
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.message = req.flash('error');
+    res.locals.imgMessage = req.flash('imgError')
     next();
 })
 

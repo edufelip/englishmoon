@@ -158,7 +158,6 @@ module.exports = {
   },
 
   async changePhoto(req, res) {
-    console.log(req.file)
     // const email = req.user.email
     // const user = await User.findOne({
     //   where: {email: email}

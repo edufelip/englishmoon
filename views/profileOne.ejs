@@ -1,6 +1,13 @@
 <% include partials/header %>
 
 <div class="main">
+    <div class="profile-shadow"></div>
+    <div class="profile-delete-def">
+        <i class="fas fa-times cancel-delete"></i>
+        <h2>Informe sua senha</h2>
+        <input type="password">
+        <button>APAGAR CONTA</button>
+    </div>
     <div class="profileMain">
         <div class="profileLeft">
             <div class="profileContainer">
@@ -19,19 +26,23 @@
         <div class="profileRight">
             <div class="profileRight-box">
                 <div class="profileRight-box-left">
-                    <div class="box-photo">
+                    <div style="background-image: url(/uploads/1584665170617profile_picjpg.jpg);" class="box-photo">
 
                     </div>
                     <form id="photo-form" action="/users/photo" method="POST" enctype="multipart/form-data">
                         <input id="file-select" type="file" name="img">
                         <label for="file-select"> <i class="fas fa-images"></i> Selecione uma Foto </label>
-                        <!-- <button>Enviar</button> -->
+                        <p id="img-form-title"></p>
                     </form>
-                    <p id="img-form-title"></p>
+                    <% if (imgMessage) { %>
+                        <h5><%=imgMessage%></h5>
+                    <% } %>
+                    <div class="btn-container">
+                        <button id="imgBtn">Enviar</button>
+                    </div>
                     <div class="deleteAcc">
-                         <form action="/users?_method=DELETE" method="POST">
-                            <input type="text" name="email" value="edu_felip@hotmail.com" style="display: none;">
-                             <button>DELETAR CONTA</button>
+                         <form id="delete-form" action="/users?_method=DELETE" method="POST">
+                            <button id="delete-btn">DELETAR CONTA</button>
                          </form>
                      </div>
                 </div>

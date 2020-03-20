@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const fs = require('fs');
 const saltRounds = 10;
 
 const checkEmail = (mail) => {
@@ -61,7 +62,6 @@ const checkBirth = (date) => {
 module.exports = {
   async index(req, res) {
     const users = await User.findAll();
-
     return res.json(users);
   },
 
@@ -119,12 +119,13 @@ module.exports = {
   },
   
   async destroy(req, res) {
-    const email = req.user.email
-    const user = await User.findOne({
-      where: {email: email}
-    })
-    await user.destroy();
-    return res.redirect("/")
+    console.log("chegou aqui")
+    // const email = req.user.email
+    // const user = await User.findOne({
+    //   where: {email: email}
+    // })
+    // await user.destroy();
+    // return res.redirect("/")
   },
 
   async changePassword(req, res) {
@@ -158,11 +159,20 @@ module.exports = {
   },
 
   async changePhoto(req, res) {
-    // const email = req.user.email
-    // const user = await User.findOne({
-    //   where: {email: email}
-    // })
-    // user.photo = img
+    const email = req.user.email
+    const user = await User.findOne({
+      where: {email: email}
+    })
+    if(user.photo){
+      const path = "uploads/" + user.photo
+      try {
+        fs.unlinkSync(path)
+      } catch(err) {
+        console.log(err)
+      }
+    }
+    user.photo = req.file.filename
+    await user.save()
     return res.redirect("/profile/info")
   }
 };

@@ -7,7 +7,7 @@ const path = require('path')
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/')
+        cb(null, 'public/uploads/')
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + file.originalname)
@@ -81,7 +81,8 @@ routes.get("/logout", (req, res) => {
     res.redirect('/');
 });
 
-routes.put('/users', UserController.edit);
+routes.get('/users', UserController.index) //
+routes.put('/users', UserController.edit);  //
 routes.delete('/users', UserController.destroy);
 routes.post('/users', UserController.store);
 routes.post('/users/photo', (req, res) => {
@@ -94,11 +95,11 @@ routes.post('/users/photo', (req, res) => {
             }
             res.redirect("/profile/info")
         } else if (err) {
+            // console.log(err)
             req.flash('imgError', 'Imagem deve ser .jpeg, jpg ou .png')
             res.redirect("/profile/info")
         } else {
-            console.log(req.file)
-            // UserController.changePhoto(req, res);
+            UserController.changePhoto(req, res);
         }
     })
 });

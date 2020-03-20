@@ -9,6 +9,7 @@ class User extends Model {
       birthday: DataTypes.STRING,
       telephone: DataTypes.STRING,
       password: DataTypes.STRING,
+      photo: DataTypes.STRING
     }, {
       sequelize
     })

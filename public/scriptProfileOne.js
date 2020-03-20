@@ -12,6 +12,11 @@ const label = document.querySelector("label")
 const fileSelect = document.querySelector("#file-select")
 const title = document.querySelector("#img-form-title")
 const form = document.querySelector("#photo-form")
+const imgBtn = document.querySelector("#imgBtn")
+const deleteBtn = document.querySelector("#delete-btn")
+const deleteForm = document.querySelector(".profile-delete-def")
+const profShadow = document.querySelector(".profile-shadow")
+const cancel = document.querySelector(".cancel-delete")
 
 for(let i = 0; i < edit.length; i++){
     edit[i].addEventListener("click", () => {
@@ -30,13 +35,13 @@ label.addEventListener("mouseenter", () => {
     label.style.opacity = "0.8"
 })
 label.addEventListener("mouseleave", () => {
-    label.style.opacity = "0"
+    label.style.opacity = "0.2"
 })
 photoBox.addEventListener("mouseenter", () => {
     label.style.opacity = "0.8"
 })
 photoBox.addEventListener("mouseleave", () => {
-    label.style.opacity = "0"
+    label.style.opacity = "0.2"
 })
 
 fileSelect.addEventListener("change", () => {
@@ -57,8 +62,39 @@ fileSelect.addEventListener("change", () => {
     def.shift();
     def = def.join('')
     title.innerHTML = def;
+    imgBtn.style.visibility = "visible"
+    imgBtn.style.opacity = "1"
+})
+
+imgBtn.addEventListener("click", () => {
     form.submit()
+})
+
+deleteBtn.onclick = (evt) => {
+    profShadow.style.visibility = "visible"
+    profShadow.style.opacity = "1"
+    deleteForm.style.visibility = "visible"
+    deleteForm.style.opacity = "1"
+    return false
+}
+
+cancel.addEventListener("click", () => {
+    deleteForm.style.opacity = "0"
+    profShadow.style.opacity = "0"
+    setTimeout(() => {
+        profShadow.style.visibility = "hidden"
+        deleteForm.style.visibility = "hidden"
+    }, 300);
+})
+profShadow.addEventListener("click", () => {
+    deleteForm.style.opacity = "0"
+    profShadow.style.opacity = "0"
+    setTimeout(() => {
+        profShadow.style.visibility = "hidden"
+        deleteForm.style.visibility = "hidden"
+    }, 300);
 })
 
 optionBar[0].style.visibility = "visible"
 optionBtn[0].style.background = "#1f23ab15"
+

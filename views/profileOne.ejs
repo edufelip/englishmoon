@@ -55,12 +55,12 @@
                     <form action="/users?_method=PUT" method="POST">
                         <div class="profile-container">
                             <p>NOME</p>
-                            <span><p><%=currentUser.name%></p><i class="edit fas fa-pencil-alt"></i></span>
+                            <span class="span-fields"><p><%=currentUser.name%></p><i class="edit fas fa-pencil-alt"></i></span>
                             <input class="editField" type="text" name="name" value="<%=currentUser.name%>" maxlength="45">
                         </div>
                         <div class="profile-container">
                             <p class="exception">SEXO</p>
-                            <span><p>Masculino</p><i class="edit fas fa-pencil-alt"></i></span>
+                            <span class="span-fields"><p>Masculino</p><i class="edit fas fa-pencil-alt"></i></span>
                             <div class="sub-form">
                                 <% if(currentUser.gender == "male") { %>
                                     <input class="radio-input mg-left" type="radio" name="gender" value="Male" checked>
@@ -77,17 +77,17 @@
                         </div>
                         <div class="profile-container">
                             <p>TELEFONE</p>
-                            <span><p><%=currentUser.telephone%></p><i class="edit fas fa-pencil-alt"></i></span>
+                            <span class="span-fields"><p><%=currentUser.telephone%></p><i class="edit fas fa-pencil-alt"></i></span>
                             <input class="editField" type="text" name="telephone" maxlength="14" value="<%=currentUser.telephone%>">
                         </div>
                         <div class="profile-container">
                             <p>NASCIMENTO</p>
-                            <span><p><%=currentUser.birthday%></p><i class="edit fas fa-pencil-alt"></i></span>
+                            <span class="span-fields"><p><%=currentUser.birthday%></p><i class="edit fas fa-pencil-alt"></i></span>
                             <input class="editField" type="text" name="birthday" maxlength="10" value="<%=currentUser.birthday%>">
                         </div>
                         <div class="profile-container">
                             <p>E-MAIL</p>
-                            <span><p><%=currentUser.email%></p></span>
+                            <span class="span-fields"><p><%=currentUser.email%></p></span>
                             <input type="text" name="email" value="<%=currentUser.email%>">
                         </div>
                         <div class="profile-container">

@@ -111,9 +111,9 @@ module.exports = {
     })
     user.name = name;
     user.gender = gender;
-    user.birthday = birthday;
-    user.telephone = telephone;
-    user.email = email;
+    if(checkBirth(birthday)) user.birthday = birthday;
+    if(checkTel(telephone)) user.telephone = telephone;
+    if(checkEmail(email)) user.email = email;
     await user.save();
     return res.redirect("/profile/info");
   },

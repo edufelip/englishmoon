@@ -4,9 +4,14 @@
     <div class="profile-shadow"></div>
     <div class="profile-delete-def">
         <i class="fas fa-times cancel-delete"></i>
-        <h2>Informe sua senha</h2>
-        <input type="password">
-        <button>APAGAR CONTA</button>
+        <div class="dlt-container">
+            <h2>Informe sua senha</h2>
+            <form action="">
+                <input id="delete-form-def" type="password" placeholder="senha">
+                <button id="delete-btn-def">APAGAR CONTA</button>
+            </form>
+            <p id="dltErrorMsg"></p>
+        </div>
     </div>
     <div class="profileMain">
         <div class="profileLeft">
@@ -26,7 +31,7 @@
         <div class="profileRight">
             <div class="profileRight-box">
                 <div class="profileRight-box-left">
-                    <div style="background-image: url(/uploads/1584665170617profile_picjpg.jpg);" class="box-photo">
+                    <div style="background-image: url(/uploads/<%=currentUser.photo%>);" class="box-photo">
 
                     </div>
                     <form id="photo-form" action="/users/photo" method="POST" enctype="multipart/form-data">
@@ -50,33 +55,40 @@
                     <form action="/users?_method=PUT" method="POST">
                         <div class="profile-container">
                             <p>NOME</p>
-                            <span><p>Eduardo Felipe</p><i class="edit fas fa-pencil-alt"></i></span>
-                            <input class="editField" type="text" name="name" value="Eduardo Felipe" maxlength="45">
+                            <span><p><%=currentUser.name%></p><i class="edit fas fa-pencil-alt"></i></span>
+                            <input class="editField" type="text" name="name" value="<%=currentUser.name%>" maxlength="45">
                         </div>
                         <div class="profile-container">
                             <p class="exception">SEXO</p>
                             <span><p>Masculino</p><i class="edit fas fa-pencil-alt"></i></span>
                             <div class="sub-form">
-                                <input class="radio-input mg-left" type="radio" name="gender" value="Male" checked>
-                                <p>Masculino</p>
-                                <input class="radio-input" type="radio" name="gender" value="Female">
-                                <p>Feminino</p>
+                                <% if(currentUser.gender == "male") { %>
+                                    <input class="radio-input mg-left" type="radio" name="gender" value="Male" checked>
+                                    <p>Masculino</p>
+                                    <input class="radio-input" type="radio" name="gender" value="Female">
+                                    <p>Feminino</p>
+                                <% } else { %>
+                                    <input class="radio-input mg-left" type="radio" name="gender" value="Male">
+                                    <p>Masculino</p>
+                                    <input class="radio-input" type="radio" name="gender" value="Female" checked>
+                                    <p>Feminino</p>
+                                <% } %>
                             </div>
                         </div>
                         <div class="profile-container">
                             <p>TELEFONE</p>
-                            <span><p>(21) 985670564</p><i class="edit fas fa-pencil-alt"></i></span>
-                            <input class="editField" type="text" name="telephone" maxlength="14" value="(21) 985670564">
+                            <span><p><%=currentUser.telephone%></p><i class="edit fas fa-pencil-alt"></i></span>
+                            <input class="editField" type="text" name="telephone" maxlength="14" value="<%=currentUser.telephone%>">
                         </div>
                         <div class="profile-container">
                             <p>NASCIMENTO</p>
-                            <span><p>04/06/1998</p><i class="edit fas fa-pencil-alt"></i></span>
-                            <input class="editField" type="text" name="birthday" maxlength="10" value="04/06/1998">
+                            <span><p><%=currentUser.birthday%></p><i class="edit fas fa-pencil-alt"></i></span>
+                            <input class="editField" type="text" name="birthday" maxlength="10" value="<%=currentUser.birthday%>">
                         </div>
                         <div class="profile-container">
                             <p>E-MAIL</p>
-                            <span><p>edu_felip@hotmail.com</p></span>
-                            <input type="text" name="email" value="edu_felip@hotmail.com">
+                            <span><p><%=currentUser.email%></p></span>
+                            <input type="text" name="email" value="<%=currentUser.email%>">
                         </div>
                         <div class="profile-container">
                             <a href="/profile/password">MUDAR SENHA</a>

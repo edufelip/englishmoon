@@ -1473,6 +1473,45 @@ i {
 .main .profile-delete-def i:hover {
   cursor: pointer;
 }
+.main .profile-delete-def .dlt-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.main .profile-delete-def .dlt-container h2 {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-size: 20px;
+  font-family: "Open Sans";
+  margin: 10px 0 0 0;
+  opacity: 0.8;
+}
+.main .profile-delete-def .dlt-container input {
+  width: 60%;
+  display: block;
+  margin: 15px auto 0 auto;
+}
+.main .profile-delete-def .dlt-container p {
+  width: 100%;
+  height: 13px;
+  font-size: 13px;
+  margin: 10px 0 0 0;
+  color: #AB1616;
+  text-align: center;
+}
+.main .profile-delete-def .dlt-container button {
+  display: block;
+  width: 40%;
+  height: 25px;
+  margin: 20px auto 0 auto;
+  background-color: #AB1616;
+  border: 0;
+  color: white;
+}
+.main .profile-delete-def .dlt-container button:hover {
+  cursor: pointer;
+}
 .main .profileMain {
   width: 100%;
   height: 90vh;
@@ -1547,7 +1586,8 @@ i {
   margin: 10px auto 0 auto;
   border: 1px solid #00000040;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .main .profileMain .profileRight .profileRight-box .profileRight-box-left form {
   display: flex;
@@ -1868,6 +1908,22 @@ i {
   .main .oneArticle .oneApart {
     display: none;
   }
+  .main .profileMain {
+    flex-direction: column;
+    height: 140vh;
+  }
+  .main .profileMain .profileLeft {
+    flex-direction: row;
+    flex: 0;
+    height: 120px;
+  }
+  .main .profileMain .profileRight {
+    flex: 0;
+    height: 100%;
+  }
+  .main .profileMain .profileRight .profileRight-box {
+    height: 600px;
+  }
 }
 @media (max-width: 960px) {
   .main .register-main {
@@ -1996,6 +2052,45 @@ i {
   .main .register-main .register-main-container .register-main-sectionOne {
     margin-top: 25px;
   }
+  .main .profileMain {
+    margin: 25px 0 0 0;
+  }
+}
+@media (max-width: 790px) {
+  .main .profileMain {
+    height: 1000px;
+  }
+  .main .profileMain .profileLeft {
+    flex: 1;
+  }
+  .main .profileMain .profileRight {
+    flex: 16;
+  }
+  .main .profileMain .profileRight .profileRight-box {
+    flex-direction: column;
+    width: 80%;
+    height: 85%;
+  }
+  .main .profileMain .profileRight .profileRight-box .profileRight-box-left {
+    height: 300px;
+  }
+  .main .profileMain .profileRight .profileRight-box .profileRight-box-left .box-photo {
+    width: 160px;
+    height: 160px;
+  }
+  .main .profileMain .profileRight .profileRight-box .profileRight-box-left form label {
+    padding-left: 9px;
+    padding-right: 10px;
+  }
+  .main .profileMain .profileRight .profileRight-box .profileRight-box-left h5 {
+    text-align: center;
+  }
+  .main .profileMain .profileRight .profileRight-box .profileRight-box-left .btn-container button {
+    width: 100px;
+  }
+  .main .profileMain .profileRight .profileRight-box .profileRight-box-left .deleteAcc {
+    margin-top: 20px;
+  }
 }
 @media (max-width: 640px) {
   .main .img-container main .container h1, .main .img-container main .container h2 {
@@ -2026,6 +2121,13 @@ i {
   }
   .header .dropdown-aut .form-container form input {
     width: 50vw;
+  }
+
+  .main .profileMain .profileRight .profileRight-box {
+    width: 100%;
+  }
+  .main .profileMain .profileRight .profileRight-box .profileRight-box-right form {
+    width: 100%;
   }
 }
 @media (max-width: 530px) {

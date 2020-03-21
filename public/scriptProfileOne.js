@@ -14,9 +14,13 @@ const title = document.querySelector("#img-form-title")
 const form = document.querySelector("#photo-form")
 const imgBtn = document.querySelector("#imgBtn")
 const deleteBtn = document.querySelector("#delete-btn")
-const deleteForm = document.querySelector(".profile-delete-def")
+const deleteBtnDef = document.querySelector("#delete-btn-def")
+const deleteBlock = document.querySelector(".profile-delete-def")
+const deleteForm = document.querySelector("#delete-form")
+const deleteFormDef = document.querySelector("#delete-form-def")
 const profShadow = document.querySelector(".profile-shadow")
 const cancel = document.querySelector(".cancel-delete")
+const deleteErrorMsg = document.querySelector("#dltErrorMsg")
 
 for(let i = 0; i < edit.length; i++){
     edit[i].addEventListener("click", () => {
@@ -73,27 +77,49 @@ imgBtn.addEventListener("click", () => {
 deleteBtn.onclick = (evt) => {
     profShadow.style.visibility = "visible"
     profShadow.style.opacity = "1"
-    deleteForm.style.visibility = "visible"
-    deleteForm.style.opacity = "1"
+    deleteBlock.style.visibility = "visible"
+    deleteBlock.style.opacity = "1"
     return false
 }
 
 cancel.addEventListener("click", () => {
-    deleteForm.style.opacity = "0"
+    deleteBlock.style.opacity = "0"
     profShadow.style.opacity = "0"
     setTimeout(() => {
         profShadow.style.visibility = "hidden"
-        deleteForm.style.visibility = "hidden"
+        deleteBlock.style.visibility = "hidden"
     }, 300);
 })
 profShadow.addEventListener("click", () => {
-    deleteForm.style.opacity = "0"
+    deleteBlock.style.opacity = "0"
     profShadow.style.opacity = "0"
     setTimeout(() => {
         profShadow.style.visibility = "hidden"
-        deleteForm.style.visibility = "hidden"
+        deleteBlock.style.visibility = "hidden"
     }, 300);
 })
+
+deleteBtnDef.onclick = (evt) => {
+    const data = {
+        "password": deleteFormDef.value
+    }
+    fetch('http://localhost:3000/users/password', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then((response) => {
+        return response.json()
+    }).then((data) => {
+        if(data){
+            deleteForm.submit()
+        } else {
+            deleteErrorMsg.innerHTML = "A senha está incorreta"
+        }
+    })
+    return false
+}
 
 optionBar[0].style.visibility = "visible"
 optionBtn[0].style.background = "#1f23ab15"

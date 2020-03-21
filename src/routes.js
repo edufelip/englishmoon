@@ -41,20 +41,20 @@ routes.get("/books", (req, res) => {
 routes.get("/courses", (req, res) => {
     res.render("underConstruction");
 });
-
 routes.get("/contact", (req, res) => {
     res.render("contact");
 });
 
-routes.get("/profile/info", (req, res) => {
+routes.get("/profile/info", log.isLoggedIn, (req, res) => {
     res.render("profileOne");
 });
-routes.get("/profile/password", (req, res) => {         // add isloged
+routes.get("/profile/password", log.isLoggedIn, (req, res) => {
     res.render("profilePassword");
 });
-routes.post("/profile/password", UserController.changePassword);   // add isloged
+routes.post("/profile/password", log.isLoggedIn, UserController.changePassword);
 routes.get("/profile/courses", log.isLoggedIn, (req, res) => {
-    res.render("userCourses");
+    // res.render("userCourses");
+    res.json("page unavailable yet")
 });
 
 routes.get("/register", log.isNotLoggedIn, (req, res) => {
@@ -85,7 +85,8 @@ routes.get('/users', UserController.index) //
 routes.put('/users', UserController.edit);  //
 routes.delete('/users', UserController.destroy);
 routes.post('/users', UserController.store);
-routes.post('/users/photo', (req, res) => {
+
+routes.post('/users/photo', log.isLoggedIn, (req, res) => {
     upload(req, res, function(err){
         if(err instanceof multer.MulterError) {
             if(err.message == 'File too large') {
@@ -95,7 +96,6 @@ routes.post('/users/photo', (req, res) => {
             }
             res.redirect("/profile/info")
         } else if (err) {
-            // console.log(err)
             req.flash('imgError', 'Imagem deve ser .jpeg, jpg ou .png')
             res.redirect("/profile/info")
         } else {
@@ -103,6 +103,7 @@ routes.post('/users/photo', (req, res) => {
         }
     })
 });
+routes.post('/users/password', log.isLoggedIn, UserController.checkPass)
 
 routes.get('/users/:user_id/posts', PostController.index);
 routes.post('/users/:user_id/posts', PostController.store);

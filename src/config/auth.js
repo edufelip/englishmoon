@@ -36,7 +36,6 @@ module.exports = function(passport){
                         message: 'SENHA INCORRETA'
                     })
                 }
-                console.log(user)
                 return done(null, user)
             }).catch((err) => {
                 return done(null, false, {

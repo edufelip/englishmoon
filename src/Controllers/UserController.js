@@ -119,13 +119,12 @@ module.exports = {
   },
   
   async destroy(req, res) {
-    console.log("chegou aqui")
-    // const email = req.user.email
-    // const user = await User.findOne({
-    //   where: {email: email}
-    // })
-    // await user.destroy();
-    // return res.redirect("/")
+    const email = req.user.email
+    const user = await User.findOne({
+      where: {email: email}
+    })
+    await user.destroy();
+    return res.redirect("/")
   },
 
   async changePassword(req, res) {
@@ -174,5 +173,13 @@ module.exports = {
     user.photo = req.file.filename
     await user.save()
     return res.redirect("/profile/info")
+  },
+
+  async checkPass(req, res){
+    const userPass = req.user.password
+    const bodyPass = req.body.password
+    const check = bcrypt.compareSync(bodyPass, userPass)
+    console.log(check)
+    return res.json(check)
   }
 };

@@ -31,6 +31,7 @@ app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.message = req.flash('error');
     res.locals.imgMessage = req.flash('imgError')
+    res.locals.dltPass = req.flash('dltError')
     next();
 })
 

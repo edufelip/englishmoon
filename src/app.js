@@ -5,8 +5,8 @@ const sanitizer     = require("express-sanitizer");
 const session       = require('express-session');
 const flash         = require('connect-flash')
 const passport      = require('passport');
-const sessionSecret = require('./config/data_credentials')
-const methodOverride = require("method-override")
+const sessionSecret = require('./config/data_credentials');
+const methodOverride = require("method-override");
 
 require('./config/auth')(passport)
 require('./database/');

@@ -2,8 +2,13 @@ const express = require("express");
 const passport = require("passport");
 const routes = express.Router();
 const multer = require("multer")
-const log = require('./config/islogged')
 const path = require('path')
+
+const log = require('./config/islogged')
+const secret = require("./config/data_credentials")
+const transporter = require("./config/mailer")
+const UserController = require('./controllers/UserController');
+const PostController = require('./controllers/PostController');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -27,8 +32,7 @@ const upload = multer({
     }
 }).single('img')
 
-const UserController = require('./controllers/UserController');
-const PostController = require('./controllers/PostController');
+// 
 
 routes.get("/", PostController.list);
 
@@ -41,9 +45,24 @@ routes.get("/books", (req, res) => {
 routes.get("/courses", (req, res) => {
     res.render("underConstruction");
 });
+
 routes.get("/contact", (req, res) => {
     res.render("contact");
 });
+routes.post("/contact", (req, res) => {
+    transporter.sendMail({
+        from: secret.email.user,
+        to: secret.email.user,
+        replyTo: req.body.email,
+        subject: req.body.name + " - Contact",
+        text: req.body.msg
+    }).then( info => {
+        req.flash("error", "Sua mensagem foi enviada com sucesso")
+        return res.redirect("/contact")
+    }).catch( err => {
+        return res.json(err)
+    })
+})
 
 routes.get("/profile/info", log.isLoggedIn, (req, res) => {
     res.render("profileOne");

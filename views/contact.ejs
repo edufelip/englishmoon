@@ -22,7 +22,7 @@
         </div>
         <div class="contactTwo">
             <h1>Nos mande sua mensagem</h1>
-            <form action="">
+            <form action="/contact" method="POST">
                 <div class="contact-block">
                     <div class="contact-block-word">
                         <p>SEU NOME</p>
@@ -45,6 +45,9 @@
                     <button>ENVIAR</button>
                 </div>
             </form>
+            <% if(message) { %>
+                <h5><%=message%></h5>
+            <% } %>
 
         </div>
     </div>

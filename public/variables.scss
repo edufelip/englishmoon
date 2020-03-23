@@ -1,0 +1,44 @@
+$mainColor: rgb(241, 241, 241);
+$mainBlue: rgb(50, 40, 199);
+$hoverBlue: #110f8a;
+$footerBlue: rgb(29, 30, 78);
+$mainBlack: rgba(0, 0, 0, 0.651);
+$mainRed: #AB1616;
+
+*{
+    margin: 0;
+    font-family: 'Open Sans';
+}
+.flexOne {
+    flex: 1;
+}
+.flexTwo {
+    flex: 2;
+}
+.flex {
+    display: flex;
+}
+i{
+    color: $mainBlack;
+}
+.shadow{
+    position: absolute;
+    width: 100%;
+    height: 2000px;
+    background-color: #00000030;
+    transition: opacity 0.3s linear;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 2;
+}
+.drop-translate{
+    transform: translate3d(250px, 0, 0);
+}
+.search-translate{
+    transform: translate3d(60px, 0, 0);
+}
+
+:root {
+    --position-y: 0px;
+    --slider-x: 0px;
+}

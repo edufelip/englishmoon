@@ -1356,6 +1356,7 @@ i {
 }
 .main .img-container {
   width: 100%;
+  min-height: 560px;
   height: 90vh;
   background-image: url(/images/frame7.jpg);
   background-position: center center;

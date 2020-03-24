@@ -2,6 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 const saltRounds = 10;
+const transporter = require('../config/mailer')
 
 const checkEmail = (mail) => {
   let check = false;
@@ -100,6 +101,15 @@ module.exports = {
     } else {
       const hash = await bcrypt.hash(password, saltRounds);
       const user = await User.create(Object.assign(req.body, {password : hash}));
+
+      const mail = {
+        from: 'eduardofelipi@gmail.com',
+        to: 'edu_felip@hotmail.com',
+        subject: 'testando',
+        template: 'registerEmail'
+      }
+      transporter.sendMail(mail).then(console.log).catch(console.error)
+
       return res.json(user);
     }
   },

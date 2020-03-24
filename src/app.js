@@ -1,15 +1,29 @@
-const express       = require ("express");
-const app           = express();
-const bodyParser    = require("body-parser");
-const sanitizer     = require("express-sanitizer");
-const session       = require('express-session');
-const flash         = require('connect-flash')
-const passport      = require('passport');
-const sessionSecret = require('./config/data_credentials');
+const express        = require ("express");
+const app            = express();
+const bodyParser     = require("body-parser");
+const sanitizer      = require("express-sanitizer");
+const session        = require('express-session');
+const flash          = require('connect-flash')
+const passport       = require('passport');
+const sessionSecret  = require('./config/data_credentials');
 const methodOverride = require("method-override");
+const transporter    = require("./config/mailer");
+const hbs            = require("nodemailer-express-handlebars");
 
 require('./config/auth')(passport)
 require('./database/');
+
+transporter.use('compile', hbs({
+    viewEngine: {
+        extName: '.ejs',
+        partialsDir: 'views/partials',
+        layoutsDir: 'views/emailTemplates',
+        defaultLayout: ''
+    },
+    viewPath: 'views/emailTemplates',
+    extName: '.ejs'
+}))
+
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
@@ -17,7 +31,6 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(sanitizer());
 app.use(methodOverride("_method"))
-
 app.use(session({
     secret: sessionSecret.session.secret,
     resave: true,
@@ -35,8 +48,14 @@ app.use((req, res, next) => {
     next();
 })
 
-const routes = require("./routes");
+const routes = require("./routes/routes");
+const authRoutes = require("./routes/authRoutes");
+const profileRoutes = require("./routes/profileRoutes");
+const userRoutes = require("./routes/userRoutes");
 app.use(routes);
+app.use(authRoutes);
+app.use("/profile", profileRoutes);
+app.use("/users", userRoutes);
 
 app.listen(3000, (err) => {
     if(!err) {

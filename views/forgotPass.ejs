@@ -1,0 +1,25 @@
+<% include partials/header %>
+<div class="main">
+    <div id="forgotMain">
+        <div class="forgotBlock flex">
+            <div class="forgotStatus">
+                
+            </div>
+            <h2 class="forgotBlock__title alignCenter">Recupere sua senha</h2>
+            <p class="forgotBlock__caption alignCenter">Nos informe seu e-mail</p>
+            <form class="forgotBlock__form alignCenter" action="/forgot_password" method="POST">
+                <input class="forgotBlock__inputEmail alignCenter" type="text" name="email" placeholder="e-mail">
+                <div class="g-recaptcha" data-sitekey="6LcUE-QUAAAAAHwNtie6jVebOwevxElHFS2vTdBo"></div>
+                <button class="forgotBlock__button alignCenter">Enviar</button>
+            </form>
+            <p class="forgotBlock__substring alignCenter">Você receberá um e-mail com um link da EnglishMoon para redefinição de sua senha</p>
+        </div>
+    </div>
+    <% include partials/footer %>
+</div>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script type="text/javascript" src="/scriptHeader.js"></script>
+<script type="text/javascript" src="/scriptForgotPass.js"></script>
+</body>
+</html>

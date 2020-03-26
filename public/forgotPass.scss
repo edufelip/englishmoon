@@ -1,0 +1,73 @@
+#forgotMain{
+    font-family: 'Nunito', sans-serif;
+    height: 65vh;
+    min-height: 400px;
+    background-color: whitesmoke;
+    .forgotBlock{
+        background-color: white;
+        height: 100%;
+        width: 40%;
+        margin: 0 auto;
+        flex-direction: column;
+        .forgotStatus{
+            height: 6px;
+            width: 80%;
+            margin: 30px auto 10px auto;
+            border-radius: 15px;
+            background: linear-gradient(to right, green 50%, rgb(233, 233, 233) 50%);
+            background-size: 100% 100%;
+            background-position: top left;
+            transition: all 0.5s ease;
+        }
+        .alignCenter {
+            display: block;
+            width: auto;
+            margin: 0 auto;
+        }
+        .forgotBlock__title{
+            opacity: 0.8;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        .forgotBlock__caption{
+            opacity: 0.7;
+            width: 300px;
+            margin-bottom: 2px;
+            text-align: start;
+        }
+        .forgotBlock__inputEmail{
+            width: 286px;
+            margin-left: 0px;
+            border: 0;
+            background-color: rgb(235, 235, 235);
+            border-radius: 4px;
+            padding: 2px;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-bottom: 10px;
+            height: 25px;
+            transition: all 0.4s ease;
+            outline: none;
+            &:focus {
+                box-shadow: 0px 0px 1px 1px rgba(0, 0, 146, 0.7);
+                background-color: white;
+            }
+        }
+        .forgotBlock__button{
+            margin-top: 20px;
+            border: 1px solid $hoverBlue;
+            background-color: transparent;
+            margin-bottom: 10px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .forgotBlock__substring{
+            font-size: 13px;
+            opacity: 0.6;
+            width: 300px;
+            text-align: start;
+            margin-top: 10px;
+        }
+    }
+}

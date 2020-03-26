@@ -76,32 +76,21 @@ module.exports = {
       where: {email: email}
     }) : null;
 
-    const errorName = foundUserName || !name;
-    const errorGender = !gender;
-    const errorBirth = !checkBirth(birthday);
-    const errorTelephone = !checkTel(telephone);
-    const errorEmailWrong = !checkEmail(email);
-    const errorEmailUsed = foundUserEmail;
-    const errorPassword = !checkPass(password);
-    const errorPasswordConfirm = password === passwordConfirm ? false : true;
-
-    let problems = {
-      'name': errorName,
-      'gender': errorGender,
-      'birth': errorBirth,
-      'telephone': errorTelephone,
-      'emailWrong': errorEmailWrong,
-      'emailUsed': errorEmailUsed,
-      'password': errorPassword,
-      'passwordConfirm' : errorPasswordConfirm
-    }
+    const problems = {}
+    problems.errorName = foundUserName || !name;
+    problems.errorGender = !gender;
+    problems.errorBirth = !checkBirth(birthday);
+    problems.errorTelephone = !checkTel(telephone);
+    problems.errorEmailWrong = !checkEmail(email);
+    problems.errorEmailUsed = foundUserEmail;
+    problems.errorPassword = !checkPass(password);
+    problems.errorPasswordConfirm = password === passwordConfirm ? false : true;
 
     if (errorName || errorGender || errorBirth || errorTelephone || errorEmailUsed || errorEmailWrong || errorPassword || errorPasswordConfirm){
       return res.json(problems);
     } else {
       const hash = await bcrypt.hash(password, saltRounds);
       const user = await User.create(Object.assign(req.body, {password : hash}));
-
       const mail = {
         from: 'eduardofelipi@gmail.com',
         to: 'edu_felip@hotmail.com',
@@ -110,7 +99,8 @@ module.exports = {
       }
       transporter.sendMail(mail).then(console.log).catch(console.error)
 
-      return res.json(user);
+      const response = {id: "true"}
+      return res.json(response);
     }
   },
 
@@ -191,5 +181,15 @@ module.exports = {
     const check = bcrypt.compareSync(bodyPass, userPass)
     console.log(check)
     return res.json(check)
+  },
+
+  async resetPass(req, res){
+    const token = req.params
+    const decoded = jwt.verify(token, secret.jwt.secret)
+    const user = await User.findOne({
+      where: {email: decoded.user}
+    })
+    if(user.password == decoded.pass) return res.render("/resetPass", {email: decoded.user})
+    return res.status(400).send({error: "Token is invalid"})
   }
 };

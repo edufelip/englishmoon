@@ -2,6 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 const request = require("request");
+const jwt = require("jsonwebtoken")
 const saltRounds = 10;
 const transporter = require('../config/mailer');
 const check = require('../config/checkFunctions')
@@ -42,11 +43,10 @@ module.exports = {
       const mail = {
         from: 'eduardofelipi@gmail.com',
         to: 'edu_felip@hotmail.com',
-        subject: 'testando',
+        subject: 'Bem-vindo à EnglishMoon',
         template: 'registerEmail'
       }
       transporter.sendMail(mail).then(console.log).catch(console.error)
-
       const response = {id: "true"}
       return res.json(response);
     }
@@ -134,16 +134,33 @@ module.exports = {
     const email = req.body.email
     const user = await User.findOne({
       where: {email: email}
-    }).catch(err => console.log(err))
+    })
+    .catch(err => console.log(err))
+    
     if(!user) return res.json({'status': false, 'msg': 'Não existe usuário com esse e-mail'})
     const ver = req.body.captcha
-    if(ver === '' || ver === undefined || ver === null) return res.json({'status': false, 'msg': 'please select captcha'})
     const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${secret.captcha.key}&response=${ver}&remoteip=${req.connection.remoteAddress}`
     request(verifyUrl, (err, response, body) => {
         if(err) console.log(err)
         body = JSON.parse(body)
         if(body.success !== undefined && !body.success) return res.json({'status': false, 'msg': 'failed verification'})
-        return res.json({'status': true, 'msg': 'captcha passed'})
+        const info = {
+          user: user.email,
+          pass: user.password
+        }
+        const token = jwt.sign({info}, secret.jwt.secret, {expiresIn: 3600})
+        const link = `http://localhost:3000/reset_password?cd=${token}`
+        const mail = {
+          to: email,
+          from: 'eduardofelipi@gmail.com',
+          subject: 'Recupere sua senha',
+          template: 'passResetEmail',
+          context: {link}
+        }
+        transporter.sendMail(mail).then((response)=>{
+          console.log("e-mail enviado")
+          return res.json({'status': true, 'msg': 'captcha passed'})
+        })
     })
   },
 

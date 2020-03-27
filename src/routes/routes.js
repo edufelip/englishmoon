@@ -19,18 +19,20 @@ routes.get("/reset_password", (req, res) => {
     res.render("resetPass")
 })
 
-routes.post("/forgot_password", (req, res) => {
+routes.get("/teste", (req, res) => {
     const info = {
         user: "edu_felip@hotmail.com",
         pass: "123456"
     }
     const token = jwt.sign({info}, secret.jwt.secret, {expiresIn: 3600})
-    const link = "http://localhost:3000/users/" + token
+    const link = `http://localhost:3000/teste?cd=${token}`
+    console.log(token)
+    console.log(link)
     const mail = {
         to: 'edu_felip@hotmail.com',
         from: 'eduardofelipi@gmail.com',
         subject: 'testando',
-        template: 'registerEmail',
+        template: 'passResetEmail',
         context: {link}
     }
     transporter.sendMail(mail).then(console.log).catch(console.error)

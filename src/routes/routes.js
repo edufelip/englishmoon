@@ -3,7 +3,8 @@ const routes = express.Router();
 const passport = require("passport");
 const log = require('../config/islogged')
 const secret = require("../config/data_credentials")
-const PostController = require('../controllers/PostController');
+const PostController = require('../Controllers/PostController');
+const UserController = require('../Controllers/UserController')
 const transporter = require('../config/mailer')
 const jwt = require("jsonwebtoken")
 const request = require("request")
@@ -12,20 +13,10 @@ routes.get("/forgot_password", (req, res) => {
     res.render("forgotPass")
 })
 
+routes.post("/forgot_password", UserController.verifyEmailAndCaptcha)
+
 routes.get("/reset_password", (req, res) => {
     res.render("resetPass")
-})
-
-routes.post("/verify", (req, res) => {
-    const ver = req.body.captcha
-    if(ver === '' || ver === undefined || ver === null) return res.json({'status': false, 'msg': 'please select captcha'})
-    const verifyUrl = 'https://google.com/recaptcha/api/siteverify?secret='+secret.captcha.key+'&response='+ver+'&remoteip='+req.connection.remoteAddress
-    request(verifyUrl, (err, response, body) => {
-        body = JSON.parse(body)
-        if(body.success !== undefined && !body.success) return res.json({'status': false, 'msg': 'failed verification'})
-        console.log("chegou aqui")
-        return res.json({'status': true, 'msg': 'captcha passed'})
-    })
 })
 
 routes.post("/forgot_password", (req, res) => {

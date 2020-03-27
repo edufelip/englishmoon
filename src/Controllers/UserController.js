@@ -1,64 +1,12 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
+const request = require("request");
 const saltRounds = 10;
-const transporter = require('../config/mailer')
+const transporter = require('../config/mailer');
+const check = require('../config/checkFunctions')
+const secret = require('../config/data_credentials')
 
-const checkEmail = (mail) => {
-  let check = false;
-  if(!mail) {
-    return check
-  } else {
-    let detach = mail.split('');
-    let final = detach.slice(detach.length-4, detach.length);
-    final = final.join('');
-    if (final != '.com'){
-      return false;
-    } else {
-      for(let i = 1; i < detach.length; i++){
-        if (detach[i] === "@") {
-          check = true;
-        }
-      }
-      return check;
-    }
-  }
-}
-const checkPass = (pass) => {
-  let check = true;
-  if(!pass){
-    check = false;
-    return check;
-  } else {
-    let detach = pass.split('');
-    if(detach.length < 6){
-      check = false;
-    }
-    return check;
-  }
-}
-const checkTel = (tel) => {
-  let check = true;
-  if(!tel){
-    check = false;
-    return check;
-  }else {
-    let detach = tel.split('');
-    if(detach[0] != '(' || detach[3] != ')' || detach[4] != ' ' || !tel) check = false;
-    return check;
-  }
-}
-const checkBirth = (date) => {
-  let check = true;
-  if(!date){
-    check = false;
-    return check;
-  } else {
-    let detach = date.split('');
-    if(detach[2] != '/' || detach[5] != '/' || !date) check = false;
-    return check;
-  }
-}
 
 module.exports = {
   async index(req, res) {
@@ -77,13 +25,13 @@ module.exports = {
     }) : null;
 
     const problems = {}
-    problems.errorName = foundUserName || !name;
+    problems.errorName = foundUserName || !name; 
     problems.errorGender = !gender;
-    problems.errorBirth = !checkBirth(birthday);
-    problems.errorTelephone = !checkTel(telephone);
-    problems.errorEmailWrong = !checkEmail(email);
+    problems.errorBirth = !check.checkBirth(birthday);
+    problems.errorTelephone = !check.checkTel(telephone);
+    problems.errorEmailWrong = !check.checkEmail(email);
     problems.errorEmailUsed = foundUserEmail;
-    problems.errorPassword = !checkPass(password);
+    problems.errorPassword = !check.checkPass(password);
     problems.errorPasswordConfirm = password === passwordConfirm ? false : true;
 
     if (errorName || errorGender || errorBirth || errorTelephone || errorEmailUsed || errorEmailWrong || errorPassword || errorPasswordConfirm){
@@ -111,9 +59,9 @@ module.exports = {
     })
     user.name = name;
     user.gender = gender;
-    if(checkBirth(birthday)) user.birthday = birthday;
-    if(checkTel(telephone)) user.telephone = telephone;
-    if(checkEmail(email)) user.email = email;
+    if(check.checkBirth(birthday)) user.birthday = birthday;
+    if(check.checkTel(telephone)) user.telephone = telephone;
+    if(check.checkEmail(email)) user.email = email;
     await user.save();
     return res.redirect("/profile/info");
   },
@@ -175,12 +123,28 @@ module.exports = {
     return res.redirect("/profile/info")
   },
 
-  async checkPass(req, res){
+  async verifyPass(req, res){
     const userPass = req.user.password
     const bodyPass = req.body.password
-    const check = bcrypt.compareSync(bodyPass, userPass)
-    console.log(check)
-    return res.json(check)
+    const verify = bcrypt.compareSync(bodyPass, userPass)
+    return res.json(verify)
+  },
+
+  async verifyEmailAndCaptcha(req, res){
+    const email = req.body.email
+    const user = await User.findOne({
+      where: {email: email}
+    }).catch(err => console.log(err))
+    if(!user) return res.json({'status': false, 'msg': 'Não existe usuário com esse e-mail'})
+    const ver = req.body.captcha
+    if(ver === '' || ver === undefined || ver === null) return res.json({'status': false, 'msg': 'please select captcha'})
+    const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${secret.captcha.key}&response=${ver}&remoteip=${req.connection.remoteAddress}`
+    request(verifyUrl, (err, response, body) => {
+        if(err) console.log(err)
+        body = JSON.parse(body)
+        if(body.success !== undefined && !body.success) return res.json({'status': false, 'msg': 'failed verification'})
+        return res.json({'status': true, 'msg': 'captcha passed'})
+    })
   },
 
   async resetPass(req, res){

@@ -50,7 +50,7 @@ routes.post('/photo', log.isLoggedIn, (req, res) => {
         }
     })
 });
-routes.post('/password', log.isLoggedIn, UserController.checkPass)
+routes.post('/password', log.isLoggedIn, UserController.verifyPass)
 
 routes.get('/:user_id/posts', PostController.index);
 routes.post('/:user_id/posts', PostController.store);

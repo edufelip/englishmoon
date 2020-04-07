@@ -31,9 +31,11 @@ module.exports = {
     problems.errorBirth = !check.checkBirth(birthday);
     problems.errorTelephone = !check.checkTel(telephone);
     problems.errorEmailWrong = !check.checkEmail(email);
-    problems.errorEmailUsed = foundUserEmail;
+    problems.errorEmailUsed = foundUserEmail ? true : false;
     problems.errorPassword = !check.checkPass(password);
     problems.errorPasswordConfirm = password === passwordConfirm ? false : true;
+
+    const {errorName, errorGender, errorBirth, errorTelephone, errorEmailWrong, errorEmailUsed, errorPassword, errorPasswordConfirm} = problems
 
     if (errorName || errorGender || errorBirth || errorTelephone || errorEmailUsed || errorEmailWrong || errorPassword || errorPasswordConfirm){
       return res.json(problems);
@@ -42,7 +44,7 @@ module.exports = {
       const user = await User.create(Object.assign(req.body, {password : hash}));
       const mail = {
         from: 'eduardofelipi@gmail.com',
-        to: 'edu_felip@hotmail.com',
+        to: email,
         subject: 'Bem-vindo à EnglishMoon',
         template: 'registerEmail'
       }
@@ -158,19 +160,19 @@ module.exports = {
           context: {link}
         }
         transporter.sendMail(mail).then((response)=>{
-          console.log("e-mail enviado")
           return res.json({'status': true, 'msg': 'captcha passed'})
         })
     })
   },
 
   async resetPass(req, res){
-    const token = req.params
+    const token = req.query.cd
     const decoded = jwt.verify(token, secret.jwt.secret)
+    if(!decoded) return res.status(400).send({error: 'Token invalido'})
     const user = await User.findOne({
-      where: {email: decoded.user}
+      where: {email: decoded.info.user}
     })
-    if(user.password == decoded.pass) return res.render("/resetPass", {email: decoded.user})
-    return res.status(400).send({error: "Token is invalid"})
+    if(user.password !== decoded.info.pass) return res.status(400).send({error: "Token invalido"})
+    return res.render("resetPass", {email: decoded.user})
   }
 };

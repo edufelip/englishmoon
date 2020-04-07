@@ -1,15 +1,16 @@
 const express = require("express");
 const routes = express.Router();
 const passport = require("passport");
+const limiter = require("../config/rateLimiter")
 
-routes.post("/login", passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/",
+routes.post("/login", [limiter, passport.authenticate("local", {
+    successRedirect: "contact",
+    failureRedirect: "contact",
     failureFlash: true
-}), function(req, res){
+})], function(req, res){
 });
 
-routes.get("/google", passport.authenticate('google', {
+routes.get("/google", limiter, passport.authenticate('google', {
     scope: ['openid', 'email', 'profile']
 }))
 

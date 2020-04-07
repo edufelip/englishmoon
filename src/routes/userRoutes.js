@@ -5,6 +5,7 @@ const path = require('path')
 const log = require('../config/islogged')
 const UserController = require('../controllers/UserController');
 const PostController = require('../controllers/PostController');
+const limiter = require('../config/rateLimiter')
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -29,11 +30,11 @@ const upload = multer({
 }).single('img')
 
 routes.get('/', UserController.index) //
-routes.put('/', UserController.edit);  //
+routes.put('/', limiter, UserController.edit);  //
+routes.post('/', limiter, UserController.store);
 routes.delete('/', UserController.destroy);
-routes.post('/', UserController.store);
 
-routes.post('/photo', log.isLoggedIn, (req, res) => {
+routes.post('/photo', [limiter, log.isLoggedIn], (req, res) => {
     upload(req, res, function(err){
         if(err instanceof multer.MulterError) {
             if(err.message == 'File too large') {
@@ -50,7 +51,7 @@ routes.post('/photo', log.isLoggedIn, (req, res) => {
         }
     })
 });
-routes.post('/password', log.isLoggedIn, UserController.verifyPass)
+routes.post('/password', [limiter, log.isLoggedIn], UserController.verifyPass)
 
 routes.get('/:user_id/posts', PostController.index);
 routes.post('/:user_id/posts', PostController.store);

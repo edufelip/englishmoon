@@ -6,42 +6,19 @@ const secret = require("../config/data_credentials")
 const PostController = require('../Controllers/PostController');
 const UserController = require('../Controllers/UserController')
 const transporter = require('../config/mailer')
-const jwt = require("jsonwebtoken")
-const request = require("request")
+const limiter = require('../config/rateLimiter')
 
 routes.get("/forgot_password", (req, res) => {
     res.render("forgotPass")
 })
 
-routes.post("/forgot_password", UserController.verifyEmailAndCaptcha)
+routes.post("/forgot_password", limiter, UserController.verifyEmailAndCaptcha)
 
-routes.get("/reset_password", (req, res) => {
-    res.render("resetPass")
-})
+routes.get("/reset_password", UserController.resetPass)
 
 routes.get("/teste", (req, res) => {
-    const info = {
-        user: "edu_felip@hotmail.com",
-        pass: "123456"
-    }
-    const token = jwt.sign({info}, secret.jwt.secret, {expiresIn: 3600})
-    const link = `http://localhost:3000/teste?cd=${token}`
-    console.log(token)
-    console.log(link)
-    const mail = {
-        to: 'edu_felip@hotmail.com',
-        from: 'eduardofelipi@gmail.com',
-        subject: 'testando',
-        template: 'passResetEmail',
-        context: {link}
-    }
-    transporter.sendMail(mail).then(console.log).catch(console.error)
-    res.render("emailTemplates/registerEmail")
+    res.render("/resetPass")
 })
-
-// routes.get("/:token_num", async (req, res) => {
-    
-// })
 
 routes.get("/", PostController.list);
 
@@ -58,7 +35,7 @@ routes.get("/courses", (req, res) => {
 routes.get("/contact", (req, res) => {
     res.render("contact");
 });
-routes.post("/contact", (req, res) => {
+routes.post("/contact", limiter, (req, res) => {
     transporter.sendMail({
         from: secret.email.user,
         to: secret.email.user,
@@ -75,26 +52,6 @@ routes.post("/contact", (req, res) => {
 
 routes.get("/register", log.isNotLoggedIn, (req, res) => {
     res.render("register");
-});
-
-routes.post("/login", passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/",
-    failureFlash: true
-}), function(req, res){
-});
-
-routes.get("/google", passport.authenticate('google', {
-    scope: ['openid', 'email', 'profile']
-}))
-
-routes.get("/api/auth/google/callback", passport.authenticate('google'), (req, res) => {
-    res.redirect('/')
-})
-
-routes.get("/logout", (req, res) => {
-    req.logout();
-    res.redirect('/');
 });
 
 module.exports = routes;

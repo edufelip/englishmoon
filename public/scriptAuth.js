@@ -28,6 +28,7 @@ btn.onclick = (evt) => {
         return response.json();
     })
     .then((data) => {
+        console.log(data)
         if(data.id){
             secTwo.style.opacity = "0";
             setTimeout(() => {
@@ -38,13 +39,13 @@ btn.onclick = (evt) => {
                 }, 100)
             }, 400);
         }
-        icons[0].style.opacity = (data.name) ? "1" : "0"
-        icons[1].style.opacity = (data.gender) ? "1" : "0"
-        icons[2].style.opacity = (data.birth) ? "1" : "0"
-        icons[3].style.opacity = (data.telephone) ? "1" : "0"
-        icons[4].style.opacity = (data.emailWrong || data.emailUsed) ? "1" : "0"
-        icons[5].style.opacity = (data.password) ? "1" : "0"
-        icons[6].style.opacity = (data.passwordConfirm) ? "1" : "0"
+        icons[0].style.opacity = (data.errorName) ? "1" : "0"
+        icons[1].style.opacity = (data.errorGender) ? "1" : "0"
+        icons[2].style.opacity = (data.errorBirth) ? "1" : "0"
+        icons[3].style.opacity = (data.errorTelephone) ? "1" : "0"
+        icons[4].style.opacity = (data.errorEmailWrong || data.errorEmailUsed) ? "1" : "0"
+        icons[5].style.opacity = (data.errorPassword) ? "1" : "0"
+        icons[6].style.opacity = (data.errorPasswordConfirm) ? "1" : "0"
         return data
     })
     .catch( (err) => {

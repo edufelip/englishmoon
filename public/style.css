@@ -1351,13 +1351,17 @@ i {
   font-family: "Nunito", sans-serif;
   height: 85vh;
   min-height: 530px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: whitesmoke;
 }
 #forgotMain .forgotBlock {
   background-color: white;
-  height: 100%;
+  box-shadow: 0 0 8px #00000050;
+  height: 90%;
   width: 40%;
-  margin: 0 auto;
+  position: relative;
   flex-direction: column;
   justify-content: center;
 }

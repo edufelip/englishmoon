@@ -174,5 +174,9 @@ module.exports = {
     })
     if(user.password !== decoded.info.pass) return res.status(400).send({error: "Token invalido"})
     return res.render("resetPass", {email: decoded.user})
+  },
+
+  async newPass(req, res){
+    
   }
 };

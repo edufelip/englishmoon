@@ -1,12 +1,11 @@
 const express = require("express");
 const routes = express.Router();
-const passport = require("passport");
 const log = require('../config/islogged')
-const secret = require("../config/data_credentials")
 const PostController = require('../Controllers/PostController');
 const UserController = require('../Controllers/UserController')
 const transporter = require('../config/mailer')
 const limiter = require('../config/rateLimiter')
+require('dotenv').config()
 
 routes.get("/forgot_password", (req, res) => {
     res.render("forgotPass")
@@ -39,8 +38,8 @@ routes.get("/contact", (req, res) => {
 });
 routes.post("/contact", limiter, (req, res) => {
     transporter.sendMail({
-        from: secret.email.user,
-        to: secret.email.user,
+        from: process.env.EMAIL_USER,
+        to: process.env.EMAIL_USER,
         replyTo: req.body.email,
         subject: req.body.name + " - Contact",
         text: req.body.msg

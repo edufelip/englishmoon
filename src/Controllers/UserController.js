@@ -6,7 +6,9 @@ const jwt = require("jsonwebtoken")
 const saltRounds = 10;
 const transporter = require('../config/mailer');
 const check = require('../config/checkFunctions')
-const secret = require('../config/data_credentials')
+require('dotenv').config({
+  path: process.env.NODE_ENV === "development" ? ".env.dev" : ".env"
+})
 
 
 module.exports = {
@@ -141,7 +143,7 @@ module.exports = {
     
     if(!user) return res.json({'status': false, 'msg': 'Não existe usuário com esse e-mail'})
     const ver = req.body.captcha
-    const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${secret.captcha.key}&response=${ver}&remoteip=${req.connection.remoteAddress}`
+    const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_KEY}&response=${ver}&remoteip=${req.connection.remoteAddress}`
     request(verifyUrl, (err, response, body) => {
         if(err) console.log(err)
         body = JSON.parse(body)
@@ -150,7 +152,7 @@ module.exports = {
           user: user.email,
           pass: user.password
         }
-        const token = jwt.sign({info}, secret.jwt.secret, {expiresIn: 3600})
+        const token = jwt.sign({info}, process.env.JWT_SECRET, {expiresIn: 3600})
         const link = `http://localhost:3000/reset_password?cd=${token}`
         const mail = {
           to: email,
@@ -167,7 +169,7 @@ module.exports = {
 
   async resetPass(req, res){
     const token = req.query.cd
-    const decoded = jwt.verify(token, secret.jwt.secret)
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
     if(!decoded) return res.status(400).send({error: 'Token invalido'})
     const user = await User.findOne({
       where: {email: decoded.info.user}

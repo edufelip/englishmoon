@@ -5,10 +5,10 @@ const sanitizer      = require("express-sanitizer");
 const session        = require('express-session');
 const flash          = require('connect-flash')
 const passport       = require('passport');
-const sessionSecret  = require('./config/data_credentials');
 const methodOverride = require("method-override");
 const transporter    = require("./config/mailer");
 const hbs            = require("nodemailer-express-handlebars");
+require('dotenv').config()
 
 require('./config/auth')(passport)
 require('./database/');
@@ -32,7 +32,7 @@ app.use(express.json());
 app.use(sanitizer());
 app.use(methodOverride("_method"))
 app.use(session({
-    secret: sessionSecret.session.secret,
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
 }));

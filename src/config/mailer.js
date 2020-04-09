@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer')
-const secret = require("../config/data_credentials")
+require('dotenv').config()
 
 // const transporter = nodemailer.createTransport({
 //     host: //smtp.tal
@@ -14,8 +14,8 @@ const secret = require("../config/data_credentials")
 const transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-        user: secret.email.user,
-        pass: secret.email.pass
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     }
 });
 

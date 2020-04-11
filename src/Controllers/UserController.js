@@ -165,10 +165,6 @@ module.exports = {
     const token = req.query.cd
     const payload = jwt.verify(token, process.env.JWT_SECRET)
     if(!payload) return res.status(400).send({error: 'Token invalido'})
-    const user = await User.findOne({
-      where: {email: payload.info.user}
-    })
-    if(!bcrypt.compareSync(user.pass, payload.pass)) return res.status(400).send({error: "Token invalido"})
     return res.render("resetPass", {token: token})
   },
   

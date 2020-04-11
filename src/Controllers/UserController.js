@@ -37,23 +37,21 @@ module.exports = {
     problems.errorPassword = !check.checkPass(password);
     problems.errorPasswordConfirm = password === passwordConfirm ? false : true;
 
-    const {errorName, errorGender, errorBirth, errorTelephone, errorEmailWrong, errorEmailUsed, errorPassword, errorPasswordConfirm} = problems
-
-    if (errorName || errorGender || errorBirth || errorTelephone || errorEmailUsed || errorEmailWrong || errorPassword || errorPasswordConfirm){
-      return res.json(problems);
-    } else {
-      const hash = await bcrypt.hash(password, saltRounds);
-      const user = await User.create(Object.assign(req.body, {password : hash}));
-      const mail = {
-        from: 'eduardofelipi@gmail.com',
-        to: email,
-        subject: 'Bem-vindo à EnglishMoon',
-        template: 'registerEmail'
-      }
-      transporter.sendMail(mail).then(console.log).catch(console.error)
-      const response = {id: "true"}
-      return res.json(response);
+    Object.keys(problems).forEach(key => {
+      if(problems[key]) return res.json(problems)
+    })
+    const hash = await bcrypt.hash(password, saltRounds);
+    const user = await User.create(Object.assign(req.body, {password : hash}));
+    const mail = {
+      from: 'eduardofelipi@gmail.com',
+      to: email,
+      subject: 'Bem-vindo à EnglishMoon',
+      template: 'registerEmail'
     }
+    transporter.sendMail(mail).then(console.log).catch(console.error)
+    const response = {id: "true"}
+    return res.json(response);
+    
   },
 
   async edit(req, res) {
@@ -136,49 +134,55 @@ module.exports = {
 
   async verifyEmailAndCaptcha(req, res){
     const email = req.body.email
+    const check = req.body.captcha
     const user = await User.findOne({
       where: {email: email}
-    })
-    .catch(err => console.log(err))
-    
+    }).catch(err => console.log(err))
     if(!user) return res.json({'status': false, 'msg': 'Não existe usuário com esse e-mail'})
-    const ver = req.body.captcha
-    const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_KEY}&response=${ver}&remoteip=${req.connection.remoteAddress}`
+    
+    const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_KEY}&response=${check}&remoteip=${req.connection.remoteAddress}`
     request(verifyUrl, (err, response, body) => {
-        if(err) console.log(err)
-        body = JSON.parse(body)
-        if(body.success !== undefined && !body.success) return res.json({'status': false, 'msg': 'failed verification'})
-        const info = {
-          user: user.email,
-          pass: user.password
-        }
-        const token = jwt.sign({info}, process.env.JWT_SECRET, {expiresIn: 3600})
-        const link = `http://localhost:3000/reset_password?cd=${token}`
-        const mail = {
-          to: email,
-          from: 'eduardofelipi@gmail.com',
-          subject: 'Recupere sua senha',
-          template: 'passResetEmail',
-          context: {link}
-        }
-        transporter.sendMail(mail).then((response)=>{
-          return res.json({'status': true, 'msg': 'captcha passed'})
-        })
+      if(err) console.log(err)
+      body = JSON.parse(body)
+      if(body.success !== undefined && !body.success) return res.json({'status': false, 'msg': 'failed verification'})
+    })
+    const hashedPass = await bcrypt.hash(user.password, saltRounds)
+    const token = jwt.sign({user: user.email, pass: hashedPass}, process.env.JWT_SECRET, {expiresIn: 3600})
+    const link = `http://localhost:3000/reset_password?cd=${token}`
+    const mail = {
+      to: email,
+      from: 'eduardofelipi@gmail.com',
+      subject: 'Recupere sua senha',
+      template: 'passResetEmail',
+      context: {link}
+    }
+    transporter.sendMail(mail).then((response)=>{
+      return res.json({'status': true, 'msg': 'captcha passed'})
     })
   },
 
   async resetPass(req, res){
     const token = req.query.cd
-    const decoded = jwt.verify(token, process.env.JWT_SECRET)
-    if(!decoded) return res.status(400).send({error: 'Token invalido'})
+    const payload = jwt.verify(token, process.env.JWT_SECRET)
+    if(!payload) return res.status(400).send({error: 'Token invalido'})
     const user = await User.findOne({
-      where: {email: decoded.info.user}
+      where: {email: payload.info.user}
     })
-    if(user.password !== decoded.info.pass) return res.status(400).send({error: "Token invalido"})
-    return res.render("resetPass", {email: decoded.user})
+    if(!bcrypt.compareSync(user.pass, payload.pass)) return res.status(400).send({error: "Token invalido"})
+    return res.render("resetPass", {token: token})
   },
-
+  
   async newPass(req, res){
-    
+    const {token, password} = req.body
+    const payload = jwt.verify(token, process.env.JWT_SECRET)
+    if(!payload) return res.status(400).send({error: 'Token invalido'})
+    const user = await User.findOne({
+      where: {email: payload.info.user}
+    })
+    if(!bcrypt.compareSync(user.pass, payload.pass)) return res.status(400).send({error: "Token invalido"})
+    const newPass = await bcrypt.hash(password, saltRounds)
+    user.password = newPass
+    user.save()
+    return res.json({'status': true})
   }
 };

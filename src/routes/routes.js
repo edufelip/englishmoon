@@ -20,6 +20,7 @@ routes.put("/reset_password", UserController.newPass)
 routes.get("/teste", (req, res) => {
     res.render("resetPass")
 })
+routes.post("/teste", UserController.newPass)
 
 routes.get("/", PostController.list);
 

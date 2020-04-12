@@ -462,7 +462,7 @@ i {
 }
 .header .dropdown-aut {
   position: absolute;
-  background-image: url(images/logback.jpg);
+  background-image: url(/../images/logback.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -755,7 +755,7 @@ i {
   flex: 4;
   height: 100%;
   background-color: black;
-  background-image: url(/images/contact-background.jpg);
+  background-image: url(/../images/contact-background.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1579,7 +1579,7 @@ i {
   width: 100%;
   min-height: 560px;
   height: 90vh;
-  background-image: url(/images/frame7.jpg);
+  background-image: url(/../images/frame7.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1676,7 +1676,7 @@ i {
 .main .info {
   height: 400px;
   width: 100%;
-  background-image: url(images/infoback.jpg);
+  background-image: url(/../images/infoback.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;

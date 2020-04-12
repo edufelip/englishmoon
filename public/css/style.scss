@@ -17,7 +17,7 @@
         width: 100%;
         min-height: 560px;
         height: 90vh;
-        background-image: url(/images/frame7.jpg);
+        background-image: url(/../images/frame7.jpg);
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -121,7 +121,7 @@
     .info{
         height: 400px;
         width: 100%;
-        background-image: url(images/infoback.jpg);
+        background-image: url(/../images/infoback.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: top;
@@ -834,9 +834,6 @@
                         .deleteAcc {
                             margin-top: 20px;
                         }
-                    }
-                    .profileRight-box-right {
-
                     }
                 }
             }

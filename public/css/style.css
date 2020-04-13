@@ -902,7 +902,7 @@ i {
 }
 .main .register-main .register-main-container {
   width: 70%;
-  height: 80%;
+  height: 85%;
   display: flex;
   border-radius: 20px;
   box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.4);
@@ -2069,6 +2069,87 @@ i {
   color: white;
 }
 .main .profile-delete-def .dlt-container button:hover {
+  cursor: pointer;
+}
+.main .newPass {
+  height: 90vh;
+  background-color: whitesmoke;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main .newPass .newPassForm {
+  width: 600px;
+  height: 80%;
+  background-color: white;
+  box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main .newPass .newPassForm form {
+  width: 100%;
+  height: 70%;
+  max-height: 500px;
+}
+.main .newPass .newPassForm form h2 {
+  opacity: 0.8;
+  width: 100%;
+  text-align: center;
+  margin: 0px 0 15px 0;
+}
+.main .newPass .newPassForm form p {
+  width: 50%;
+  display: block;
+  opacity: 0.9;
+  font-size: 15px;
+  margin: 0 auto 5px auto;
+}
+.main .newPass .newPassForm form .reset_errorMsg {
+  color: #AB1616;
+  text-align: center;
+  margin-top: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  height: 35px;
+}
+.main .newPass .newPassForm form .reset_errorShow {
+  opacity: 1;
+}
+.main .newPass .newPassForm form .advice_msg {
+  width: 100%;
+  color: white;
+  background-color: #3b6978;
+  padding: 20px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 20px;
+}
+.main .newPass .newPassForm form input[type=password] {
+  width: 50%;
+  display: block;
+  margin: 0px auto 20px auto;
+  height: 25px;
+  border: 0;
+  background-color: #ebebeb;
+  border-radius: 4px;
+  padding: 2px;
+  padding-left: 10px;
+}
+.main .newPass .newPassForm form button {
+  width: 120px;
+  height: 30px;
+  display: block;
+  margin: 30px auto 0 auto;
+  border-radius: 6px;
+  background-color: #3b6978e5;
+  border: 0;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+.main .newPass .newPassForm form button:hover {
+  background-color: #3b6978;
   cursor: pointer;
 }
 

@@ -6,10 +6,7 @@ const jwt = require("jsonwebtoken")
 const saltRounds = 10;
 const transporter = require('../config/mailer');
 const check = require('../config/checkFunctions')
-require('dotenv').config({
-  path: process.env.NODE_ENV === "development" ? ".env.dev" : ".env"
-})
-
+require('dotenv').config()
 
 module.exports = {
   async index(req, res) {
@@ -167,6 +164,7 @@ module.exports = {
       if(err) return res.status(400).send({error: 'Invalid Token'})
       return res.render("resetPass", {token: token})
     })
+    return res.render("resetPass")
   },
   
   async newPass(req, res){
@@ -179,8 +177,15 @@ module.exports = {
       if(!bcrypt.compareSync(user.password, decoded.resetHash)) return res.status(400).send({error: 'Invalid Token'})
       const newPass = await bcrypt.hash(password, saltRounds)
       user.password = newPass
-      user.save()
-      return res.json({'status': true})
+      await user.save()
+      const mail = {
+        to: user.email,
+        from: 'eduardofelipi@gmail.com',
+        subject: 'Senha alterada com sucesso',
+        template: 'resetDoneEmail'
+      }
+      transporter.sendMail(mail)
+      return res.redirect('/')
     })
   }
 };

@@ -34,7 +34,10 @@ app.use(methodOverride("_method"))
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 60*60*1000
+    }
 }));
 app.use(flash());
 app.use(passport.initialize());
@@ -45,6 +48,7 @@ app.use((req, res, next) => {
     res.locals.message = req.flash('error');
     res.locals.imgMessage = req.flash('imgError')
     res.locals.dltPass = req.flash('dltError')
+    res.setHeader('blablablablabla', 'blabla')
     next();
 })
 

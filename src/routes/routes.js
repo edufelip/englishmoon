@@ -7,20 +7,6 @@ const transporter = require('../config/mailer')
 const limiter = require('../config/rateLimiter')
 require('dotenv').config()
 
-routes.get("/forgot_password", (req, res) => {
-    res.render("forgotPass")
-})
-
-routes.post("/forgot_password", limiter, UserController.verifyEmailAndCaptcha)
-
-routes.get("/reset_password", UserController.resetPass)
-routes.put("/reset_password", UserController.newPass)
-
-
-routes.get("/teste", (req, res) => {
-    res.render("resetPass")
-})
-routes.post("/teste", UserController.newPass)
 
 routes.get("/", PostController.list);
 
@@ -55,5 +41,15 @@ routes.post("/contact", limiter, (req, res) => {
 routes.get("/register", log.isNotLoggedIn, (req, res) => {
     res.render("register");
 });
+
+routes.get("/forgot_password", (req, res) => {
+    res.render("forgotPass")
+})
+
+routes.post("/forgot_password", limiter, UserController.verifyEmailAndCaptcha)
+
+routes.get("/reset_password", UserController.resetPass)
+
+routes.post("/reset_password", UserController.newPass)
 
 module.exports = routes;

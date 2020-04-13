@@ -147,7 +147,7 @@ module.exports = {
       if(body.success !== undefined && !body.success) return res.json({'status': false, 'msg': 'failed verification'})
     })
     const hashedPass = await bcrypt.hash(user.password, saltRounds)
-    const token = jwt.sign({user: user.email, pass: hashedPass}, process.env.JWT_SECRET, {expiresIn: 3600})
+    const token = jwt.sign({user: user.email, resetHash: hashedPass}, process.env.JWT_SECRET, {expiresIn: 3600})
     const link = `http://localhost:3000/reset_password?cd=${token}`
     const mail = {
       to: email,
@@ -163,22 +163,24 @@ module.exports = {
 
   async resetPass(req, res){
     const token = req.query.cd
-    const payload = jwt.verify(token, process.env.JWT_SECRET)
-    if(!payload) return res.status(400).send({error: 'Token invalido'})
-    return res.render("resetPass", {token: token})
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      if(err) return res.status(400).send({error: 'Invalid Token'})
+      return res.render("resetPass", {token: token})
+    })
   },
   
   async newPass(req, res){
     const {token, password} = req.body
-    const payload = jwt.verify(token, process.env.JWT_SECRET)
-    if(!payload) return res.status(400).send({error: 'Token invalido'})
-    const user = await User.findOne({
-      where: {email: payload.info.user}
+    jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+      if(err) return res.status(400).send({error: 'Invalid Token'})
+      const user = await User.findOne({
+        where: {email: decoded.user}
+      })
+      if(!bcrypt.compareSync(user.password, decoded.resetHash)) return res.status(400).send({error: 'Invalid Token'})
+      const newPass = await bcrypt.hash(password, saltRounds)
+      user.password = newPass
+      user.save()
+      return res.json({'status': true})
     })
-    if(!bcrypt.compareSync(user.pass, payload.pass)) return res.status(400).send({error: "Token invalido"})
-    const newPass = await bcrypt.hash(password, saltRounds)
-    user.password = newPass
-    user.save()
-    return res.json({'status': true})
   }
 };

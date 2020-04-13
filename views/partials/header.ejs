@@ -98,7 +98,7 @@
         <% if (currentUser) { %>
             <div class="profile-opt">
                 <a href="/profile/info">SUA CONTA</a>
-                <a href="">SEUS CURSOS</a>
+                <a href="/profile/courses">SEUS CURSOS</a>
                 <a href="/logout">SAIR</a>
             </div>
             <div class="log2-loged flexOne flex">
@@ -141,7 +141,7 @@
                     <% } else { %>
                     <h5><%= message %></h5>
                     <% } %>
-                    <p> <a href=""> Esqueceu a sua senha? </a> </p>
+                    <p> <a href="/forgot_password"> Esqueceu a sua senha? </a> </p>
                     <button class="signBtn">Entrar</button>
                     <div class="signup">
                         <a href="/register"> Cadastre-se </a>

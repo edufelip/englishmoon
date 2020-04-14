@@ -526,6 +526,7 @@
     }
     .newPass {
         height: 90vh;
+        min-height: 500px   ;
         background-color: whitesmoke;
         overflow: hidden;
         display: flex;
@@ -534,11 +535,13 @@
         .newPassForm {
             width: 600px;
             height: 80%;
+            min-height: 420px;
             background-color: white;
             box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.3);
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
             form {
                 width: 100%;
                 height: 70%;
@@ -570,11 +573,14 @@
                 .advice_msg {
                     width: 100%;
                     color: white;
+                    position: absolute;
                     background-color: #3b6978;
                     padding: 20px 20px;
                     box-sizing: border-box;
                     text-align: center;
-                    margin-top: 20px;
+                    margin-top: auto;
+                    bottom: 0;
+                    margin: 0px;
                 }
                 input[type="password"]{
                     width: 50%;
@@ -874,6 +880,9 @@
         .profileMain {
             margin: 25px 0 0 0;
         }
+        .newPass {
+            margin: 25px 0 0 0;
+        }
     }
 }
 
@@ -938,6 +947,11 @@
                 }
             }
         }
+        .newPass {
+            .newPassForm {
+                width: 90%;
+            }
+        }
     }
 }
 
@@ -994,6 +1008,15 @@
                     button {
                         border: 1px solid $hoverBlue;
                         margin-top: 4px;
+                    }
+                }
+            }
+        }
+        .newPass{
+            .newPassForm {
+                form {
+                    input[type="password"], p {
+                        width: 200px;
                     }
                 }
             }
@@ -1150,6 +1173,12 @@
         #dropmenu_desk{
             visibility: hidden;
         }
+    }
+}
+
+@media (max-width: 470px){
+    .main .newPass .newPassForm .advice_msg {
+        font-size: 13px;
     }
 }
 

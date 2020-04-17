@@ -53,7 +53,7 @@ routes.get("/reset_password", UserController.resetPass)
 routes.put("/reset_password", limiter, UserController.newPass)
 
 routes.get("/teste", (req, res) => {
-    res.render('resetPass')
+    res.render('forgotPass')
 })
 
 module.exports = routes;

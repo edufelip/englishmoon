@@ -45,15 +45,9 @@ routes.get("/register", log.isNotLoggedIn, (req, res) => {
 routes.get("/forgot_password", (req, res) => {
     res.render("forgotPass")
 })
-
 routes.post("/forgot_password", limiter, UserController.verifyEmailAndCaptcha)
-
 routes.get("/reset_password", UserController.resetPass)
-
 routes.put("/reset_password", limiter, UserController.newPass)
 
-routes.get("/teste", (req, res) => {
-    res.render('forgotPass')
-})
 
 module.exports = routes;

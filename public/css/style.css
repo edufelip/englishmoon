@@ -1870,17 +1870,20 @@ i {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  border-bottom: 1px solid #00000026;
 }
 .main #articles .articles_search form input {
   min-width: 200px;
   border: 0;
   border-radius: 6px;
-  background-color: #f1f1f1;
+  background-color: rgba(245, 245, 245, 0.8);
+  border: 1px solid #00000060;
   padding: 5px 10px;
   color: rgba(0, 0, 0, 0.6);
 }
 .main #articles .articles_search form input:focus {
   outline: none;
+  border: 1.5px solid #4D90FE80;
 }
 .main #articles .articles_search form button {
   padding: 3px 8px;
@@ -1894,13 +1897,20 @@ i {
 }
 .main #articles .articles_search .articles_index {
   display: flex;
+  width: 210px;
   justify-content: center;
 }
 .main #articles .articles_search .articles_index a {
   text-decoration: none;
   padding: 4px 10px;
-  background-color: #3228c7;
+  background-color: #110f8a;
   color: white;
+  border-radius: 6px;
+  margin-right: 4px;
+  transition: filter 0.3s ease-out;
+}
+.main #articles .articles_search .articles_index a:hover {
+  filter: brightness(90%);
 }
 .main #articles .articles_container {
   width: 75%;
@@ -2342,6 +2352,9 @@ i {
   .main {
     top: 40px;
   }
+  .main #articles {
+    margin-top: 25px;
+  }
   .main .img-container main .container p {
     width: 90%;
   }
@@ -2560,13 +2573,13 @@ i {
     margin: 0;
   }
   .main #articles .articles_search {
-    background: linear-gradient(to bottom, white 50%, #f3f3f3 50%);
     display: flex;
-    height: 100px;
     flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
   }
   .main #articles .articles_container .article_block {
-    margin-top: 0;
+    margin-top: 40px;
   }
   .main #articles .articles_container .article_block h2 {
     font-size: 18px;

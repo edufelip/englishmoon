@@ -31,24 +31,17 @@ module.exports = {
   },
 
   async list(req, res) {
-    const [postOne, postTwo, postThree, postFour, postFive, postSix] = await Post.findAll({
-      attributes: {exclude: ['body']}
-    });
-    const list = [postOne, postTwo, postThree, postFour, postFive, postSix];
-    let authors = [];
-    let dates = [];
-    for(let i = 0; i < list.length; i++){
-      if(list[i]){  // tirar esse if dps pq o numbero de posts sempre sera maior que 6
-        let author = await User.findByPk(list[i].user_id);
-        let created = JSON.stringify(list[i].createdAt);
-        let date = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
-        authors = [...authors, author];
-        dates.push(date);
-      } else {
-        authors = [... authors, undefined];
-      }
-    }
-    return res.render("home",{list:list, authors:authors, dates:dates});
+    const list = await Post.findAll({
+      limit: 6,
+      include: {association: 'user'}
+    })
+    const dates = [];
+    list.map( element => {
+      const created = JSON.stringify(element.createdAt);
+      const date = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
+      dates.push(date);
+    })
+    return res.render("home",{list:list, dates:dates});
   },
   
   async listAll(req,res) {

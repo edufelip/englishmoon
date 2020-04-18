@@ -3,73 +3,71 @@
 <div class="main">
     <div id="articles">
         <div class="articles_search">
-            <form action="/articles" method="GET">
-                <input type="text" name="page" value="<%=index%>" style="display: none;">
-                <% if (name) { %>
-                    <input type="text" name="name" value="<%=name%>">
-                <% } else { %>        
-                    <input type="text" name="name" placeholder="Procure um Artigo">
-                <% } %>
+            <form action="/articles" method="GET">    
+                <input type="text" name="name" placeholder="Procure um Artigo">
                 <button><i class="fas fa-search"></i></button>
             </form>
             <div class="articles_index">
-                <% if(index > 3) { %>
-                    <% if (name) { %>
-                        <a href="http://localhost:3000/articles?page=1&name=<%= name %>" style="background-color: gainsboro;">1</a>
-                        <p style="margin: 0px 2px;">...</p>
-                        <a href="http://localhost:3000/articles?page=<%= index-1 %>&name=<%= name %>" style="background-color: gainsboro;"><%= index-1 %></a>
-                        <a href="http://localhost:3000/articles?page=<%= index %>&name=<%= name %>"><%= index %></a>
-                        <% if(list.length > index*6){ %>
-                            <a href="http://localhost:3000/articles?page=<%= index+1 %>&name=<%= name %>" style="background-color: gainsboro;"><%= index+1 %></a>
+                <% if(count !== 0) { %>
+                    <% if(index === 1) { %>
+                        <a href="http://localhost:3000/articles?page=1&name=<%= name %>">1</a>
+                        <% if(count > 6) { %>
+                            <a href="http://localhost:3000/articles?page=2&name=<%= name %>" style="background-color: rgb(194, 194, 194);">2</a>
                         <% } %>
-                    <% } else { %>
-                        <a href="http://localhost:3000/articles?page=1" style="background-color: gainsboro;">1</a>
-                        <p style="margin: 0px 2px;">...</p>
-                        <a href="http://localhost:3000/articles?page=<%= index-1 %>" style="background-color: gainsboro;"><%= index-1 %></a>
-                        <a href="http://localhost:3000/articles?page=<%= index %>"><%= index %></a>
-                        <% if(list.length > index*6){ %>
-                            <a href="http://localhost:3000/articles?page=<%= index+1 %>" style="background-color: gainsboro;"><%= index+1 %></a>
+                        <% if(count > 12) { %>
+                            <a href="http://localhost:3000/articles?page=3&name=<%= name %>" style="background-color: rgb(194, 194, 194);">3</a>
                         <% } %>
-                    <% } %>
-                    <% if(list.length > (index*6)+6 ){ %>
-                        <p>...</p>
-                    <% } %>
-                <% } else { %>
-                    <% let link %>
-                    <% for(let i = 1; i < 5; i++){ %>
-                        <% if (name) { %>
-                            <% link="http://localhost:3000/articles?page=" + i + "&name=" + name %>
+                        <% if(count > 18) { %>
+                            <p style="margin: 0 6px 0 2px; opacity: 0.7;">...</p>
+                            <a href="http://localhost:3000/articles?page=<%=Math.ceil(count/6)%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=Math.ceil(count/6)%></a>
+                        <% } %>
+                    <% } else if (index >= 2) { %>
+                        <% if(index >= 3 && count <= 6*index) { %>
+                            <% if(index === 3) { %>
+                                <a href="http://localhost:3000/articles?page=1&name=<%= name %>" style="background-color: rgb(194, 194, 194);">1</a>
+                                <a href="http://localhost:3000/articles?page=2&name=<%= name %>" style="background-color: rgb(194, 194, 194);">2</a>
+                                <a href="http://localhost:3000/articles?page=3&name=<%= name %>">3</a>                                
+                            <% } else { %>
+                                <a href="http://localhost:3000/articles?page=1&name=<%= name %>" style="background-color: rgb(194, 194, 194);">1</a>
+                                <p style="margin: 0 6px 0 2px; opacity: 0.7;">...</p>
+                                <a href="http://localhost:3000/articles?page=<%=index-1%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=index-1%></a>
+                                <a href="http://localhost:3000/articles?page=<%=index%>&name=<%= name %>"><%=index%></a>
+                            <% } %>
                         <% } else { %>
-                            <% link="http://localhost:3000/articles?page=" + i %>
+                            <% if(index > 2) { %>
+                                <a href="http://localhost:3000/articles?page=1&name=<%= name %>" style="background-color: rgb(194, 194, 194);">1</a>
+                                <p style="margin: 0 6px 0 2px; opacity: 0.7;">...</p>
+                            <% } %>
+                            <a href="http://localhost:3000/articles?page=<%=index-1%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=index-1%></a>
+                            <a href="http://localhost:3000/articles?page=<%=index%>&name=<%= name %>"><%=index%></a>
+                            <% if ( count >  index*6 ) { %>
+                                <a href="http://localhost:3000/articles?page=<%=index+1%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=index+1%></a>
+                            <% } %>
+                            <% if ( count >  (index+1)*6 ) { %>
+                                <p style="margin: 0 6px 0 2px; opacity: 0.7;">...</p>
+                                <a href="http://localhost:3000/articles?page=<%=Math.ceil(count/6)%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=Math.ceil(count/6)%></a>
+                            <% } %>
                         <% } %>
-                        <% if(index == i) { %>
-                            <a href="<%=link%>"><%= i %></a>
-                        <% } else { %>
-                            <a href="<%=link%>" style="background-color: gainsboro;"><%= i %></a>
-                        <% } %>
-                    <% } %>
-                    <% if (list.length > 24) { %>
-                        <p style="margin: 0 0 0 2px;">...</p>
-                    <% } %>
+                    <% } %>    
                 <% } %>
             </div>
         </div>
         <div class="articles_container">
-            <% posts.forEach( element => { %>
+            <% list.map( element => { %>
                 <div class="article_block">
                     <h2><%=element.title%></h2>
                     <div class="article_block_sub">
-                        <p><%=authors[posts.indexOf(element)].name.toUpperCase()%></p>
-                        <p><%=dates[posts.indexOf(element)]%></p>
+                        <p><%=element.user.name.toUpperCase()%></p>
+                        <p><%=dates[list.indexOf(element)]%></p>
                     </div>
-                    <div class="article_block_image" style="background-image: url(/<%=posts[0].image%>);">
+                    <div class="article_block_image" style="background-image: url(/<%=element.image%>);">
                     </div>
                     <section>
                         <h4>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique luctus tempor. Sed maximus non tellus nec sollicitudin. Duis id erat orci. Suspendisse potenti. Curabitur eu pulvinar mauris. Nam risus erat, lacinia sed porta eget, posuere ac lectus. Proin vitae feugiat purus, non accumsan massa. Ut in volutpat ex. Aliquam in nulla ac eros convallis vestibulum.
                         </h4>
                     </section>
-                    <a href="http://localhost:3000/articles/<%=modifiedTitles[posts.indexOf(element)]%>/<%=element.id%>">Leia Mais...</a>
+                    <a href="http://localhost:3000/articles/<%=modifiedTitles[list.indexOf(element)]%>/<%=element.id%>">Leia Mais...</a>
                 </div>
             <% }) %>
         </div>

@@ -1,6 +1,6 @@
+const { Op } = require('sequelize') 
 const User = require('../models/User');
 const Post = require('../models/Post');
-const flash = require('connect-flash')
 
 module.exports = {
   async index(req, res) {
@@ -15,7 +15,9 @@ module.exports = {
 
   async store(req, res) {
     const { user_id } = req.params;
-    const { title, body, image } = req.sanitize(req.body);
+    const title = req.sanitize(req.body.title);
+    const body = req.sanitize(req.body.body);
+    const image = req.sanitize(req.body.image);
     const user = await User.findByPk(user_id);
     if (!user) {
       return res.status(400).json({ error: 'User not found' });
@@ -45,70 +47,45 @@ module.exports = {
   },
   
   async listAll(req,res) {
-    const name = req.sanitize(req.query.name);
     const posts = [];
-    const fitered = [];
-    const index = req.sanitize(req.query.page);
-    const list = await Post.findAll({
-      attributes: {exclude: ['body']}
+    const name = req.sanitize(req.query.name) || '';
+    const index = parseInt(req.sanitize(req.query.page)) || 1;
+    const {count, rows} = await Post.findAndCountAll({
+      where: {
+        title: {
+          [Op.like]: `%${name}%` // change to ilike when using pg
+        }
+      },
+      attributes: {exclude: ['body']},
+      limit: 6,
+      offset: 6 * (index - 1),
+      include: {association: 'user'}
     });
-    
-    if(name){
-      filtered = list.filter( (element) => {
-        let bool = 0;
-        let titleWords = element.title.split(' ');
-        let queryWords = name.split(' ');
-        queryWords.forEach( (word) => {
-          if (titleWords.indexOf(word) !== -1) bool++;
-        });
-        return bool;
-      });
-    }
-    
-    if(name){
-      for(let i = 0; i < 6; i++){
-        if(filtered[6*(index-1)+i]) posts[i] = filtered[6*(index-1)+i];
-      }
-    } else {
-      for(let i = 0; i < 6; i++){
-          if(list[6*(index-1)+i]) posts[i] = list[6*(index-1)+i];
-      }
-    }
-
-    let authors = [];
-    let dates = [];
-    let modifiedTitles = [];
-    for(let i = 0; i < posts.length; i++){
-      if(posts[i]){
-        let author = await User.findByPk(posts[i].user_id);
-        let created = JSON.stringify(posts[i].createdAt);
-        let date = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
-        let modified = posts[i].title.replace(/ /g, '-');
-        authors = [... authors, author];
-        dates.push(date);
-        modifiedTitles.push(modified);
-      } else {
-        authors = [... authors, undefined];
-      }
-    }
-    if(posts[0]) {
-      return res.render("articles",{list:list, posts:posts, authors:authors, dates:dates, index:index, name:name, modifiedTitles:modifiedTitles});
-    } else {
-      return res.json("erro: pagina indisponivel");
-    }
+    const dates = [];
+    const modifiedTitles = [];
+    rows.map(element => {
+      const created = JSON.stringify(element.createdAt);
+      const date = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
+      const modified = element.title.replace(/ /g, '-');
+      dates.push(date);
+      modifiedTitles.push(modified);
+    })
+    return res.render("articles", {list:rows, dates:dates, modifiedTitles:modifiedTitles, count:count, index:index, name:name})
   },
 
   async listPost(req, res){
     const params = req.sanitize(req.params.post_name);
     const name = params.replace(/-/g, ' ');
     const post_id = req.sanitize(req.params.post_id);
-    const post = await Post.findByPk(post_id);
+    const post = await Post.findOne({
+      where: {id: post_id},
+      include: {association: 'user'}
+    });
 
     if(post.title == name){
-      const author = await User.findByPk(post.user_id);
       const created = JSON.stringify(post.createdAt);
       const date = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
-      return res.render("oneArticle", {post:post, author:author, date:date})
+      return res.render("oneArticle", {post:post, date:date})
     } else {
       return res.json("erro: Página não encontrada");
     }

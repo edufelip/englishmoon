@@ -42,6 +42,9 @@ routes.get("/register", log.isNotLoggedIn, (req, res) => {
     res.render("register");
 });
 
+routes.get('/:user_id/posts', PostController.index);
+routes.post('/:user_id/posts', PostController.store);
+
 routes.get("/forgot_password", (req, res) => {
     res.render("forgotPass")
 })

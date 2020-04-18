@@ -28,54 +28,16 @@
             <div class="slider flex">
                 <i class="fas fa-chevron-left slider-btn-left"></i>
                 <div class="slider-move">
-                    <div class="slider-out" onclick="location.href='http://www.google.com'">
-                        <div style="background-image: url(<%=list[0].image%>);"  class="img">
+                    <% list.map(element => { %>
+                        <div class="slider-out" onclick="location.href='http://localhost:3000/articles'">
+                            <div style="background-image: url(<%=element.image%>);"  class="img">
+                            </div>
+                            <div class="img-info">
+                                <p><%=element.title%></p>
+                                <p><%=element.user.name%> - <%=dates[list.indexOf(element)]%></p>
+                            </div>
                         </div>
-                        <div class="img-info">
-                            <p><%=list[0].title%></p>
-                            <p><%=list[0].user.name%> - <%=dates[0]%></p>
-                        </div>
-                    </div>
-                    <div class="slider-out" onclick="location.href='http://www.google.com'">
-                        <div style="background-image: url(<%=list[0].image%>);"  class="img">
-                        </div>
-                        <div class="img-info">
-                            <p><%=list[0].title%></p>
-                            <p><%=list[0].user.name%> - <%=dates[0]%></p>
-                        </div>
-                    </div>
-                    <div class="slider-out" onclick="location.href='http://www.google.com'">
-                        <div style="background-image: url(<%=list[0].image%>);"  class="img">
-                        </div>
-                        <div class="img-info">
-                            <p><%=list[0].title%></p>
-                            <p><%=list[0].user.name%> - <%=dates[0]%></p>
-                        </div>
-                    </div>
-                    <div class="slider-out" onclick="location.href='http://www.google.com'">
-                        <div style="background-image: url(<%=list[0].image%>);"  class="img">
-                        </div>
-                        <div class="img-info">
-                            <p><%=list[0].title%></p>
-                            <p><%=list[0].user.name%> - <%=dates[0]%></p>
-                        </div>
-                    </div>
-                    <div class="slider-out" onclick="location.href='http://www.google.com'">
-                        <div style="background-image: url(<%=list[0].image%>);"  class="img">
-                        </div>
-                        <div class="img-info">
-                            <p><%=list[0].title%></p>
-                            <p><%=list[0].user.name%> - <%=dates[0]%></p>
-                        </div>
-                    </div>
-                    <div class="slider-out" onclick="location.href='http://www.google.com'">
-                        <div style="background-image: url(<%=list[0].image%>);"  class="img">
-                        </div>
-                        <div class="img-info">
-                            <p><%=list[0].title%></p>
-                            <p><%=list[0].user.name%> - <%=dates[0]%></p>
-                        </div>
-                    </div>
+                    <% }) %>
                 </div>
                 <i class="fas fa-chevron-right slider-btn-right"></i>
             </div>

@@ -82,7 +82,7 @@ module.exports = {
       include: {association: 'user'}
     });
 
-    if(post.title == name){
+    if(post.title === name){
       const created = JSON.stringify(post.createdAt);
       const date = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
       return res.render("oneArticle", {post:post, date:date})

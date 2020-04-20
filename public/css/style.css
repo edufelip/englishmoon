@@ -2002,11 +2002,12 @@ i {
   font-weight: 400;
 }
 .main .oneArticle .oneHeader h1, .main .oneArticle .oneHeader p {
-  font-family: "Nunito";
+  font-family: "Open Sans", sans-serif;
 }
 .main .oneArticle .oneHeader p {
   color: rgba(0, 0, 0, 0.822);
   margin: 10px 0 5px 0;
+  font-size: 14px;
 }
 .main .oneArticle .oneHeader .oneHeader_image {
   height: 300px;
@@ -2021,7 +2022,7 @@ i {
 }
 .main .oneArticle .oneApart {
   position: fixed;
-  top: 90px;
+  top: 160px;
   left: 60px;
   opacity: 0;
   transition: all 0.3s ease;

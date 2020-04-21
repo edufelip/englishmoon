@@ -11,7 +11,14 @@ require('dotenv').config()
 routes.get("/", PostController.list);
 
 routes.get("/articles", PostController.listAll);
+routes.post("/articles", PostController.newPost);
+routes.get("/articles/new", (req, res) => {
+    res.render("newArticle")
+})
 routes.get("/articles/:post_name/:post_id", PostController.listPost);
+routes.get("/articles/:post_name/:post_id/edit", PostController.editPostForm);
+routes.put("/articles/:post_name/:post_id", PostController.editPost);
+routes.delete("/articles/:post_name/:post_id", PostController.deletePost);
 
 routes.get("/books", (req, res) => {
     res.render("underConstruction");

@@ -55,11 +55,13 @@ app.use((req, res, next) => {
 const routes = require("./routes/routes");
 const authRoutes = require("./routes/authRoutes");
 const profileRoutes = require("./routes/profileRoutes");
+const articlesRoutes = require("./routes/articlesRoutes")
 const userRoutes = require("./routes/userRoutes");
 app.use(routes);
 app.use(authRoutes);
 app.use("/profile", profileRoutes);
 app.use("/users", userRoutes);
+app.use("/articles", articlesRoutes)
 
 app.listen(3000, (err) => {
     if(!err) {

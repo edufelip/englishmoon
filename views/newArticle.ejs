@@ -1,11 +1,45 @@
 <% include partials/header %>
+<link href="//cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
 
 <div class="main">
-
+    <div id="newArticle">
+        <div class="container">
+            <form action="">
+                <h1>Novo Artigo</h1>
+                <label for="title">Título</label>
+                <input maxlength="35" type="text" name="title" id="title" required>
+                <div id="toolbar">
+                    <button class="ql-bold">Bold</button>
+                    <button class="ql-italic">Italic</button>
+                </div>
+                <div id="editor">
+                    <p>Hello World!</p>
+                </div>
+                <!-- <label for="textBody">Artigo</label>
+                <button>Título Grande</button>
+                <button>Título Pequeno</button>
+                <button>Negrito</button>
+                <button type="button" id="negrito" >Negrito</button>
+                <textarea name="body" id="textBody" cols="30" rows="10" contenteditable="true" ></textarea> -->
+                
+                <button type="submit">Enviar</button>
+                
+            </form>
+        </div>
+    </div>
     <% include partials/footer %>
 </div>
 
 <script type="text/javascript" src="/scripts/scriptHeader.js"></script>
+<script src="//cdn.quilljs.com/1.0.0/quill.min.js"></script>
+<script>
+    var editor = new Quill('#editor', {
+        modules: { toolbar: '#toolbar' },
+        theme: 'snow'
+    });
+    
+</script>
+
 
 </body>
 </html>

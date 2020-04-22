@@ -1,0 +1,56 @@
+.main {
+    #newArticle{
+        min-height: 90vh;
+        min-height: 400px;
+        background-color: rgba(245, 245, 245, 0.8);
+        .container {
+            width: 70%;
+            height: 100%;
+            margin: 0 auto;
+            min-width: 700px;
+            max-width: 800px;
+            overflow: hidden;
+            form {
+                h1 {
+                    font-family: "Nunito";
+                    color: rgb(53, 53, 53);
+                    font-weight: 700;
+                    font-size: 45px;
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                    position: relative;
+                }
+                label {
+                    opacity: 0.7;
+                    display: block;
+                }
+                input, textarea{
+                    display: block;
+                    margin: 10px 0;
+                    border: 0;
+                }
+                input {
+                    border-bottom: 1px solid #00000050;
+                    background-color: transparent;
+                    margin-bottom: 20px;
+                    width: 40%;
+                    min-width: 400px;
+                    transition: all 0.3s ease;
+                    padding: 5px 2px;
+                    &:focus{
+                        outline: none;
+                        border-bottom: 1px solid #00000090;
+                    }
+                }
+                textarea{
+                    resize: none;
+                    width: 95%;
+                    border: 1px solid rgba(128, 128, 128, 0.6);
+                }
+                button {
+                    margin-top: 15px;
+                }
+            }
+        }
+    }
+}

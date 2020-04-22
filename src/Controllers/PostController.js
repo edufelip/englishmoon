@@ -2,6 +2,12 @@ const { Op } = require('sequelize')
 const User = require('../models/User');
 const Post = require('../models/Post');
 
+function convertDate(date){
+  const created = JSON.stringify(date)
+  const convertedDate = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
+  return convertedDate
+}
+
 module.exports = {
   async index(req, res) {
     const { user_id } = req.params;
@@ -64,8 +70,7 @@ module.exports = {
     const dates = [];
     const modifiedTitles = [];
     rows.map(element => {
-      const created = JSON.stringify(element.createdAt);
-      const date = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
+      const date = convertDate(element.createdAt)
       const modified = element.title.replace(/ /g, '-');
       dates.push(date);
       modifiedTitles.push(modified);
@@ -83,12 +88,26 @@ module.exports = {
     });
 
     if(post.title === name){
-      const created = JSON.stringify(post.createdAt);
-      const date = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
+      const date = convertDate(post.createdAt)
       return res.render("oneArticle", {post:post, date:date})
     } else {
       return res.json("erro: Página não encontrada");
-    }
-    
+    } 
+  },
+
+  async newPost(req, res){
+
+  },
+
+  async editPostForm(req, res) {
+
+  },
+
+  async editPost(req, res) {
+
+  },
+
+  async deletePost(req, res) {
+
   }
 };

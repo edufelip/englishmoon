@@ -1610,7 +1610,6 @@ i {
 }
 .main #newArticle {
   min-height: 90vh;
-  min-height: 400px;
   background-color: rgba(245, 245, 245, 0.8);
 }
 .main #newArticle .container {
@@ -1622,10 +1621,10 @@ i {
   overflow: hidden;
 }
 .main #newArticle .container form h1 {
-  font-family: "Nunito";
+  font-family: "Nunito", sans-serif;
   color: #353535;
   font-weight: 700;
-  font-size: 45px;
+  font-size: 40px;
   margin-top: 20px;
   margin-bottom: 10px;
   position: relative;
@@ -1634,12 +1633,31 @@ i {
   opacity: 0.7;
   display: block;
 }
-.main #newArticle .container form input, .main #newArticle .container form textarea {
+.main #newArticle .container form label[for=article-cover] {
+  font-size: 15px;
+  margin: 10px 0 5px 0;
+  padding: 10px 10px;
+  background-color: #3b6e4f;
+  width: fit-content;
+  color: white;
+  border-radius: 6px;
+  opacity: 0.9;
+}
+.main #newArticle .container form label[for=article-cover] i {
+  color: gainsboro;
+}
+.main #newArticle .container form label[for=article-cover]:hover {
+  cursor: pointer;
+}
+.main #newArticle .container form #cover-img-name {
+  width: fit-content;
+  margin: 0 0 10px 0;
+  font-size: 13px;
+}
+.main #newArticle .container form input {
   display: block;
   margin: 10px 0;
   border: 0;
-}
-.main #newArticle .container form input {
   border-bottom: 1px solid #00000050;
   background-color: transparent;
   margin-bottom: 20px;
@@ -1652,13 +1670,32 @@ i {
   outline: none;
   border-bottom: 1px solid #00000090;
 }
-.main #newArticle .container form textarea {
-  resize: none;
-  width: 95%;
-  border: 1px solid rgba(128, 128, 128, 0.6);
+.main #newArticle .container form button[type=submit] {
+  margin: 15px 0 35px 0;
+  padding: 5px 20px;
+  font-size: 16px;
+  background-color: #3b6e4f;
+  border: 0;
+  border-radius: 4px;
+  color: white;
+  opacity: 1;
 }
-.main #newArticle .container form button {
-  margin-top: 15px;
+.main #newArticle .container form button[type=submit]:hover {
+  cursor: pointer;
+}
+.main #newArticle .container form #textEditor #theRibbon button {
+  margin: 5px 0;
+}
+.main #newArticle .container form #textEditor #theRibbon label {
+  width: 100%;
+  height: 100%;
+}
+.main #newArticle .container form #textEditor #textArea iframe {
+  width: 95%;
+  background-color: white;
+  min-height: 300px;
+  border: 1px solid #00000030;
+  margin-top: 10px;
 }
 
 .main {
@@ -2043,6 +2080,7 @@ i {
 }
 .main .oneArticle {
   width: 50%;
+  min-width: 700px;
   height: 100%;
   margin: auto;
 }
@@ -2062,7 +2100,6 @@ i {
   font-size: 14px;
 }
 .main .oneArticle .oneHeader .oneHeader_image {
-  height: 300px;
   width: 100%;
   margin: 0 auto 20px auto;
   background-position: center;

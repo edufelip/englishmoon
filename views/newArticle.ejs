@@ -1,28 +1,36 @@
 <% include partials/header %>
+
 <link href="//cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
 
 <div class="main">
     <div id="newArticle">
         <div class="container">
-            <form action="">
+            <form id="articleForm" action="/articles" method="POST">
                 <h1>Novo Artigo</h1>
                 <label for="title">Título</label>
                 <input maxlength="35" type="text" name="title" id="title" required>
-                <div id="toolbar">
-                    <button class="ql-bold">Bold</button>
-                    <button class="ql-italic">Italic</button>
+                <label for="article-cover">Foto da Capa <i class="fas fa-upload"></i></label>
+                <p id="cover-img-name">Selecione uma imagem de capa (.jpg, .jpeg ou .png)</p>
+                <input type="file" id="article-cover" required style="display: none;">
+                <textarea name="articleBody" id="articleBody" style="display: none;"></textarea>
+                <div id="textEditor">
+                    <div id="theRibbon">
+                        <button type="button" id="boldButton" title="Negrito"><i class="fas fa-bold"></i></button>
+                        <button type="button" id="italicButton" title="Italico"><i class="fas fa-italic"></i></button>
+                        <button type="button" id="underlineButton" title="Sublinhado"><i class="fas fa-underline"></i></button>
+                        <button type="button" id="titleButton" title="Título"><i class="fas fa-heading"></i></button>
+                        <button type="button" id="listButton" title="Lista"><i class="fas fa-list-ul"></i></button>
+                        <button type="button" id="linkButton" title="Link"><i class="fas fa-link"></i></button>
+                        <button type="button" id="imageButton" title="Imagem"><i class="fas fa-photo-video"></i></button>
+                        <button type="button" id="subcriptButton" title="Subcript"><i class="fas fa-subscript"></i></button>
+                        <button type="button" id="superscriptButton" title="Superscript"><i class="fas fa-superscript"></i></button>
+                    </div>
+                    <div id="textArea">
+                        <iframe style="font-family: 'Nunito';" frameborder="0" id="iframe" name="iframe"></iframe>
+                    </div>
                 </div>
-                <div id="editor">
-                    <p>Hello World!</p>
-                </div>
-                <!-- <label for="textBody">Artigo</label>
-                <button>Título Grande</button>
-                <button>Título Pequeno</button>
-                <button>Negrito</button>
-                <button type="button" id="negrito" >Negrito</button>
-                <textarea name="body" id="textBody" cols="30" rows="10" contenteditable="true" ></textarea> -->
                 
-                <button type="submit">Enviar</button>
+                <button id="submitBtn" type="submit">Enviar</button>
                 
             </form>
         </div>
@@ -31,13 +39,90 @@
 </div>
 
 <script type="text/javascript" src="/scripts/scriptHeader.js"></script>
-<script src="//cdn.quilljs.com/1.0.0/quill.min.js"></script>
 <script>
-    var editor = new Quill('#editor', {
-        modules: { toolbar: '#toolbar' },
-        theme: 'snow'
-    });
+    document.title = "Novo Artigo"
+    const submitBtn = document.getElementById("submitBtn")
+    const articleBody = document.getElementById("articleBody")
+    const iframeBody = document.querySelector("iframe")
+    const articleForm = document.getElementById("articleForm")
+    const coverInput = document.getElementById("article-cover")
+    const coverMsg = document.getElementById("cover-img-name")
+
+    iframeBody.contentDocument.body.style.fontFamily = "'Open Sans', sans-serif"
+    iframeBody.contentDocument.body.style.color = "rgb(47,47,47)"
+    window.addEventListener("load", function(){
+        function executeAction(command, firstParam, secondParam){
+            editor.execCommand(command, firstParam, secondParam)
+            iframeBody.contentDocument.body.focus()
+        }
+        function toggleStyle(target){
+            target.style.filter = target.style.filter === "brightness(90%)" ? "brightness(100%)" : "brightness(90%)"
+        }
+        const editor = iframe.document
+        editor.designMode = "on"
+
+        boldButton.addEventListener("click", () => {
+            executeAction("Bold", false, null)
+            toggleStyle(boldButton)
+        })
+        italicButton.addEventListener("click", () => {
+            executeAction("Italic", false, null)
+            toggleStyle(italicButton)
+        })
+        underlineButton.addEventListener("click", () => {
+            executeAction("underline", false, null)
+            toggleStyle(underlineButton)
+        })
+        titleButton.addEventListener("click", () => {
+            executeAction("formatBlock", false, "<h1>")
+        })
+        listButton.addEventListener("click", () => {
+            executeAction("InsertUnorderedList", false, null)
+        })
+        linkButton.addEventListener("click", () => {
+            const url = prompt("Digite uma URL (Lembre-se de selecionar o texto que quer transformar em URL)", "http://")
+            executeAction("createLink", false, url)
+        })
+        imageButton.addEventListener("click", () => {
+            const url = prompt("Digite a URL da imagem")
+            executeAction("insertImage", false, url)
+        })
+        subcriptButton.addEventListener("click", () => {
+            toggleStyle(subcriptButton)
+            executeAction("subscript", false, null)
+        })
+        superscriptButton.addEventListener("click", () => {
+            toggleStyle(superscriptButton)
+            executeAction("superscript", false, null)
+        })
+    })
+
+    submitBtn.onclick = (e) => {
+        articleBody.innerHTML = iframeBody.contentDocument.body.innerHTML
+        return true
+    }
+
+    coverInput.addEventListener("change", () => {
+        let prov = coverInput.value;
+        let def = []
+        let cont = 0
+        prov = prov.split('')
+        for(let i = 0; i < prov.length; i++){
+            if(prov[i] == "\\") cont++;
+        }
+        for(let i = 0; i < prov.length; i++){
+            if(prov[i] == "\\") cont--;
+            if(cont == 0) {
+                def.push(prov[i])
+            }
+        }
+        def.shift();
+        def = def.join('')
+        coverMsg.innerHTML = def
+    })
+
     
+
 </script>
 
 

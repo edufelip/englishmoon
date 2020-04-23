@@ -110,7 +110,7 @@ module.exports = {
       where: {email: email}
     })
     if(user.photo){
-      const path = "uploads/" + user.photo
+      const path = "public/uploads/" + user.photo
       try {
         fs.unlinkSync(path)
       } catch(err) {

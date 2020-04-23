@@ -404,6 +404,7 @@
     }
     .oneArticle {
         width: 50%;
+        min-width: 700px;
         height: 100%;
         margin: auto;
         .oneHeader{
@@ -421,7 +422,6 @@
                 font-size: 14px;
             }
             .oneHeader_image{
-                height: 300px;
                 width: 100%;
                 margin: 0 auto 20px auto;
                 background-position: center;

@@ -96,7 +96,8 @@ module.exports = {
   },
 
   async newPost(req, res){
-
+    const data = req.body
+    return res.json(data)
   },
 
   async editPostForm(req, res) {

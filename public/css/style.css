@@ -1633,7 +1633,12 @@ i {
   opacity: 0.7;
   display: block;
 }
-.main #newArticle .container form label[for=article-cover] {
+.main #newArticle .container form p.flashMsg {
+  font-size: 13px;
+  color: red;
+  margin-bottom: 5px;
+}
+.main #newArticle .container form label[for=articleCover] {
   font-size: 15px;
   margin: 10px 0 5px 0;
   padding: 10px 10px;
@@ -1643,10 +1648,10 @@ i {
   border-radius: 6px;
   opacity: 0.9;
 }
-.main #newArticle .container form label[for=article-cover] i {
+.main #newArticle .container form label[for=articleCover] i {
   color: gainsboro;
 }
-.main #newArticle .container form label[for=article-cover]:hover {
+.main #newArticle .container form label[for=articleCover]:hover {
   cursor: pointer;
 }
 .main #newArticle .container form #cover-img-name {

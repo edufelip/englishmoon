@@ -96,8 +96,19 @@ module.exports = {
   },
 
   async newPost(req, res){
-    const data = req.body
-    return res.json(data)
+    const user = 4        //////////////////////////////////////////////////////
+    const {title, articleBody} = req.body;
+    const filename = req.file.filename
+    console.log(filename)
+    console.log(articleBody)
+    return res.json(req.body)
+    const post = await Post.create({
+      title,
+      articleBody,
+      filename,
+      user,
+    });
+    return res.json(post)
   },
 
   async editPostForm(req, res) {

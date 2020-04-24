@@ -1,18 +1,19 @@
 <% include partials/header %>
 
-<link href="//cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
-
 <div class="main">
     <div id="newArticle">
         <div class="container">
-            <form id="articleForm" action="/articles" method="POST">
+            <form id="articleForm" action="/articles" method="POST" enctype="multipart/form-data">
                 <h1>Novo Artigo</h1>
                 <label for="title">Título</label>
                 <input maxlength="35" type="text" name="title" id="title" required>
-                <label for="article-cover">Foto da Capa <i class="fas fa-upload"></i></label>
+                <label for="articleCover">Capa do Post <i class="fas fa-upload"></i></label>
                 <p id="cover-img-name">Selecione uma imagem de capa (.jpg, .jpeg ou .png)</p>
-                <input type="file" id="article-cover" required style="display: none;">
+                <input type="file" name="articleCover" id="articleCover" accept="image/jpg" required style="display: none;">
                 <textarea name="articleBody" id="articleBody" style="display: none;"></textarea>
+                <% if(imgMessage && imgMessage.length > 0) { %>
+                    <p class="flashMsg"> imagem no formato errado ou maior que 300Kb </p>
+                <% } %>
                 <div id="textEditor">
                     <div id="theRibbon">
                         <button type="button" id="boldButton" title="Negrito"><i class="fas fa-bold"></i></button>
@@ -45,7 +46,7 @@
     const articleBody = document.getElementById("articleBody")
     const iframeBody = document.querySelector("iframe")
     const articleForm = document.getElementById("articleForm")
-    const coverInput = document.getElementById("article-cover")
+    const coverInput = document.getElementById("articleCover")
     const coverMsg = document.getElementById("cover-img-name")
 
     iframeBody.contentDocument.body.style.fontFamily = "'Open Sans', sans-serif"

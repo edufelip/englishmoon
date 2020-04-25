@@ -1,4 +1,6 @@
 const apart = document.querySelector(".oneApart");
+const articleBody = document.querySelector(".oneBody")
+articleBody.innerHTML = articleBody.innerText
 
 function throttle (func, limit) {
     let lastFunc;

@@ -86,28 +86,30 @@ module.exports = {
       where: {id: post_id},
       include: {association: 'user'}
     });
-
+    if(!post) {
+      return res.json("erro: Página não encontrada");
+    } 
     if(post.title === name){
       const date = convertDate(post.createdAt)
       return res.render("oneArticle", {post:post, date:date})
-    } else {
-      return res.json("erro: Página não encontrada");
-    } 
+    }
   },
 
   async newPost(req, res){
-    const user = 4        //////////////////////////////////////////////////////
+    const user_id = 4
     const {title, articleBody} = req.body;
-    const filename = req.file.filename
-    console.log(filename)
-    console.log(articleBody)
-    return res.json(req.body)
+    const image = req.file.filename
+    const user = await User.findByPk(user_id);
+    if(!user){
+      return res.status(400).json({ error: 'User not found' });
+    }
     const post = await Post.create({
-      title,
-      articleBody,
-      filename,
-      user,
+      title: title,
+      body: articleBody,
+      image: image,
+      user_id: user_id,
     });
+    // return res.redirect(`/articles`)
     return res.json(post)
   },
 

@@ -1,33 +1,10 @@
 const express = require("express");
 const routes = express.Router();
 const multer = require("multer")
-const path = require('path')
 const log = require('../config/islogged')
 const UserController = require('../controllers/UserController');
-const PostController = require('../controllers/PostController');
 const limiter = require('../config/rateLimiter')
-
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/uploads/')
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + file.originalname)
-    }
-})
-const upload = multer({
-    storage: storage,
-    fileFilter: (req, file, cb) => {
-        const ext = path.extname(file.originalname);
-        if(ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg'){
-            return cb(new Error("Arquivo deve ser .jpg, .png ou .jpeg"))
-        }
-        return cb(null, true)
-    },
-    limits: {
-        fileSize: 1024 * 300
-    }
-}).single('img')
+const upload = require('../config/multer').single('img')
 
 routes.get('/', UserController.index) //
 routes.put('/', limiter, UserController.edit);  //
@@ -51,6 +28,7 @@ routes.post('/photo', [limiter, log.isLoggedIn], (req, res) => {
         }
     })
 });
+
 routes.post('/password', [limiter, log.isLoggedIn], UserController.verifyPass)
 
 module.exports = routes;

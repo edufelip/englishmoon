@@ -6,7 +6,7 @@
             <form id="articleForm" action="/articles" method="POST" enctype="multipart/form-data">
                 <h1>Novo Artigo</h1>
                 <label for="title">Título</label>
-                <input maxlength="35" type="text" name="title" id="title" required>
+                <input maxlength="50" type="text" name="title" id="title" required>
                 <label for="articleCover">Capa do Post <i class="fas fa-upload"></i></label>
                 <p id="cover-img-name">Selecione uma imagem de capa (.jpg, .jpeg ou .png)</p>
                 <input type="file" name="articleCover" id="articleCover" accept="image/jpg" required style="display: none;">
@@ -50,7 +50,7 @@
     const coverMsg = document.getElementById("cover-img-name")
 
     iframeBody.contentDocument.body.style.fontFamily = "'Open Sans', sans-serif"
-    iframeBody.contentDocument.body.style.color = "rgb(47,47,47)"
+    iframeBody.contentDocument.body.style.color = "rgb(52,52,52)"
     window.addEventListener("load", function(){
         function executeAction(command, firstParam, secondParam){
             editor.execCommand(command, firstParam, secondParam)

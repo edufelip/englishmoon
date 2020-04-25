@@ -12,7 +12,7 @@
             <h1><b><%=post.title%></b></h1>
             <p><%=post.user.name%> - <%=date%></p>
             <div class="oneHeader_image" >
-                <img style="width: 100%;" src="<%=post.image%>" alt="Capa do Artigo">
+                <img style="width: 100%;" src="/uploads/<%=post.image%>" alt="Capa do Artigo">
             </div>
         </div>
         <div class="oneBody">
@@ -24,7 +24,6 @@
 
 <script>
     const corp = document.querySelector(".oneBody")
-    // corp.innerHTML = corp.innerText
 </script>
 <script type="text/javascript" src="/scripts/scriptHeader.js"></script>
 <script type="text/javascript" src="/scripts/scriptOneArticle.js"></script>

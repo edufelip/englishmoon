@@ -4,29 +4,7 @@ const limiter = require("../config/rateLimiter")
 const PostController = require('../Controllers/PostController');
 const log = require('../config/islogged')
 const multer = require("multer")
-const path = require("path")
-
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/uploads/')
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + file.originalname)
-    }
-})
-const upload = multer({
-    storage: storage,
-    fileFilter: (req, file, cb) => {
-        const ext = path.extname(file.originalname);
-        if(ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg'){
-            return cb(new Error("Arquivo deve ser .jpg, .png ou .jpeg"))
-        }
-        return cb(null, true)
-    },
-    limits: {
-        fileSize: 1024 * 300
-    }
-}).single('articleCover')
+const upload = require("../config/multer").single("articleCover")
 
 routes.get("/", PostController.listAll);
 routes.post("/", limiter, (req, res) => {
@@ -39,6 +17,7 @@ routes.post("/", limiter, (req, res) => {
             }
             res.redirect("/articles/new")
         } else if (err) {
+            console.log(err)
             req.flash('imgError', 'Imagem deve ser .jpeg, jpg ou .png')
             res.redirect("/articles/new")
         } else {

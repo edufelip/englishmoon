@@ -5,7 +5,7 @@ class Post extends Model {
     super.init({
       title: DataTypes.STRING,
       body: DataTypes.TEXT,
-      image: DataTypes.INTEGER,
+      image: DataTypes.STRING,
       description: DataTypes.STRING
     }, {
       sequelize

@@ -91,12 +91,12 @@ module.exports = {
     } 
     if(post.title === name){
       const date = convertDate(post.createdAt)
-      return res.render("oneArticle", {post:post, date:date})
+      return res.render("oneArticle", {post:post, date:date, name: params})
     }
   },
 
   async newPost(req, res){
-    const user_id = 4
+    const user_id = req.user.id
     const {title, articleBody} = req.body;
     const image = req.file.filename
     const user = await User.findByPk(user_id);
@@ -109,19 +109,28 @@ module.exports = {
       image: image,
       user_id: user_id,
     });
-    // return res.redirect(`/articles`)
-    return res.json(post)
+    const format_name = post.title.replace(/ /g, '-');
+    return res.redirect(`/articles/${format_name}/${post.id}`)
   },
-
-  async editPostForm(req, res) {
-
-  },
-
-  async editPost(req, res) {
-
-  },
-
+  
   async deletePost(req, res) {
+    const params = req.params
+    const post = await Post.findByPk(params.post_id)
+    if(req.user.id !== post.user_id){
+      return res.status(403).json("você nao tem permissão para isso")
+    }
+    await post.destroy()
+    return res.redirect("/articles")
+  },
 
-  }
+  // async editPostForm(req, res) {
+  //   const params = req.params
+  //   const post = await Post.findByPk(params.post_id)
+  //   // if(req.user.id !)
+  // },
+
+  // async editPost(req, res) {
+
+  // }
+
 };

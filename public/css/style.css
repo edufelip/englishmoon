@@ -2126,6 +2126,17 @@ i {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.main .oneArticle .oneHeader form button {
+  background-color: firebrick;
+  border: 0;
+  color: white;
+  border-radius: 6px;
+  padding: 5px 10px;
+  margin: 10px 0 0 0;
+}
+.main .oneArticle .oneHeader form button:hover {
+  cursor: pointer;
+}
 .main .oneArticle .oneBody {
   margin-bottom: 50px;
 }

@@ -10,6 +10,13 @@
         </div>
         <div class="oneHeader">
             <h1><b><%=post.title%></b></h1>
+            <% if(currentUser) { %>
+                <% if(post.user.id === currentUser.id) { %>
+                    <form action="/articles/<%=name%>/<%=post.id%>?_method=DELETE" method="POST">
+                        <button>DELETAR</button>
+                    </form>
+                <% } %>
+            <% } %>
             <p><%=post.user.name%> - <%=date%></p>
             <div class="oneHeader_image" >
                 <img style="width: 100%;" src="/uploads/<%=post.image%>" alt="Capa do Artigo">

@@ -443,6 +443,18 @@
                 background-repeat: no-repeat;
                 background-size: cover;
             }
+            form {
+                button {
+                    background-color: firebrick; 
+                    border: 0; color: white;
+                    border-radius: 6px;
+                    padding: 5px 10px;
+                    margin: 10px 0 0 0;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
         }
         .oneBody {
             margin-bottom: 50px;

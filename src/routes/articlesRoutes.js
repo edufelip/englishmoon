@@ -7,7 +7,7 @@ const multer = require("multer")
 const upload = require("../config/multer").single("articleCover")
 
 routes.get("/", PostController.listAll);
-routes.post("/", limiter, (req, res) => {
+routes.post("/", [log.isLoggedIn ,limiter], (req, res) => {
     upload(req, res, function(err){
         if(err instanceof multer.MulterError) {
             if(err.message == 'File too large') {
@@ -25,12 +25,12 @@ routes.post("/", limiter, (req, res) => {
         }
     })
 });
-routes.get("/new", (req, res) => {
+routes.get("/new", log.isLoggedIn, (req, res) => {
     res.render("newArticle")
 })
 routes.get("/:post_name/:post_id", PostController.listPost);
 // routes.get("/:post_name/:post_id/edit", PostController.editPostForm);
 // routes.put("/:post_name/:post_id", limiter, PostController.editPost);
-routes.delete("/:post_name/:post_id", limiter, PostController.deletePost);
+routes.delete("/:post_name/:post_id", [log.isLoggedIn, limiter], PostController.deletePost);
 
 module.exports = routes

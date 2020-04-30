@@ -35,6 +35,11 @@ routes.post("/contact", limiter, (req, res) => {
     })
 })
 
+routes.get("/newsletter", limiter, (req, res) => {
+    // const email = req.body.email;
+    return res.redirect("/")
+})
+
 routes.get("/register", log.isNotLoggedIn, (req, res) => {
     res.render("register");
 });

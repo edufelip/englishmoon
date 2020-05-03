@@ -6,7 +6,7 @@ const log = require('../config/islogged')
 const multer = require("multer")
 const upload = require("../config/multer").single("articleCover")
 
-routes.get("/", PostController.listAll);
+routes.get("/", PostController.listArticlesPage);
 routes.post("/", [log.isAdmin ,limiter], (req, res) => {
     upload(req, res, function(err){
         if(err instanceof multer.MulterError) {
@@ -29,8 +29,6 @@ routes.get("/new", log.isAdmin, (req, res) => {
     res.render("newArticle")
 })
 routes.get("/:post_name/:post_id", PostController.listPost);
-// routes.get("/:post_name/:post_id/edit", PostController.editPostForm);
-// routes.put("/:post_name/:post_id", limiter, PostController.editPost);
 routes.delete("/:post_name/:post_id", [log.isAdmin, limiter], PostController.deletePost);
 
 module.exports = routes

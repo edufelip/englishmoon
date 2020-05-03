@@ -29,7 +29,7 @@
                 <i class="fas fa-chevron-left slider-btn-left"></i>
                 <div class="slider-move">
                     <% list.map(element => { %>
-                        <div class="slider-out" onclick="location.href='http://localhost:3000/articles'">
+                        <div class="slider-out" onclick="location.href='articles/<%=modifiedTitles[list.indexOf(element)]%>/<%=element.id%>'">
                             <div style="background-image: url(<%=element.image%>);"  class="img">
                             </div>
                             <div class="img-info">
@@ -42,7 +42,7 @@
                 <i class="fas fa-chevron-right slider-btn-right"></i>
             </div>
             <div class="slider-more">
-                <a href="http://localhost:3000/articles?page=1">Ver mais</a>
+                <a href="articles?page=1">Ver mais</a>
             </div>
         </div>
         <div class="info flex">

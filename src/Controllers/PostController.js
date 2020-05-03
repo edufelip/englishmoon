@@ -8,51 +8,27 @@ function convertDate(date){
   return convertedDate
 }
 
+function convertNameAndDate(list) {
+  let modifiedTitles = []
+  let dates = []
+  list.map( post => {
+    dates.push(convertDate(post.createdAt))
+    modifiedTitles.push(post.title.replace(/ /g, '-'))
+  })
+  return [modifiedTitles, dates]
+}
+
 module.exports = {
-  async index(req, res) {
-    const { user_id } = req.params;
-
-    const user = await User.findByPk(user_id, {
-      include: { association: 'posts' }
-    });
-
-    return res.json(user);
-  },
-
-  async store(req, res) {
-    const { user_id } = req.params;
-    const title = req.sanitize(req.body.title);
-    const body = req.sanitize(req.body.body);
-    const image = req.sanitize(req.body.image);
-    const user = await User.findByPk(user_id);
-    if (!user) {
-      return res.status(400).json({ error: 'User not found' });
-    }
-    const post = await Post.create({
-      title,
-      body,
-      image,
-      user_id,
-    });
-
-    return res.json(post);
-  },
-
-  async list(req, res) {
+  async listMainPage(req, res) {
     const list = await Post.findAll({
       limit: 6,
       include: {association: 'user'}
     })
-    const dates = [];
-    list.map( element => {
-      const created = JSON.stringify(element.createdAt);
-      const date = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
-      dates.push(date);
-    })
-    return res.render("home",{list:list, dates:dates});
+    const [ modifiedTitles, dates ] = convertNameAndDate(list)
+    return res.render("home",{list:list, dates:dates, modifiedTitles: modifiedTitles});
   },
   
-  async listAll(req,res) {
+  async listArticlesPage(req,res) {
     const posts = [];
     const name = req.sanitize(req.query.name) || '';
     const index = parseInt(req.sanitize(req.query.page)) || 1;
@@ -67,14 +43,7 @@ module.exports = {
       offset: 6 * (index - 1),
       include: {association: 'user'}
     });
-    const dates = [];
-    const modifiedTitles = [];
-    rows.map(element => {
-      const date = convertDate(element.createdAt)
-      const modified = element.title.replace(/ /g, '-');
-      dates.push(date);
-      modifiedTitles.push(modified);
-    })
+    const [ modifiedTitles, dates ] = convertNameAndDate(rows)
     return res.render("articles", {list:rows, dates:dates, modifiedTitles:modifiedTitles, count:count, index:index, name:name})
   },
 

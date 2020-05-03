@@ -10,42 +10,42 @@
             <div class="articles_index">
                 <% if(count !== 0) { %>
                     <% if(index === 1) { %>
-                        <a href="http://localhost:3000/articles?page=1&name=<%= name %>">1</a>
+                        <a href="articles?page=1&name=<%= name %>">1</a>
                         <% if(count > 6) { %>
-                            <a href="http://localhost:3000/articles?page=2&name=<%= name %>" style="background-color: rgb(194, 194, 194);">2</a>
+                            <a href="articles?page=2&name=<%= name %>" style="background-color: rgb(194, 194, 194);">2</a>
                         <% } %>
                         <% if(count > 12) { %>
-                            <a href="http://localhost:3000/articles?page=3&name=<%= name %>" style="background-color: rgb(194, 194, 194);">3</a>
+                            <a href="articles?page=3&name=<%= name %>" style="background-color: rgb(194, 194, 194);">3</a>
                         <% } %>
                         <% if(count > 18) { %>
                             <p style="margin: 0 6px 0 2px; opacity: 0.7;">...</p>
-                            <a href="http://localhost:3000/articles?page=<%=Math.ceil(count/6)%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=Math.ceil(count/6)%></a>
+                            <a href="articles?page=<%=Math.ceil(count/6)%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=Math.ceil(count/6)%></a>
                         <% } %>
                     <% } else if (index >= 2) { %>
                         <% if(index >= 3 && count <= 6*index) { %>
                             <% if(index === 3) { %>
-                                <a href="http://localhost:3000/articles?page=1&name=<%= name %>" style="background-color: rgb(194, 194, 194);">1</a>
-                                <a href="http://localhost:3000/articles?page=2&name=<%= name %>" style="background-color: rgb(194, 194, 194);">2</a>
-                                <a href="http://localhost:3000/articles?page=3&name=<%= name %>">3</a>                                
+                                <a href="articles?page=1&name=<%= name %>" style="background-color: rgb(194, 194, 194);">1</a>
+                                <a href="articles?page=2&name=<%= name %>" style="background-color: rgb(194, 194, 194);">2</a>
+                                <a href="articles?page=3&name=<%= name %>">3</a>                                
                             <% } else { %>
-                                <a href="http://localhost:3000/articles?page=1&name=<%= name %>" style="background-color: rgb(194, 194, 194);">1</a>
+                                <a href="articles?page=1&name=<%= name %>" style="background-color: rgb(194, 194, 194);">1</a>
                                 <p style="margin: 0 6px 0 2px; opacity: 0.7;">...</p>
-                                <a href="http://localhost:3000/articles?page=<%=index-1%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=index-1%></a>
-                                <a href="http://localhost:3000/articles?page=<%=index%>&name=<%= name %>"><%=index%></a>
+                                <a href="articles?page=<%=index-1%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=index-1%></a>
+                                <a href="articles?page=<%=index%>&name=<%= name %>"><%=index%></a>
                             <% } %>
                         <% } else { %>
                             <% if(index > 2) { %>
-                                <a href="http://localhost:3000/articles?page=1&name=<%= name %>" style="background-color: rgb(194, 194, 194);">1</a>
+                                <a href="articles?page=1&name=<%= name %>" style="background-color: rgb(194, 194, 194);">1</a>
                                 <p style="margin: 0 6px 0 2px; opacity: 0.7;">...</p>
                             <% } %>
-                            <a href="http://localhost:3000/articles?page=<%=index-1%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=index-1%></a>
-                            <a href="http://localhost:3000/articles?page=<%=index%>&name=<%= name %>"><%=index%></a>
+                            <a href="articles?page=<%=index-1%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=index-1%></a>
+                            <a href="articles?page=<%=index%>&name=<%= name %>"><%=index%></a>
                             <% if ( count >  index*6 ) { %>
-                                <a href="http://localhost:3000/articles?page=<%=index+1%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=index+1%></a>
+                                <a href="articles?page=<%=index+1%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=index+1%></a>
                             <% } %>
                             <% if ( count >  (index+1)*6 ) { %>
                                 <p style="margin: 0 6px 0 2px; opacity: 0.7;">...</p>
-                                <a href="http://localhost:3000/articles?page=<%=Math.ceil(count/6)%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=Math.ceil(count/6)%></a>
+                                <a href="articles?page=<%=Math.ceil(count/6)%>&name=<%= name %>" style="background-color: rgb(194, 194, 194);"><%=Math.ceil(count/6)%></a>
                             <% } %>
                         <% } %>
                     <% } %>    
@@ -55,7 +55,7 @@
         <div class="articles_container">
             <% list.map( element => { %>
                 <div class="article_block">
-                    <a class="title" href="http://localhost:3000/articles/<%=modifiedTitles[list.indexOf(element)]%>/<%=element.id%>"><%=element.title%></a>
+                    <a class="title" href="articles/<%=modifiedTitles[list.indexOf(element)]%>/<%=element.id%>"><%=element.title%></a>
                     <div class="article_block_sub">
                         <p><%=element.user.name.toUpperCase()%></p>
                         <p><%=dates[list.indexOf(element)]%></p>
@@ -67,7 +67,7 @@
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique luctus tempor. Sed maximus non tellus nec sollicitudin. Duis id erat orci. Suspendisse potenti. Curabitur eu pulvinar mauris. Nam risus erat, lacinia sed porta eget, posuere ac lectus. Proin vitae feugiat purus, non accumsan massa. Ut in volutpat ex. Aliquam in nulla ac eros convallis vestibulum.
                         </h4>
                     </section>
-                    <a class="readMore" href="http://localhost:3000/articles/<%=modifiedTitles[list.indexOf(element)]%>/<%=element.id%>">Leia Mais...</a>
+                    <a class="readMore" href="articles/<%=modifiedTitles[list.indexOf(element)]%>/<%=element.id%>">Leia Mais...</a>
                 </div>
             <% }) %>
         </div>

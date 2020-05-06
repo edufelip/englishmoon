@@ -5,8 +5,6 @@ const resetError = document.querySelector('.reset_errorMsg')
 
 resetForm.onsubmit = (e) => {
     e.preventDefault()
-    console.log(passField.value)
-    console.log(passFieldAgain.value)
     if(passField.value !== passFieldAgain.value ) {
         resetError.innerHTML = "As senhas nao coincidem"
         resetError.classList.add('reset_errorShow')

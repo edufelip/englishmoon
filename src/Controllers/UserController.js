@@ -164,16 +164,18 @@ module.exports = {
       if(err) return res.status(400).send({error: 'Invalid Token'})
       return res.render("resetPass", {token: token})
     })
-    return res.render("resetPass")
   },
   
   async newPass(req, res){
     const {token, password} = req.body
     jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
-      if(err) return res.status(400).send({error: 'Invalid Token'})
+      if(err) return res.status(400).send({error: err})
       const user = await User.findOne({
         where: {email: decoded.user}
       })
+      console.log(user.password)
+      console.log(decoded.resetHash)
+
       if(!bcrypt.compareSync(user.password, decoded.resetHash)) return res.status(400).send({error: 'Invalid Token'})
       const newPass = await bcrypt.hash(password, saltRounds)
       user.password = newPass

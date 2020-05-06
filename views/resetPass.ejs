@@ -3,13 +3,13 @@
 <div class="main">
     <div class="newPass">
         <div class="newPassForm">
-            <form id="reset-form" action="/teste?_method=PUT" method="POST">
+            <form id="reset-form" action="/reset_password?_method=PUT" method="POST">
                 <h2>Estamos quase lá</h1>
-                <input id="token" type="text" value="" readonly hidden>
+                <input id="token" name="token" type="text" value="<%=token%>" readonly hidden>
                 <p>Nova senha</p>
-                <input class="type-pass" type="password" placeholder="Sua senha">
+                <input class="type-pass" type="password" name="password" placeholder="Sua senha">
                 <p>Nova senha novamente</p>
-                <input class="type-pass-again" type="password" placeholder="Repita sua senha">
+                <input class="type-pass-again" type="password" name="passwordAgain" placeholder="Repita sua senha">
                 <button id="reset_btn">ENVIAR</button>
                 <p class="reset_errorMsg"><%=message%></p>
                 <p class="advice_msg">Recomendamos o uso de letras, números e caracteres especiais para uma maior segurança da sua conta</p>

@@ -4,8 +4,8 @@ const passport = require("passport");
 const limiter = require("../config/rateLimiter")
 
 routes.post("/login", [limiter, passport.authenticate("local", {
-    successRedirect: "contact",
-    failureRedirect: "contact",
+    successRedirect: "/",
+    failureRedirect: "/",
     failureFlash: true
 })], function(req, res){
 });

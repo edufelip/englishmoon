@@ -1,6 +1,6 @@
 // const main = document.querySelector(".main");
 
-let changeColor = () => {
+function changeColor() {
     main.style.background = "rgb(243, 243, 243)";
 }
 

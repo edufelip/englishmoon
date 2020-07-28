@@ -1,17 +1,17 @@
-const express = require("express");
-const routes = express.Router();
+const express = require("express")
+const routes = express.Router()
 const multer = require("multer")
+const bcrypt = require("bcrypt")
 const log = require('../config/islogged')
-const UserController = require('../controllers/UserController');
+const UserController = require('../controllers/UserController')
 const limiter = require('../config/rateLimiter')
 const upload = require('../config/multer').single('img')
 
-routes.get('/', UserController.index) //
-routes.put('/', limiter, UserController.edit);  //
+routes.put('/', [limiter, log.isLoggedIn], UserController.update); 
 routes.post('/', limiter, UserController.store);
-routes.delete('/', UserController.destroy);
+routes.delete('/', [limiter, log.isLoggedIn] ,UserController.delete);
 
-routes.post('/photo', [limiter, log.isLoggedIn], (req, res) => {
+routes.put('/photo', [limiter, log.isLoggedIn], (req, res) => {
     upload(req, res, function(err){
         if(err instanceof multer.MulterError) {
             if(err.message == 'File too large') {
@@ -24,11 +24,16 @@ routes.post('/photo', [limiter, log.isLoggedIn], (req, res) => {
             req.flash('imgError', 'Imagem deve ser .jpeg, jpg ou .png')
             res.redirect("/profile/info")
         } else {
-            UserController.changePhoto(req, res);
+            UserController.update(req, res);
         }
     })
 });
 
-routes.post('/password', [limiter, log.isLoggedIn], UserController.verifyPass)
+routes.post('/password', [limiter, log.isLoggedIn], (req, res) => {
+    const userPass = req.user.password
+    const bodyPass = req.body.password
+    const verify = bcrypt.compareSync(bodyPass, userPass)
+    return res.json(verify)
+})
 
 module.exports = routes;

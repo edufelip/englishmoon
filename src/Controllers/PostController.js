@@ -1,53 +1,9 @@
-const { Op } = require('sequelize') 
 const User = require('../models/User');
 const Post = require('../models/Post');
-
-function convertDate(date){
-  const created = JSON.stringify(date)
-  const convertedDate = created.substr(9, 2) + '/' + created.substr(6,2) + '/' + created.substr(1,4);
-  return convertedDate
-}
-
-function convertNameAndDate(list) {
-  let modifiedTitles = []
-  let dates = []
-  list.map( post => {
-    dates.push(convertDate(post.createdAt))
-    modifiedTitles.push(post.title.replace(/ /g, '-'))
-  })
-  return [modifiedTitles, dates]
-}
+const { convertDate } = require('../utils/convertDate')
 
 module.exports = {
-  async listMainPage(req, res) {
-    const list = await Post.findAll({
-      limit: 6,
-      include: {association: 'user'}
-    })
-    const [ modifiedTitles, dates ] = convertNameAndDate(list)
-    return res.render("home",{list:list, dates:dates, modifiedTitles: modifiedTitles});
-  },
-  
-  async listArticlesPage(req,res) {
-    const posts = [];
-    const name = req.sanitize(req.query.name) || '';
-    const index = parseInt(req.sanitize(req.query.page)) || 1;
-    const {count, rows} = await Post.findAndCountAll({
-      where: {
-        title: {
-          [Op.like]: `%${name}%` // change to ilike when using pg
-        }
-      },
-      attributes: {exclude: ['body']},
-      limit: 6,
-      offset: 6 * (index - 1),
-      include: {association: 'user'}
-    });
-    const [ modifiedTitles, dates ] = convertNameAndDate(rows)
-    return res.render("articles", {list:rows, dates:dates, modifiedTitles:modifiedTitles, count:count, index:index, name:name})
-  },
-
-  async listPost(req, res){
+  async index(req, res){
     const params = req.sanitize(req.params.post_name);
     const name = params.replace(/-/g, ' ');
     const post_id = req.sanitize(req.params.post_id);
@@ -64,7 +20,7 @@ module.exports = {
     }
   },
 
-  async newPost(req, res){
+  async store(req, res){
     const user_id = req.user.id
     const {title, articleBody} = req.body;
     const image = req.file.filename
@@ -81,8 +37,8 @@ module.exports = {
     const format_name = post.title.replace(/ /g, '-');
     return res.redirect(`/articles/${format_name}/${post.id}`)
   },
-  
-  async deletePost(req, res) {
+
+  async delete(req, res) {
     const params = req.params
     const post = await Post.findByPk(params.post_id)
     if(req.user.id !== post.user_id){
@@ -91,15 +47,4 @@ module.exports = {
     await post.destroy()
     return res.redirect("/articles")
   },
-
-  // async editPostForm(req, res) {
-  //   const params = req.params
-  //   const post = await Post.findByPk(params.post_id)
-  //   // if(req.user.id !)
-  // },
-
-  // async editPost(req, res) {
-
-  // }
-
 };

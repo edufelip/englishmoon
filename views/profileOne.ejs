@@ -34,7 +34,8 @@
                     <div style="background-image: url(/uploads/<%=currentUser.photo%>);" class="box-photo">
 
                     </div>
-                    <form id="photo-form" action="/users/photo" method="POST" enctype="multipart/form-data">
+                    <form id="photo-form" action="/users/photo?_method=PUT" method="POST" enctype="multipart/form-data">
+                        <input style="display: none" name="CASE" value="@UPDATE/PHOTO" readonly>
                         <input id="file-select" type="file" name="img">
                         <label for="file-select"> <i class="fas fa-images"></i> Selecione uma Foto </label>
                         <p id="img-form-title"></p>
@@ -53,6 +54,7 @@
                 </div>
                 <div class="profileRight-box-right">
                     <form action="/users?_method=PUT" method="POST">
+                        <input style="display: none" name="CASE" value="@UPDATE/ALL" readonly>
                         <div class="profile-container">
                             <p>NOME</p>
                             <span class="span-fields"><p><%=currentUser.name%></p><i class="edit fas fa-pencil-alt"></i></span>

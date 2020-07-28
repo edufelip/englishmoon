@@ -21,10 +21,6 @@ const sass_dest = './public'
 const img_dest = './public/images'
 const uploads_dest = './public/uploads'
 
-function imgMinify() {
-  
-}
-
 gulp.task('sass', function(){
   return gulp.src(sass_src)
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))

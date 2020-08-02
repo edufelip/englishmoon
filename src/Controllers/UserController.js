@@ -46,92 +46,88 @@ module.exports = {
   },
 
   async update(req, res) {
-    switch(req.body.case) {
-      case '@UPDATE/ALL': {
-        const { name, gender, birthday, telephone, email } = req.body;
-        const user = await User.findOne({
-          where: {email: email}
-        })
-        user.name = name;
-        user.gender = gender;
-        if(check.checkBirth(birthday)) user.birthday = birthday;
-        if(check.checkTel(telephone)) user.telephone = telephone;
-        if(check.checkEmail(email)) user.email = email;
-        await user.save();
-        return res.redirect("/profile/info");
+    if (req.body.CASE === '@UPDATE/ALL') {
+      const { name, gender, birthday, telephone, email } = req.body;
+      const user = await User.findOne({
+        where: {email: email}
+      })
+      console.log(user)
+      user.name = name;
+      user.gender = gender;
+      if(check.checkBirth(birthday)) user.birthday = birthday;
+      if(check.checkTel(telephone)) user.telephone = telephone;
+      if(check.checkEmail(email)) user.email = email;
+      await user.save();
+      return res.redirect("/profile/info");
+    }
+    if (req.body.CASE === '@UPDATE/PHOTO') {
+      const email = req.user.email
+      const user = await User.findOne({
+        where: {email: email}
+      })
+      if(user.photo){
+        const path = "public/uploads/" + user.photo
+        try {
+          fs.unlinkSync(path)
+        } catch(err) {
+          console.log(err)
+        }
       }
-      case '@UPDATE/PHOTO': {
-        const email = req.user.email
-        const user = await User.findOne({
-          where: {email: email}
-        })
-        if(user.photo){
-          const path = "public/uploads/" + user.photo
-          try {
-            fs.unlinkSync(path)
-          } catch(err) {
-            console.log(err)
-          }
-        }
-        user.photo = req.file.filename
-        await user.save()
-        return res.redirect("/profile/info")
+      user.photo = req.file.filename
+      await user.save()
+      return res.redirect("/profile/info")
+    }
+    if (req.body.CASE === '@UPDATE/PASSWORD') {
+      function Status(id, msg){
+        this.id = id;
+        this.msg = msg
       }
-      case '@UPDATE/PASSWORD': {
-        function Status(id, msg){
-          this.id = id;
-          this.msg = msg
-        }
-        const {oldPassword, newPassword, newPasswordAgain} = req.body
-        if(newPassword.length < 6) {
-          const status = new Status(1, "A senha deve conter no mínimo 6 caracteres")
-          return res.json(status);
-        }
-        if(newPassword != newPasswordAgain) {
-          const status = new Status(2, "As senhas diferem")
-          return res.json(status)
-        }
-        const currentUser = req.user;
-        const verifyOld = bcrypt.compareSync(oldPassword, currentUser.password)
-        if(!verifyOld) {
-          const status = new Status(3, "A senha antiga está incorreta")
-          return res.json(status)
-        }
-        const user = await User.findOne({
-          where: {email: currentUser.email}
-        })
-        const hash = await bcrypt.hash(newPassword, saltRounds);
-        user.password = hash;
-        user.save();
-        const status = new Status(4, "Sua senha foi alterada com sucesso");
+      const {oldPassword, newPassword, newPasswordAgain} = req.body
+      if(newPassword.length < 6) {
+        const status = new Status(1, "A senha deve conter no mínimo 6 caracteres")
+        return res.json(status);
+      }
+      if(newPassword != newPasswordAgain) {
+        const status = new Status(2, "As senhas diferem")
         return res.json(status)
       }
-      case '@UPDATE/RESET_PASS': {
-        const {token, password} = req.body
-        jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
-          if(err) return res.status(400).send({error: err})
-          const user = await User.findOne({
-            where: {email: decoded.user}
-          })
-          console.log(user.password)
-          console.log(decoded.resetHash)
-          if(!bcrypt.compareSync(user.password, decoded.resetHash)) return res.status(400).send({error: 'Invalid Token'})
-          const newPass = await bcrypt.hash(password, saltRounds)
-          user.password = newPass
-          await user.save()
-          const mail = {
-            to: user.email,
-            from: 'eduardofelipi@gmail.com',
-            subject: 'Senha alterada com sucesso',
-            template: 'resetDoneEmail'
-          }
-          transporter.sendMail(mail)
-          return res.redirect('/')
+      const currentUser = req.user;
+      const verifyOld = bcrypt.compareSync(oldPassword, currentUser.password)
+      if(!verifyOld) {
+        const status = new Status(3, "A senha antiga está incorreta")
+        return res.json(status)
+      }
+      const user = await User.findOne({
+        where: {email: currentUser.email}
+      })
+      const hash = await bcrypt.hash(newPassword, saltRounds);
+      user.password = hash;
+      user.save();
+      const status = new Status(4, "Sua senha foi alterada com sucesso");
+      return res.json(status)
+    }
+    if (req.body.CASE === '@UPDATE/RESET_PASS') {
+      const {token, password} = req.body
+      jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+        if(err) return res.status(400).send({error: err})
+        const user = await User.findOne({
+          where: {email: decoded.user}
         })
-      }
-      default: {
-        return res.json("SOMETHING WRONG HAPPENED")
-      }
+        console.log(user.password)
+        console.log(decoded.resetHash)
+        if(!bcrypt.compareSync(user.password, decoded.resetHash)) return res.status(400).send({error: 'Invalid Token'})
+        const newPass = await bcrypt.hash(password, saltRounds)
+        user.password = newPass
+        await user.save()
+        const mail = {
+          to: user.email,
+          from: 'eduardofelipi@gmail.com',
+          subject: 'Senha alterada com sucesso',
+          template: 'resetDoneEmail'
+        }
+        transporter.sendMail(mail)
+        return res.redirect('/')
+      })
     }
   },
   

@@ -48,10 +48,10 @@ module.exports = {
   async update(req, res) {
     if (req.body.CASE === '@UPDATE/ALL') {
       const { name, gender, birthday, telephone, email } = req.body;
+      console.log(gender)
       const user = await User.findOne({
         where: {email: email}
       })
-      console.log(user)
       user.name = name;
       user.gender = gender;
       if(check.checkBirth(birthday)) user.birthday = birthday;

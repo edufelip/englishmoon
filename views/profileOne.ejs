@@ -62,7 +62,11 @@
                         </div>
                         <div class="profile-container">
                             <p class="exception">SEXO</p>
-                            <span class="span-fields"><p><%=currentUser.gender%></p><i class="edit fas fa-pencil-alt"></i></span>
+                            <% if (currentUser.gender == "Male") { %>
+                                <span class="span-fields"><p>Masculino</p><i class="edit fas fa-pencil-alt"></i></span>
+                            <% } else { %>
+                                <span class="span-fields"><p>Feminino</p><i class="edit fas fa-pencil-alt"></i></span>
+                            <% } %>
                             <div class="sub-form">
                                 <% if(currentUser.gender == "Male") { %>
                                     <input class="radio-input mg-left" type="radio" name="gender" value="Male" checked>

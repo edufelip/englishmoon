@@ -49,7 +49,7 @@ routes.get("/forgot_password", (req, res) => {
     res.render("forgotPass")
 })
 
-routes.get("/forgot_password", limiter, ResetController.index)
+routes.post("/forgot_password", limiter, ResetController.index)
 
 routes.get("/reset_password", (req, res) => {
     const token = req.query.cd

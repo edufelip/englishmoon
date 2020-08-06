@@ -31,9 +31,10 @@ function submitFunc(event) {
             'Content-type': 'application/json'
         },
         body: JSON.stringify({email:email, captcha:captcha})
-    }).then((response) => {
-        return response.json()
-    }).then((data) => {
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data)
         load.style.visibility = "hidden"
         fadeOutBlock.style.transform = "translateX(-150px)"
         fadeOutBlock.style.opacity = "0"

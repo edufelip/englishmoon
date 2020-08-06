@@ -1,7 +1,9 @@
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
+const request = require('request')
 const jwt = require('jsonwebtoken')
 const transporter = require('../config/mailer')
+const saltRounds = 10
 
 module.exports = {
   async index(req, res) {

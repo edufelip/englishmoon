@@ -4,7 +4,7 @@
     <div class="newPass">
         <div class="newPassForm">
             <form id="reset-form" action="/reset_password?_method=PUT" method="POST">
-                <input style="display: none;" type="CASE" value="@UPDATE/RESET_PASS" readonly>
+                <input style="display: none;" name="CASE" type="text" value="@UPDATE/RESET_PASS" readonly hidden>
                 <h2>Estamos quase lá</h1>
                 <input id="token" name="token" type="text" value="<%=token%>" readonly hidden>
                 <p>Nova senha</p>

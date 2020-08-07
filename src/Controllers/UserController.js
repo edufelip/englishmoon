@@ -48,7 +48,6 @@ module.exports = {
   async update(req, res) {
     if (req.body.CASE === '@UPDATE/ALL') {
       const { name, gender, birthday, telephone, email } = req.body;
-      console.log(gender)
       const user = await User.findOne({
         where: {email: email}
       })
@@ -113,8 +112,6 @@ module.exports = {
         const user = await User.findOne({
           where: {email: decoded.user}
         })
-        console.log(user.password)
-        console.log(decoded.resetHash)
         if(!bcrypt.compareSync(user.password, decoded.resetHash)) return res.status(400).send({error: 'Invalid Token'})
         const newPass = await bcrypt.hash(password, saltRounds)
         user.password = newPass

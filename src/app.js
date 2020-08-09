@@ -48,7 +48,6 @@ app.use((req, res, next) => {
     res.locals.message = req.flash('error');
     res.locals.imgMessage = req.flash('imgError')
     res.locals.dltPass = req.flash('dltError')
-    res.setHeader('blablablablabla', 'blabla')
     next();
 })
 

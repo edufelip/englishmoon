@@ -62,7 +62,7 @@ app.use("/profile", profileRoutes);
 app.use("/users", userRoutes);
 app.use("/articles", articlesRoutes)
 
-app.listen(3000, (err) => {
+app.listen((process.env.PORT || 3000), (err) => {
     if(!err) {
         console.log("the server has started");
     } else {

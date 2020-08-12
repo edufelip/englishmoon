@@ -62,10 +62,4 @@ app.use("/profile", profileRoutes);
 app.use("/users", userRoutes);
 app.use("/articles", articlesRoutes)
 
-app.listen((process.env.PORT || 3000), (err) => {
-    if(!err) {
-        console.log("the server has started");
-    } else {
-        console.log("the server hasn't been started due to a problem")
-    }
-});
+app.listen(process.env.PORT || 3333)

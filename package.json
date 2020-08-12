@@ -57,7 +57,9 @@
     "yarn": "^1.22.4"
   },
   "resolutions": {
-    "minimist": "^1.2.2"
+    "minimist": "^1.2.2",
+    "dot-prop": "^5.1.1",
+    "yargs-parser": "^13.1.2"
   },
   "browserslist": [
     "last 3 versions"

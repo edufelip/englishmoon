@@ -3,7 +3,7 @@ const routes = express.Router()
 const multer = require("multer")
 const bcrypt = require("bcrypt")
 const log = require('../config/islogged')
-const UserController = require('../controllers/UserController')
+const UserController = require('../controllers/UserController.js')
 const limiter = require('../config/rateLimiter')
 const upload = require('../config/multer').single('img')
 

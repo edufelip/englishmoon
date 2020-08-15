@@ -51,11 +51,13 @@ module.exports = function(passport){
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET
         }, async(accessToken, refreshToken, profile, done) => {
+            let hashPass = (Math.random() * 0xfffff * 1000000).toString(16);
             await User.findOrCreate({
                 where: {email: profile.emails[0].value},
                 defaults: {
                     name: profile.displayName,
                     email: profile.emails[0].value,
+                    password: hashPass,
                     photo: profile.photos[0].value || NULL,
                     telephone: "not set yet",
                     gender: "not set yet",

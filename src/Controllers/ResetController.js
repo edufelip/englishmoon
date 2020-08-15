@@ -4,6 +4,7 @@ const request = require('request')
 const jwt = require('jsonwebtoken')
 const transporter = require('../config/mailer')
 const saltRounds = 10
+require('dotenv').config()
 
 module.exports = {
   async index(req, res) {
@@ -22,7 +23,7 @@ module.exports = {
     })
     const hashedPass = await bcrypt.hash(user.password, saltRounds)
     const token = jwt.sign({user: user.email, resetHash: hashedPass}, process.env.JWT_SECRET, {expiresIn: 3600})
-    const link = `http://localhost:3000/reset_password?cd=${token}`
+    const link = `${process.env.NODE_ENV}/reset_password?cd=${token}`
     const mail = {
       to: email,
       from: 'eduardofelipi@gmail.com',

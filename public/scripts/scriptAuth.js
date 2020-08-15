@@ -6,6 +6,9 @@ const icons = document.querySelectorAll(".fas.fa-exclamation");
 const secTwo = document.querySelector(".register-main-sectionTwo").querySelector("form")
 const regSuc = document.querySelector(".register-success")
 
+const isLocal = window.location.href.indexOf('://localhost')
+const linkTo = (isLocal > 0) ? 'http://localhost:3333' : 'https://englishmoon.com.br'
+
 btn.onclick = (evt) => {
     let gender = (inputs[1].checked == true)? inputs[1].value : (inputs[2].checked == true)? inputs[2].value : '';
     const data = {
@@ -17,7 +20,7 @@ btn.onclick = (evt) => {
         "password": inputs[6].value,
         "passwordConfirm": inputs[7].value
     }
-    fetch('http://localhost:3000/users', {
+    fetch(`${linkTo}/users`, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {

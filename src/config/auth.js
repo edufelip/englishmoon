@@ -1,7 +1,8 @@
 const LocalStrategy = require('passport-local').Strategy
 const GoogleStrategy = require('passport-google-oauth20');
 const bcrypt = require('bcrypt')
-const User = require('../models/User')
+const User = require('../models/User');
+const { NULL } = require('node-sass');
 require('dotenv').config()
 
 module.exports = function(passport){
@@ -49,12 +50,16 @@ module.exports = function(passport){
         callbackURL: '/api/auth/google/callback',
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET
-        }, (accessToken, refreshToken, profile, done) => {
-            User.findOrCreate({
+        }, async(accessToken, refreshToken, profile, done) => {
+            await User.findOrCreate({
                 where: {email: profile.emails[0].value},
                 defaults: {
                     name: profile.displayName,
-                    email: profile.emails[0].value
+                    email: profile.emails[0].value,
+                    photo: profile.photos[0].value || NULL,
+                    telephone: "not set yet",
+                    gender: "not set yet",
+                    birthday: "not set yet"
                 }
             }).then((user) => {
                 return done(null, user[0]);

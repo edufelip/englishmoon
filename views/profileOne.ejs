@@ -64,8 +64,10 @@
                             <p class="exception">SEXO</p>
                             <% if (currentUser.gender == "Male") { %>
                                 <span class="span-fields"><p>Masculino</p><i class="edit fas fa-pencil-alt"></i></span>
-                            <% } else { %>
+                            <% } else if (currentUser.gender == "Female") { %>
                                 <span class="span-fields"><p>Feminino</p><i class="edit fas fa-pencil-alt"></i></span>
+                            <% } else { %>
+                                <span class="span-fields"><p>Não informado</p><i class="edit fas fa-pencil-alt"></i></span>
                             <% } %>
                             <div class="sub-form">
                                 <% if(currentUser.gender == "Male") { %>
@@ -73,10 +75,15 @@
                                     <p>Masculino</p>
                                     <input class="radio-input" type="radio" name="gender" value="Female">
                                     <p>Feminino</p>
-                                <% } else { %>
+                                <% } else if(currentUser.gender == "Female") { %>
                                     <input class="radio-input mg-left" type="radio" name="gender" value="Male">
                                     <p>Masculino</p>
                                     <input class="radio-input" type="radio" name="gender" value="Female" checked>
+                                    <p>Feminino</p>
+                                <% } else { %>
+                                    <input class="radio-input mg-left" type="radio" name="gender" value="Male">
+                                    <p>Masculino</p>
+                                    <input class="radio-input" type="radio" name="gender" value="Female">
                                     <p>Feminino</p>
                                 <% } %>
                             </div>

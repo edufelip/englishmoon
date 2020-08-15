@@ -22,6 +22,9 @@ const profShadow = document.querySelector(".profile-shadow")
 const cancel = document.querySelector(".cancel-delete")
 const deleteErrorMsg = document.querySelector("#dltErrorMsg")
 
+const isLocal = window.location.href.indexOf('://localhost')
+const linkTo = (isLocal > 0) ? 'http://localhost:3333' : 'https://englishmoon.com.br'
+
 for(let i = 0; i < edit.length; i++){
     edit[i].addEventListener("click", () => {
         fields[i].style.opacity = "0"
@@ -47,7 +50,6 @@ photoBox.addEventListener("mouseenter", () => {
 photoBox.addEventListener("mouseleave", () => {
     label.style.opacity = "0.2"
 })
-
 fileSelect.addEventListener("change", () => {
     title.innerHTML = fileSelect.value
     let prov = fileSelect.value;
@@ -103,7 +105,7 @@ deleteBtnDef.onclick = (evt) => {
     const data = {
         "password": deleteFormDef.value
     }
-    fetch('http://localhost:3000/users/password', {
+    fetch(`${linkTo}users/password`, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {

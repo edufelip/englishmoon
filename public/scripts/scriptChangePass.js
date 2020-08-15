@@ -3,6 +3,9 @@ const exclam = document.querySelectorAll(".passInput");
 const passBtn = document.querySelector(".passBtn");
 const message = document.querySelector(".errorMessage");
 
+const isLocal = window.location.href.indexOf('://localhost')
+const linkTo = (isLocal > 0) ? 'http://localhost:3333' : 'https://englishmoon.com.br'
+
 passBtn.onclick = (evt) => {
     const data = {
         "CASE": "@UPDATE/PASSWORD",
@@ -10,7 +13,7 @@ passBtn.onclick = (evt) => {
         "newPassword": exclam[1].value,
         "newPasswordAgain": exclam[2].value
     }
-    fetch('http://localhost:3000/users', {
+    fetch(`${linkTo}/users`, {
         method: 'PUT',
         body: JSON.stringify(data),
         headers: {
@@ -27,7 +30,7 @@ passBtn.onclick = (evt) => {
         if(data.id == 4){
             message.style.color = "green"
             setTimeout(() => {
-                window.location.replace("http://localhost:3000/profile/info")
+                window.location.replace(`${linkTo}/profile/info`)
             }, 2000);
         }
     })

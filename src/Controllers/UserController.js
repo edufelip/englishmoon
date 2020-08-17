@@ -34,7 +34,7 @@ module.exports = {
     const hash = await bcrypt.hash(password, saltRounds);
     const user = await User.create(Object.assign(req.body, {password : hash}));
     const mail = {
-      from: 'eduardofelipi@gmail.com',
+      from: process.env.EMAIL_USER,
       to: email,
       subject: 'Bem-vindo à EnglishMoon',
       template: 'registerEmail'
@@ -118,7 +118,7 @@ module.exports = {
         await user.save()
         const mail = {
           to: user.email,
-          from: 'eduardofelipi@gmail.com',
+          from: process.env.EMAIL_USER,
           subject: 'Senha alterada com sucesso',
           template: 'resetDoneEmail'
         }

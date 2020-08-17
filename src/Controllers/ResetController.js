@@ -26,7 +26,7 @@ module.exports = {
     const link = `${process.env.NODE_ENV}/reset_password?cd=${token}`
     const mail = {
       to: email,
-      from: 'eduardofelipi@gmail.com',
+      from: process.env.EMAIL_USER,
       subject: 'Recupere sua senha',
       template: 'passResetEmail',
       context: {link}

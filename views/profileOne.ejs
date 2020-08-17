@@ -90,12 +90,20 @@
                         </div>
                         <div class="profile-container">
                             <p>TELEFONE</p>
-                            <span class="span-fields"><p><%=currentUser.telephone%></p><i class="edit fas fa-pencil-alt"></i></span>
+                            <% if(currentUser.telephone === "not set yet") { %>
+                                <span class="span-fields"><p>Não informado</p><i class="edit fas fa-pencil-alt"></i></span>
+                            <% } else { %>
+                                <span class="span-fields"><p><%=currentUser.telephone%></p><i class="edit fas fa-pencil-alt"></i></span>
+                            <% } %>
                             <input class="editField" type="text" name="telephone" maxlength="14" value="<%=currentUser.telephone%>">
                         </div>
                         <div class="profile-container">
                             <p>NASCIMENTO</p>
-                            <span class="span-fields"><p><%=currentUser.birthday%></p><i class="edit fas fa-pencil-alt"></i></span>
+                            <% if(currentUser.birthday === "not set yet") { %>
+                                <span class="span-fields"><p>Não informado</p><i class="edit fas fa-pencil-alt"></i></span>
+                            <% } else { %>
+                                <span class="span-fields"><p><%=currentUser.birthday%></p><i class="edit fas fa-pencil-alt"></i></span>
+                            <% } %>
                             <input class="editField" type="text" name="birthday" maxlength="10" value="<%=currentUser.birthday%>">
                         </div>
                         <div class="profile-container">

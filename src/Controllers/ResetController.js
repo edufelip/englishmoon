@@ -14,6 +14,7 @@ module.exports = {
       where: {email: email}
     }).catch(err => console.log(err))
     if(!user) return res.json({'status': false, 'msg': 'Esse e-mail não está cadastrado'})
+    
     const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_KEY}&response=${check}&remoteip=${req.connection.remoteAddress}`
     request(verifyUrl, (err, response, body) => {
       if(err) console.log(err)

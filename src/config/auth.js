@@ -58,7 +58,7 @@ module.exports = function(passport){
                     name: profile.displayName,
                     email: profile.emails[0].value,
                     password: hashPass,
-                    photo: profile.photos[0].value || NULL,
+                    photo: "profilepic.jpg",
                     telephone: "not set yet",
                     gender: "not set yet",
                     birthday: "not set yet"

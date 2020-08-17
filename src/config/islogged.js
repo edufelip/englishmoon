@@ -15,7 +15,7 @@ const islogged = {
         }
     },
     isAdmin: function(req, res, next) {
-        if(req.isAuthenticated() && (req.user.email === process.env.ADMIN_EMAIL || req.user.email === process.env.FAKE_ADMIN_EMAIL)) {
+        if(req.isAuthenticated() && req.user.email === process.env.ADMIN_EMAIL) {
             return next();
         }
         return res.redirect("/")

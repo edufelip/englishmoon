@@ -22,7 +22,7 @@ module.exports = {
         const {count, rows} = await Post.findAndCountAll({
           where: {
             title: {
-              [Op.like]: `%${name}%` // change to ilike when using pg
+              [Op.iLike]: `%${name}%`
             }
           },
           attributes: {exclude: ['body']},

@@ -105,7 +105,7 @@ deleteBtnDef.onclick = (evt) => {
     const data = {
         "password": deleteFormDef.value
     }
-    fetch(`${linkTo}users/password`, {
+    fetch(`${linkTo}/users/password`, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {

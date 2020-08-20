@@ -2,7 +2,6 @@ const LocalStrategy = require('passport-local').Strategy
 const GoogleStrategy = require('passport-google-oauth20');
 const bcrypt = require('bcrypt')
 const User = require('../models/User');
-const { NULL } = require('node-sass');
 require('dotenv').config()
 
 module.exports = function(passport){

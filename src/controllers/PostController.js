@@ -22,7 +22,7 @@ module.exports = {
 
   async store(req, res){
     const user_id = req.user.id
-    const {title, articleBody} = req.body;
+    const {title, articleBody, description} = req.body;
     const image = req.file.filename
     const user = await User.findByPk(user_id);
     if(!user){
@@ -31,6 +31,7 @@ module.exports = {
     const post = await Post.create({
       title: title,
       body: articleBody,
+      description: description,
       image: image,
       user_id: user_id,
     });

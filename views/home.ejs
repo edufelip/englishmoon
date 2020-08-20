@@ -30,7 +30,7 @@
                 <div class="slider-move">
                     <% list.map(element => { %>
                         <div class="slider-out" onclick="location.href='articles/<%=modifiedTitles[list.indexOf(element)]%>/<%=element.id%>'">
-                            <div style="background-image: url(<%=element.image%>);"  class="img">
+                            <div style="background-image: url(uploads/<%=element.image%>);"  class="img">
                             </div>
                             <div class="img-info">
                                 <p><%=element.title%></p>

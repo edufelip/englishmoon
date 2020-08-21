@@ -16,7 +16,7 @@
                     <div class="form-block">
                         <i class="fas fa-exclamation"></i>
                         <p>NOME</p>
-                        <input class="input" type="text" name="name" placeholder="NOME" maxlength="45">
+                        <input class="input" type="text" name="name" placeholder="NOME" maxlength="20">
                     </div>
                     <div class="form-block">
                         <i class="fas fa-exclamation"></i>
@@ -31,12 +31,12 @@
                     <div class="form-block">
                         <i class="fas fa-exclamation"></i>
                         <p>NASCIMENTO</p>
-                        <input class="input" id="birth" type="text" name="birthdate" placeholder="01/02/1980" maxlength="10">
+                        <input class="input maskInput" data-js="birth" type="text" name="birthdate" placeholder="01/02/1980" maxlength="10">
                     </div>
                     <div class="form-block">
                         <i class="fas fa-exclamation"></i>
                         <p>TELEFONE</p>
-                        <input class="input" id="field" type="text" name="telephone" placeholder="(99) 987651234" maxlength="14">
+                        <input class="input maskInput" data-js="teleph" type="text" name="telephone" placeholder="(99) 987651234" maxlength="14">
                     </div>
                     <div class="form-block">
                         <i class="fas fa-exclamation"></i>
@@ -63,6 +63,7 @@
 
 <script type="text/javascript" src="/scripts/scriptHeader.js"></script>
 <script type="text/javascript" src="/scripts/scriptAuth.js"></script>
+<script type="text/javascript" src="/scripts/scriptInputMask.js"></script>
 
 </body>
 </html>

@@ -58,7 +58,7 @@
                         <div class="profile-container">
                             <p>NOME</p>
                             <span class="span-fields"><p><%=currentUser.name%></p><i class="edit fas fa-pencil-alt"></i></span>
-                            <input class="editField" type="text" name="name" value="<%=currentUser.name%>" maxlength="45">
+                            <input class="editField" type="text" name="name" value="<%=currentUser.name%>" maxlength="20">
                         </div>
                         <div class="profile-container">
                             <p class="exception">SEXO</p>
@@ -95,7 +95,7 @@
                             <% } else { %>
                                 <span class="span-fields"><p><%=currentUser.telephone%></p><i class="edit fas fa-pencil-alt"></i></span>
                             <% } %>
-                            <input class="editField" type="text" name="telephone" maxlength="14" value="<%=currentUser.telephone%>">
+                            <input class="editField maskInput" data-js="teleph" type="text" name="telephone" maxlength="14" value="<%=currentUser.telephone%>">
                         </div>
                         <div class="profile-container">
                             <p>NASCIMENTO</p>
@@ -104,7 +104,7 @@
                             <% } else { %>
                                 <span class="span-fields"><p><%=currentUser.birthday%></p><i class="edit fas fa-pencil-alt"></i></span>
                             <% } %>
-                            <input class="editField" type="text" name="birthday" maxlength="10" value="<%=currentUser.birthday%>">
+                            <input class="editField maskInput" data-js="birth" type="text" name="birthday" maxlength="10" value="<%=currentUser.birthday%>">
                         </div>
                         <div class="profile-container">
                             <p>E-MAIL</p>
@@ -127,5 +127,6 @@
 
 <script type="text/javascript" src="/scripts/scriptHeader.js"></script>
 <script type="text/javascript" src="/scripts/scriptProfileOne.js"></script>
+<script type="text/javascript" src="/scripts/scriptInputMask.js"></script>
 </body>
 </html>

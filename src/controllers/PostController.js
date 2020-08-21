@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const Post = require('../models/Post');
 const { convertDate } = require('../utils/convertDate')
+const fs = require('fs')
 
 module.exports = {
   async index(req, res){
@@ -46,6 +47,7 @@ module.exports = {
       return res.status(403).json("você nao tem permissão para isso")
     }
     await post.destroy()
+    fs.unlinkSync(`public/uploads/${post.image}`)
     return res.redirect("/articles")
   },
 };

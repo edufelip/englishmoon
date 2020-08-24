@@ -5,8 +5,7 @@ const fs = require('fs')
 
 module.exports = {
   async index(req, res){
-    const params = req.sanitize(req.params.post_name);
-    const name = params.replace(/-/g, ' ');
+    const title = req.sanitize(req.params.post_title);
     const post_id = req.sanitize(req.params.post_id);
     const post = await Post.findOne({
       where: {id: post_id},
@@ -14,10 +13,12 @@ module.exports = {
     });
     if(!post) {
       return res.json("erro: Página não encontrada");
-    } 
-    if(post.title === name){
+    }
+    if(post.title.toLowerCase().replace(/ /g, '-') === title){
       const date = convertDate(post.createdAt)
-      return res.render("oneArticle", {post:post, date:date, name: params})
+      return res.render("oneArticle", {post:post, date:date, name: post.title.replace(/-/g, ' ')})
+    } else {
+      return res.json("deu b.o")
     }
   },
 
@@ -25,9 +26,9 @@ module.exports = {
     const user_id = req.user.id
     const {title, articleBody, description} = req.body;
     const image = req.file.filename
-    const user = await User.findByPk(user_id);
+    const user = await User.findByPk(user_id)
     if(!user){
-      return res.status(400).json({ error: 'User not found' });
+      return res.status(400).json({ error: 'User not found' })
     }
     const post = await Post.create({
       title: title,
@@ -36,8 +37,12 @@ module.exports = {
       image: image,
       user_id: user_id,
     });
-    const format_name = post.title.replace(/ /g, '-');
-    return res.redirect(`/articles/${format_name}/${post.id}`)
+    if (post) {
+      const formatTitle = title.toLowerCase().replace(/ /g, '-').replace(/\?/g, '%3F')
+      return res.redirect(`/articles/${formatTitle}/${post.id}`)
+    } else {
+      return res.send("something wrong happened")
+    }
   },
 
   async delete(req, res) {

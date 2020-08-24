@@ -32,8 +32,8 @@ routes.get("/new", log.isAdmin, (req, res) => {
     res.render("newArticle")
 })
 
-routes.get("/:post_name/:post_id", PostController.index);
+routes.get("/:post_title/:post_id", PostController.index);
 
-routes.delete("/:post_name/:post_id", [log.isAdmin, limiter], PostController.delete);
+routes.delete("/:post_id", [log.isAdmin, limiter], PostController.delete);
 
 module.exports = routes

@@ -58,7 +58,8 @@
   "resolutions": {
     "minimist": "^1.2.2",
     "dot-prop": "^5.1.1",
-    "yargs-parser": "^13.1.2"
+    "yargs-parser": "^13.1.2",
+    "bl": "^2.2.1"
   },
   "browserslist": [
     "last 3 versions"
